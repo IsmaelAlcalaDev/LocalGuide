@@ -1,0 +1,104 @@
+<div class="mb-5">
+    <img src="https://vilmanunez.com/wp-content/uploads/2018/08/mejorar-visibilidad-Instagram-Stories.png" alt="">
+</div>
+<div class="visibilidad mx-5 px-5 my-3">
+    <h2 class="mb-4">¿Por qué elegir nuestros planes de aumento de visibilidad?</h2>
+    <div>
+        <h3>Más oportunidades de reserva</h3>
+        <p>Destaca sobre la competencia y aumenta tus oportunidades de negocio. Nuestros planes te permiten resaltar tus
+            fortalezas y habilidades únicas, atrayendo la atención de más turistas interesados en tus servicios y
+            generando más reservas.</p>
+    </div>
+    <div>
+        <h3>Mayor visibilidad</h3>
+        <p>Aparece en lugares destacados en nuestra plataforma para que más turistas te encuentren fácilmente. Con
+            nuestros planes, tendrás una posición privilegiada en los resultados de búsqueda, lo que aumentará tus
+            posibilidades de ser seleccionado por los turistas para sus próximas experiencias de viaje.</p>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center mb-5">¡Obtén más visibilidad ahora!</h2>
+    <div class="row justify-content-center gap-5">
+        <div class="col-md-3">
+            <div class="card" [ngClass]="{ 'border-primary': selectedPlan === 'plan1' }" (click)="selectPlan('plan1')">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-4 p-1">La opción más flexible</h5>
+                    <p class="card-text fs-4 text-primary fw-bold mb-4 p-1">19,99€/mes</p>
+                    <p class="card-text mb-4 p-1">19,99€ por un mes</p>
+                    <button class="btn btn-primary bg-white border-primary text-primary fw-bold">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" [ngClass]="{ 'border-primary': selectedPlan === 'plan2' }" (click)="selectPlan('plan2')">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-4 p-1">Mas popular. <span class="text-primary fw-bold">Ahorra un 30%</span>
+                    </h5>
+                    <p class="card-text fs-4 text-primary fw-bold mb-4 p-1">13,99€/mes</p>
+                    <p class="card-text mb-4 p-1">39,99€ por un mes</p>
+                    <button class="btn btn-primary bg-white border-primary text-primary fw-bold">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" [ngClass]="{ 'border-primary': selectedPlan === 'plan3' }" (click)="selectPlan('plan3')">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-4 p-1">Mas valorado. <span class="text-primary fw-bold">Ahorra un
+                            50%</span></h5>
+                    <p class="card-text fs-4 text-primary fw-bold mb-4 p-1">10,00€/mes</p>
+                    <p class="card-text mb-4 p-1">119,99€ por un mes</p>
+                    <button class="btn btn-primary bg-white border-primary text-primary fw-bold">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 mb-5 pb-5">
+    <div class="row container_payment">
+        <div class="col-md-5 p-0">
+            <h5>Formulario de Pago</h5>
+            <hr>
+            <label for="paymentMethod">Método de Pago</label>
+            <select class="form-select mb-3" id="paymentMethod">
+                <option value="bizum">Bizum</option>
+                <option value="tarjeta">Tarjeta de Crédito</option>
+                <option value="transferencia">Transferencia Bancaria</option>
+            </select>
+            <label for="cardNumber">Número de Tarjeta</label>
+            <input type="text" class="form-control mb-3" id="cardNumber">
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="expiryDate">Fecha de Expiración</label>
+                    <input type="text" class="form-control" id="expiryDate">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cvv">CVV</label>
+                    <input type="text" class="form-control" id="cvv">
+                </div>
+            </div>
+            <button class="btn btn-primary">Pagar {{ datosSuscripcion.precioMensual }}€/mes</button>
+            <div>
+                <div *ngIf="pagoRealizado" class="alert alert-success mt-3" role="alert">
+                    Pago realizado con éxito.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 w-25">
+            <div>
+                <div class="card-body">
+                    <h5 class="card-title">Resumen de la Suscripción</h5>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary">Nombre del Plan:</p>
+                        <p>{{ datosSuscripcion.nombre }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary">Precio Mensual:</p>
+                        <p>{{ datosSuscripcion.precioMensual }}€</p>
+                    </div>
+                    <!-- Puedes añadir más detalles de la suscripción si es necesario -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

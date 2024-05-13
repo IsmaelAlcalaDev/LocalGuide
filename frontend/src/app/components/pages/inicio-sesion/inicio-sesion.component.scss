@@ -1,0 +1,71 @@
+.form_content{
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+.form-floating{
+    width: 90%;
+}
+
+.checkbox .mb-3{
+    text-align: left;
+}
+
+.form_title{
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    font-size: 2em;
+}
+
+.login_img{
+    position: relative;
+}
+
+.borde_difuminado {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px; /* Ajusta el grosor del borde difuminado */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 2));
+    pointer-events: none;
+}
+
+.form_login{
+    border: 1px solid #e2e2e2;
+    border-radius: 30px;
+    padding: 30px;
+    margin-right: 70px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.btn_login{
+    background-color: #fe7f00;
+    color: white;
+    border: 0;
+    font-weight: 700;
+}
+
+.content_btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:35px;
+}
+
+.link_register{
+    color:#fe7f00;
+}
+
+.link_login{
+    color:#fe7f00;
+    font-weight: bold;
+}
+
+mat-error{
+    color: rgb(199, 0, 50);
+    font-size: smaller;
+}

@@ -1,0 +1,33 @@
+/* review-list.component.css */
+.example-header-image {
+    width: 40px; /* Ancho de la imagen de perfil */
+    height: 40px; /* Alto de la imagen de perfil */
+    background-size: cover; /* Ajustar la imagen para cubrir el contenedor */
+    border-radius: 50%; /* Aplicar bordes redondeados para crear un efecto de avatar circular */
+  }
+  
+  .mat-card {
+    margin-bottom: 20px; /* Espacio entre cada tarjeta de reseña */
+  }
+  .star-rating{
+    color: #fe7f00;
+    margin-top: 10px;
+}
+
+mat-card.mat-mdc-card.mdc-card.mb-3{
+    width: 75%;
+}
+
+.reviews_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-card-title.mat-mdc-card-title {
+    font-size: small;
+}
+
+mat-card-subtitle.mat-mdc-card-subtitle {
+    font-size: x-small;
+}

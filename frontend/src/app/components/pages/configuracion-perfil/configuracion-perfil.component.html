@@ -1,0 +1,13 @@
+<form>
+    <div *ngIf="userType === 'guide'">
+        <app-configuracion-guia></app-configuracion-guia>
+
+        <hr class="mx-5">
+        <app-resenas-guia></app-resenas-guia>
+    </div>
+    <div *ngIf="userType === 'tourist'">
+        <app-configuracion-turista></app-configuracion-turista>
+        <app-resenas-turista></app-resenas-turista>
+    </div>
+</form>
+

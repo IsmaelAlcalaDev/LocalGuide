@@ -1,0 +1,63 @@
+.background-container {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro */
+}
+
+.text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px; /* Espaciado alrededor del texto */
+    text-align: center;
+    color: white; /* Color del texto */
+}
+
+.circular-image {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 110px;
+    height: 110px;
+}
+
+.review_card{
+    font-size: 0.8em;
+}
+
+.circular-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ubicacion{
+    color: #fe7f00;
+}
+
+.info_reserva{
+    font-size: 0.8em;
+}
+
+.star-rating{
+    color: #fe7f00;
+    margin-top: 10px;
+}
+
+.col-md-3.mb-4.d-flex.flex-column.align-items-center {
+    width: fit-content;
+}
+

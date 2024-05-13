@@ -1,0 +1,10 @@
+<ng-container *ngIf="comprobarUrlResumenReserva(); else resumenReserva">
+    <app-resumen-reservas class="d-flex justify-content-center text-center"></app-resumen-reservas>
+    <app-reservas-activas-guia class="d-flex gap-5 mx-5"></app-reservas-activas-guia>
+    <app-reservas-antiguas-guias></app-reservas-antiguas-guias>
+</ng-container>
+
+<ng-template #resumenReserva>
+    <app-reservas-activas-turista class="d-flex gap-5 mx-5"></app-reservas-activas-turista>
+    <app-reservas-antiguas-turista></app-reservas-antiguas-turista>
+</ng-template>

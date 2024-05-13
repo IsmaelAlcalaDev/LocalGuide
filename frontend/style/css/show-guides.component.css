@@ -1,0 +1,57 @@
+.card {
+  font-family: "Montserrat", sans-serif;
+}
+
+h4.card-title.fw-medium {
+  margin-bottom: -5px;
+}
+
+h5 {
+  color: #fe7f00;
+  margin-bottom: 0px;
+}
+
+.precio {
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+.bg-precio {
+  background-color: #0086ed;
+}
+
+.star-rating {
+  color: #fe7f00;
+  margin-top: 10px;
+}
+
+.numero_resenas, .valoracion {
+  text-align: center;
+}
+
+.numero_resenas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resenas {
+  color: #fe7f00;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.card-body {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  background-color: #F5F5F5;
+}/*# sourceMappingURL=show-guides.component.css.map */

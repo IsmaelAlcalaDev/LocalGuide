@@ -1,0 +1,24 @@
+<h2 class="fs-2 mt-5 mb-3 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Mis reseñas</h2>
+<div class="reviews_container my-5">
+    <mat-card *ngFor="let review of reviews" class="mb-3">
+        <mat-card-header>
+          <div [style.background-image]="'url(' + review.profileImage + ')'" mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ review.name }}</mat-card-title>
+          <mat-card-subtitle>{{ review.date }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ review.content }}</p>
+          <div class="star-rating">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+              <i class="fa" [ngClass]="{
+                'fa-star': review.rating >= star,
+                'fa-star-half-alt': review.rating + 0.5 >= star && review.rating < star,
+                'fa-star-o': review.rating < star
+              }"></i>
+            </ng-container>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-paginator [length]="totalItems" [hidePageSize]="true" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+</div>
+  

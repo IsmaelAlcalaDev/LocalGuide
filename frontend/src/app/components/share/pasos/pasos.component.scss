@@ -1,0 +1,30 @@
+.step_line{
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.container_step_line{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+mat-stepper{
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep {
+    :root {
+      --mat-stepper-header-selected-state-icon-background-color: #fe7f00;
+      --mat-stepper-header-edit-state-icon-background-color: #fe7f00;
+    }
+
+    div#cdk-step-content-0-0, div#cdk-step-content-0-1, div#cdk-step-content-0-2{
+        text-align: center;
+    }
+
+    .mat-horizontal-stepper-wrapper {
+        width: 75%;
+    }
+  }
+  

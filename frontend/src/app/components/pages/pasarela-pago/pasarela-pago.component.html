@@ -1,0 +1,6 @@
+<ng-container *ngIf="comprobarUrlPagoReserva(); else pagoVisibilidad">
+    <app-pago-reserva></app-pago-reserva>
+</ng-container>
+<ng-template #pagoVisibilidad>
+    <app-pago-aumento-visibilidad></app-pago-aumento-visibilidad>
+</ng-template>

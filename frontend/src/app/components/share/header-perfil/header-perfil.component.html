@@ -1,0 +1,24 @@
+<div class="perfil-header p-5">
+  <h2 class="text-center mb-5">Nombre usuario</h2>
+  <div class="d-flex justify-content-center">
+    <div class="d-flex container_perfil w-75">
+      <div class="imagen-usuario">
+        <img src="../../../../assets/images/perfi-prueba.png" alt="Imagen de perfil del usuario" class="rounded-circle" width="200" height="200">
+      </div>
+      <div class="datos-usuario w-75">
+        <div class="row d-flex gap-5">
+          <div class="col d-flex flex-column gap-5">
+            <p><strong>Nombre:</strong> Juan</p>
+            <p><strong>Apellidos:</strong> Pérez Gómez</p>
+            <p><strong>País:</strong> España</p>
+          </div>
+          <div class="col d-flex flex-column gap-5">
+            <p><strong>Ciudad:</strong> Madrid</p>
+            <p><strong>Fecha de Nacimiento:</strong> 01/01/1990</p>
+            <p *ngIf=""><strong>Precio:</strong> 8€</p>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+li > a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  margin-bottom: 15px;
+}
+
+h4 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5em;
+}/*# sourceMappingURL=footer.component.css.map */

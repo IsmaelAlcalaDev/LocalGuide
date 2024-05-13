@@ -1,0 +1,52 @@
+.hero__title {
+  text-align: left !important;
+  font-size: 6.5rem;
+  text-align: center;
+  line-height: 1em;
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+}
+
+h1 span {
+  color: #fe7f00;
+}
+
+.hero__text {
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 2rem;
+}
+
+.hero__content {
+  margin-top: 5rem;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
+  width: 261px;
+  margin-top: 5rem;
+}
+
+::ng-deep a.mdc-button.mdc-button--unelevated.mat-mdc-unelevated-button.mat-unthemed.mat-mdc-button-base {
+  background-color: #fe7f00;
+  height: 56px;
+  margin-left: 20px;
+  font-size: 1.2em;
+}
+
+.hero__image {
+  position: relative;
+}
+
+.borde-difuminado {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Ajusta el grosor del borde difuminado */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+  pointer-events: none;
+}
+
+::ng-deep span.mdc-button__label {
+  color: white;
+}/*# sourceMappingURL=hero.component.css.map */

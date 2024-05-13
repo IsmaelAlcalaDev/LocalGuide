@@ -1,0 +1,44 @@
+form {
+  border-radius: 2em;
+  padding: 3rem;
+  width: 70%;
+  position: relative;
+  z-index: 1;
+  background-color: white;
+}
+
+.form_filter_container {
+  background-image: url("../../../../assets/images/ciudad.jpeg");
+  padding: 2em 15em;
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2em;
+  color: #fe7f00;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.form-check-input[type=checkbox]:checked {
+  background-color: #fe7f00 !important;
+  border: 0 !important;
+}
+
+.form-check-input[type=radio]:checked:after {
+  background-color: #fe7f00 !important;
+  border: 0 !important;
+}
+
+.form-check-input:checked {
+  border-color: #b6b6b6;
+}
+
+button.btn.btn-primary.mt-3 {
+  background-color: #fe7f00;
+  border: 0;
+  margin-top: 2em;
+  text-transform: capitalize;
+}/*# sourceMappingURL=filtrar-guias.component.css.map */

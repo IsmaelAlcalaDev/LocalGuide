@@ -1,0 +1,15 @@
+.perfil-header {
+  width: 70%;
+  border: 1px solid #bfbfbf;
+  background-color: #f4f4f4;
+  border-radius: 1em;
+  justify-content: center;
+}
+
+.container_perfil {
+  gap: 5em;
+}
+
+img {
+  border: 5px solid white;
+}/*# sourceMappingURL=header-perfil.component.css.map */

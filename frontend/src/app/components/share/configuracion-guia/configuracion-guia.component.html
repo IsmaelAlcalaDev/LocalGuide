@@ -1,0 +1,221 @@
+<form [formGroup]="updateForm" (ngSubmit)="updateGuide()"  enctype="multipart/form-data">
+    <div class="container_setting_profile p-5">
+        <div class="imagen-de-fondo" style="background-image: url('../../../../assets/images/ciudad.jpeg');"></div>
+        <h2 class="text-center fs-3 mb-5">Mi Perfil</h2>
+        <div class="row mt-4">
+            <div class="col-md-4 text-center">
+                <img [src]="profileImg" alt="Imagen de perfil" class="img-fluid rounded-circle" style="width: 200px;">
+            </div>
+            <div class="col-md-4 col-input">
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="name" placeholder="Nombre" name="name">
+                    <mat-error
+                        *ngIf="updateForm.get('name')?.hasError('required') && updateForm.get('name')?.touched">Nombre
+                        es obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput formControlName="surname" placeholder="Apellidos" name="surname">
+                    <mat-error
+                        *ngIf="updateForm.get('surname')?.hasError('required') && updateForm.get('surname')?.touched">Apellidos
+                        son obligatorios</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput formControlName="email" placeholder="Correo electrónico" name="email">
+                    <mat-error
+                        *ngIf="updateForm.get('email')?.hasError('required') && updateForm.get('email')?.touched">Correo
+                        electrónico es obligatorio</mat-error>
+                    <mat-error
+                        *ngIf="updateForm.get('email')?.hasError('email') && updateForm.get('email')?.touched">Correo
+                        electrónico no válido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Introduce tu contraseña</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" name="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" aria-label="Toggle Visibility">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error
+                        *ngIf="updateForm.get('password')?.hasError('required') && updateForm.get('password')?.touched">Contraseña
+                        es obligatoria</mat-error>
+                    <mat-error
+                        *ngIf="updateForm.get('password')?.hasError('minlength') && updateForm.get('password')?.touched">Contraseña
+                        debe tener al menos 6 caracteres</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Repite tu contraseña</mat-label>
+                    <input matInput formControlName="matchPassword" [type]="hide ? 'password' : 'text'" name="matchPassword">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" aria-label="Toggle Visibility">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error
+                        *ngIf="updateForm.get('matchPassword')?.hasError('required') && updateForm.get('matchPassword')?.touched">Repetir
+                        contraseña es obligatorio</mat-error>
+                    <mat-error
+                        *ngIf="updateForm.get('matchPassword')?.hasError('match') && updateForm.get('matchPassword')?.touched">Las
+                        contraseñas no coinciden</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4 col-input">
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>País</mat-label>
+                    <mat-select formControlName="country" name="country">
+                        <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="updateForm.get('country')?.hasError('required') && updateForm.get('country')?.touched">País
+                        es
+                        obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Ciudad</mat-label>
+                    <mat-select formControlName="city" name="city">
+                        <mat-option *ngFor="let city of cities[selectedCountry]" [value]="city">{{city}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="updateForm.get('city')?.hasError('required') && updateForm.get('city')?.touched">Ciudad
+                        es obligatoria</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Teléfono</mat-label>
+                    <span matTextPrefix>{{ phonePrefix }} &nbsp;</span>
+                    <input type="tel" matInput placeholder="123 456 789" formControlName="phone" name="phone">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error
+                        *ngIf="updateForm.get('phone')?.hasError('required') && updateForm.get('phone')?.touched">Teléfono
+                        es obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Select an option" formControlName="gender" name="gender">
+                    <mat-label class="label-genero">Género</mat-label><br>
+                    <mat-radio-button value="FEMENINO">Mujer</mat-radio-button>
+                    <mat-radio-button value="MASCULINO">Hombre</mat-radio-button>
+                    <mat-radio-button value="OTRO">Otro</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+    </div>
+    <div class="row m-5 ps-5">
+        <div class="ms-5 ps-5">
+            <h3>Verificación de documentos</h3>
+            <div class="form-group mb-3">
+                <div *ngIf="existBackgroundCheckCertificate" class="input-group-append mb-3">
+                    <label class="text-secondary" for="backgroundCheckCertificate"><mat-icon
+                            class="text-success">check_circle</mat-icon> Certificado de antecedentes</label>
+                </div>
+                <div *ngIf="!existBackgroundCheckCertificate" class="input-group-append mb-3">
+                    <label class="text-secondary" for="backgroundCheckCertificate"><mat-icon
+                            class="text-danger">cancel</mat-icon> Certificado de antecedentes</label>
+                    <div class="input-group w-50">
+                        <input class="form-control" type="file" name="backgroundCheckCertificate" (change)="onCertificateSelected($event)">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div *ngIf="existIdentityDocument" class="input-group-append mb-3">
+                    <label class="text-secondary" for="identityDocument"><mat-icon
+                            class="text-success">check_circle</mat-icon> Documento de identidad</label>
+                </div>
+                <div *ngIf="!existIdentityDocument" class="input-group-append mb-3">
+                    <label class="text-secondary" for="identityDocument"><mat-icon
+                            class="text-danger">cancel</mat-icon> Documento de identidad</label>
+                    <div class="input-group w-50">
+                        <input class="form-control" type="file" name="identityDocument" (change)="onIdentityDocumentSelected($event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mx-5">
+
+    <div class="row mx-5 mt-5 ps-5">
+        <div class="ms-5 ps-5">
+            <h3>Información para turistas</h3>
+            <div class="row mb-3">
+                <div class="col-md-6 w-75">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Descubre aquí tu plan perfecto para disfrutar de la ciudad</mat-label>
+                        <textarea matInput id="textarea1" rows="3" maxlength="255" formControlName="phrase"></textarea>
+                        <mat-hint align="end">{{ updateForm.get('phrase')?.value.length }}/255 caracteres</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6 w-75">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Información adicional</mat-label>
+                        <textarea matInput id="textarea2" rows="3" maxlength="255" formControlName="additionalInfo"></textarea>
+                        <mat-hint align="end">{{ updateForm.get('additionalInfo')?.value.length }}/255 caracteres</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="w-25 mb-5">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tarifa por hora</mat-label>
+                        <input matInput type="number" placeholder="Cantidad" min="0" max="50" step="1" formControlName="hourlyPrice">
+                        <span matSuffix>&nbsp;€</span> <!-- Agrega el sufijo de moneda con espacio -->
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <div class="row mb-1">
+                    <div class="col">
+                        <p class="mb-2 text-secondary">Actividades:</p>
+                    </div>
+                </div>
+                <div class="row w-75">
+                    <div class="col-3" *ngFor="let hobbie of hobbies">
+                        <mat-checkbox name="hobbies" (change)="onHobbiesChange($event.checked, hobbie)">{{ hobbie }}</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <div class="row mb-1">
+                    <div class="col">
+                        <p class="mb-2 text-secondary">Idiomas:</p>
+                    </div>
+                </div>
+                <div class="row w-75">
+                    <div class="col-2" *ngFor="let language of languages">
+                        <mat-checkbox name="languages" (change)="onLanguageChange($event.checked, language)">{{ language }}</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mx-5">
+
+    <div class="row mx-5 my-5 ps-5">
+        <div class="ms-5 ps-5">
+            <div class="form-group mb-3">
+                <div class="input-group-append mb-3">
+                    <label class="text-secondary" for="profileImg">Imagen de perfil</label>
+                </div>
+                <div class="input-group w-50">
+                    <input class="form-control" type="file" name="profileImg" (change)="onImageSelected($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-5 mt-5 ps-5 mb-5">
+        <div class="ms-5 ps-5">
+            <button type="submit" class="btn btn-primary">Actualizar perfil</button>
+            <div *ngIf="message !== ''" class="alert alert-success mt-4" role="alert">{{message}}</div>
+            <div *ngIf="messageError !== ''" class="alert alert-danger mt-4" role="alert">{{messageError}}</div>
+        </div>
+    </div>
+</form>

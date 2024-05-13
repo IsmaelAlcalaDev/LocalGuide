@@ -1,0 +1,42 @@
+<div *ngFor="let guia of guias">
+    <div class="card mb-3 rounded-4" style="max-width: 600px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="assets/images/perfi-prueba.png" class="img-fluid rounded-start h-100 w-70" alt="">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h4 class="card-title fw-medium">{{guia.nombre}}</h4>
+                        <h5>{{guia.ubicacion}}</h5>     
+                    </div>
+                    <div class="rounded-2 p-2 text-light fw-medium me-3 bg-precio">
+                        <span class="precio">{{guia.precio}}</span>
+                    </div>
+                </div>
+              
+              <p class="card-text">{{guia.descripcion}}</p>
+    
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="numero_resenas">
+                    <h5>RESEÑAS</h5>  
+                    <span class="resenas fw-medium fs-5">{{guia.cantidadResenas}}</span>     
+                </div>
+                <div class="valoracion">
+                    <h5>VALORACIÓN</h5>  
+                    <div class="star-rating">
+                      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                        <i class="fa" [ngClass]="{
+                          'fa-star': guia.valoracion >= star,
+                          'fa-star-half-stroke': guia.valoracion + 0.5 >= star && guia.valoracion < star
+                        }"></i>
+                      </ng-container>
+                    </div>                    
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>   
+</div>

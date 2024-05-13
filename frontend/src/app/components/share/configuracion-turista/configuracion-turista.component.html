@@ -1,0 +1,122 @@
+<form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+    <div class="container_setting_profile p-5">
+        <div class="imagen-de-fondo" style="background-image: url('../../../../assets/images/ciudad.jpeg');"></div>
+        <h2 class="text-center fs-3 mb-5">Mi Perfil</h2>
+        <div class="row mt-4">
+            <div class="col-md-4 d-flex justify-content-center">
+                <div style="width: 200px; height: 200px; overflow: hidden;">
+                    <img [src]="profileImg" alt="Imagen de perfil"
+                        class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>            
+            <div class="col-md-4 col-input">
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="name" placeholder="Nombre">
+                    <mat-error
+                        *ngIf="updateForm.get('name')?.hasError('required') && updateForm.get('name')?.touched">Nombre
+                        es obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput formControlName="surname" placeholder="Apellidos">
+                    <mat-error
+                        *ngIf="updateForm.get('surname')?.hasError('required') && updateForm.get('surname')?.touched">Apellidos
+                        son obligatorios</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput formControlName="email" placeholder="Correo electrónico">
+                    <mat-error
+                        *ngIf="updateForm.get('email')?.hasError('required') && updateForm.get('email')?.touched">Correo
+                        electrónico es obligatorio</mat-error>
+                    <mat-error
+                        *ngIf="updateForm.get('email')?.hasError('email') && updateForm.get('email')?.touched">Correo
+                        electrónico no válido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Introduce tu contraseña</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" aria-label="Toggle Visibility">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error
+                        *ngIf="updateForm.get('password')?.hasError('required') && updateForm.get('password')?.touched">Contraseña
+                        es obligatoria</mat-error>
+                    <mat-error
+                        *ngIf="updateForm.get('password')?.hasError('minlength') && updateForm.get('password')?.touched">Contraseña
+                        debe tener al menos 6 caracteres</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Repite tu contraseña</mat-label>
+                    <input matInput formControlName="matchPassword" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" aria-label="Toggle Visibility">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error
+                        *ngIf="updateForm.get('matchPassword')?.hasError('required') && updateForm.get('matchPassword')?.touched">Repetir
+                        contraseña es obligatorio</mat-error>
+                    <mat-error
+                        *ngIf="updateForm.get('matchPassword')?.hasError('match') && updateForm.get('matchPassword')?.touched">Las
+                        contraseñas no coinciden</mat-error>
+                </mat-form-field>
+                <div *ngIf="message !== ''" class="alert alert-success mt-4 w-75" role="alert">{{message}}</div>
+                <div *ngIf="messageError !== ''" class="alert alert-danger mt-4 w-75" role="alert">{{messageError}}</div>
+            </div>
+            <div class="col-md-4 col-input">
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>País</mat-label>
+                    <mat-select formControlName="country">
+                        <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="updateForm.get('country')?.hasError('required') && updateForm.get('country')?.touched">País
+                        es
+                        obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Ciudad</mat-label>
+                    <mat-select formControlName="city">
+                        <mat-option *ngFor="let city of cities[selectedCountry]" [value]="city">{{city}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="updateForm.get('city')?.hasError('required') && updateForm.get('city')?.touched">Ciudad
+                        es obligatoria</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Teléfono</mat-label>
+                    <span matTextPrefix>{{ phonePrefix }} &nbsp;</span>
+                    <input type="tel" matInput placeholder="123 456 789" formControlName="phone">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error
+                        *ngIf="updateForm.get('phone')?.hasError('required') && updateForm.get('phone')?.touched">Teléfono
+                        es obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-label class="label-genero">Género</mat-label><br>
+                    <mat-radio-button value="FEMENINO">Mujer</mat-radio-button>
+                    <mat-radio-button value="MASCULINO">Hombre</mat-radio-button>
+                    <mat-radio-button value="OTRO">Otro</mat-radio-button>
+                </mat-radio-group>
+
+                <div class="form-group mb-3">
+                    <div class="input-group-append mb-3">
+                        <label class="text-white" for="profileImg">Imagen de perfil</label>
+                    </div>
+                    <div class="input-group w-75">
+                        <input class="form-control" type="file" name="profileImg" (change)="onImageSelected($event)">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4">Actualizar perfil</button>
+
+            </div>
+        </div>
+    </div>
+</form>

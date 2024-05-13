@@ -1,0 +1,89 @@
+
+<div class="container mt-5 mb-5 pb-5">
+  <div class="informacion_pago mb-5 p-3">
+    <h2 class="mb-4">Finaliza tu reserva</h2>
+    <div>
+        <h3>Cancelación gratuita</h3>
+        <p>Tienes hasta 48 horas después de realizar tu reserva para cancelarla sin cargo alguno.</p>
+    </div>
+    <div>
+        <h3>Retención del pago</h3>
+        <p>Por motivos de seguridad y para garantizar la mejor calidad del servicio, retenemos el pago de tu reserva hasta la finalización de tu viaje. Esta medida nos permite proteger tus fondos mientras disfrutas de tu experiencia de viaje y asegurarnos de que recibas el servicio esperado.</p>
+    </div>
+  </div>
+  <div class="row container_payment ">
+    <div class="col-md-5 p-0">
+      <h5>Formulario de Pago</h5>
+      <hr>
+      <label for="paymentMethod">Método de Pago</label>
+      <select class="form-select mb-3" id="paymentMethod">
+        <option value="bizum">Bizum</option>
+        <option value="tarjeta">Tarjeta de Crédito</option>
+        <option value="transferencia">Transferencia Bancaria</option>
+      </select>
+      <label for="cardNumber">Número de Tarjeta</label>
+      <input type="text" class="form-control mb-3" id="cardNumber">
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="expiryDate">Fecha de Expiración</label>
+          <input type="text" class="form-control" id="expiryDate">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cvv">CVV</label>
+          <input type="text" class="form-control" id="cvv">
+        </div>
+      </div>
+      <button class="btn btn-primary">Pagar {{ (datosReserva.precioHora * datosReserva.nHoras) + ((datosReserva.precioHora * datosReserva.nHoras) * 5) / 100}}€</button>
+      <div>
+        <div *ngIf="pagoRealizado" class="alert alert-success mt-3" role="alert">
+          Pago realizado con éxito.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <div class="card-body">
+          <h5 class="card-title">Resumen de la Compra</h5>
+          <hr>
+          <div>
+            <div class="d-flex justify-content-between">
+              <p class="text-secondary">Fecha inicio:</p>
+              <p>{{ datosReserva.fechaInicio }}</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p class="text-secondary">Fecha fin:</p>
+              <p>{{ datosReserva.fechaFin }}</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p class="text-secondary">Guía:</p>
+              <p>{{ datosReserva.nombre }}</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p class="text-secondary">{{ datosReserva.precioHora }}€ x {{ datosReserva.nHoras }}h</p>
+              <p>{{ datosReserva.precioHora * datosReserva.nHoras }}€</p>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <p><strong>Subtotal</strong></p>
+            <p>{{ datosReserva.precioHora * datosReserva.nHoras }}</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p><strong>Comisión por el servicio del LocalGuide</strong></p>
+            <p>{{ ((datosReserva.precioHora * datosReserva.nHoras) * 5) / 100 }}€ </p>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <div>
+              <p class="text-secondary">Total:</p>
+              <p class="text-secondary">Impuestos inc.</p>
+            </div>
+            <div class="total">
+              <p>{{ (datosReserva.precioHora * datosReserva.nHoras) + ((datosReserva.precioHora * datosReserva.nHoras) * 5) / 100}}€</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

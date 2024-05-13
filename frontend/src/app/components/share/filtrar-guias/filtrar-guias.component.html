@@ -1,0 +1,106 @@
+<div class="form_filter_container w-100">
+    <form class="col">
+        <div class="form_title">
+            <h2>Descubre tu Guía Ideal y Emprende tu Próxima Aventura</h2>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="destino" placeholder="Introducir destino">
+                    <label for="destino">Destino</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaInicio">
+                    <label for="fechaInicio">Fecha de inicio</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaFin">
+                    <label for="fechaFin">Fecha fin</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="precioMinimo" value="0" min="0" max="50">
+                    <label for="precioMinimo">Precio Mínimo</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="precioMaximo" value="10" min="0" max="50">
+                    <label for="precioMaximo">Precio Máximo</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="col-12">
+            <hr class="my-3">
+        </div>
+
+        <!-- Row 3 -->
+        <div class="row mb-3">
+            <div class="col">
+                <p class="mb-0 fw-semibold text-secondary">Actividades:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3" *ngFor="let hobbie of hobbies">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="{{ hobbie }}">
+                    <label class="form-check-label" for="{{ hobbie }}">{{ hobbie }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="col-12">
+            <hr class="my-3">
+        </div>
+
+        <!-- Row 4 -->
+        <div class="row mb-3">
+            <div class="col">
+                <p class="mb-3 fw-semibold text-secondary">Género:</p>
+                <!-- Radio Buttons Gender -->
+                <div class="d-flex gap-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="generoHombre" value="male">
+                        <label class="form-check-label" for="generoHombre">Hombre</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="generoMujer" value="female">
+                        <label class="form-check-label" for="generoMujer">Mujer</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="col-12">
+            <hr class="my-3">
+        </div>
+
+        <!-- Row 5 -->
+        <div class="row mb-3">
+            <div class="col">
+                <p class="mb-0 fw-semibold text-secondary">Idiomas:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2" *ngFor="let language of languages">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="{{ language }}">
+                    <label class="form-check-label" for="{{ language }}">{{ language }}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary mt-3">Filtrar guías</button>
+    </form>
+  </div>
+  
