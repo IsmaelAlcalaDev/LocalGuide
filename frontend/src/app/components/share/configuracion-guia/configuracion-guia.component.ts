@@ -55,10 +55,10 @@ export class ConfiguracionGuiaComponent {
   }
 
   changeStateCertificate() {
-    if (this.userData.user.backgroundCheckCertificate) {
+    if (this.userData.backgroundCheckCertificate) {
       this.existBackgroundCheckCertificate = true;
     }
-    if (this.userData.user.identityDocument) {
+    if (this.userData.identityDocument) {
       this.existIdentityDocument = true;
     }
   }
@@ -95,7 +95,7 @@ export class ConfiguracionGuiaComponent {
   }
 
   onLanguageChange(checked: boolean, language: string) {
-    const { user } = this.userData;
+    const user = this.userData;
     const languages = user.languages;
 
     if (checked) {
@@ -115,7 +115,7 @@ export class ConfiguracionGuiaComponent {
   }
 
   onHobbiesChange(checked: boolean, hobby: string) {
-    const { user } = this.userData;
+    const user = this.userData;
     const hobbies = user.hobbies;
 
     if (checked) {
@@ -160,12 +160,11 @@ export class ConfiguracionGuiaComponent {
 
   updateGuide(): void {
     if (this.updateForm && this.updateForm.valid) {
-      console.log(this.updateForm.value.additionalInfo)
     const guide: Guide = {
       name: this.updateForm.value.name,
       surname: this.updateForm.value.surname,
       email: this.updateForm.value.email,
-      password: this.updateForm.value.password === '' ? this.userData.user.password : this.updateForm.value.password,
+      password: this.updateForm.value.password === '' ? this.userData.password : this.updateForm.value.password,
       country: this.updateForm.value.country,
       city: this.updateForm.value.city,
       phone: this.updateForm.value.phone,
@@ -179,7 +178,7 @@ export class ConfiguracionGuiaComponent {
       backgroundCheckCertificate: this.existBackgroundCheckCertificate as boolean | undefined,
       identityDocument: this.existIdentityDocument as boolean | undefined,
     }
-    this.guiaService.updateGuide(guide, this.userData.user.id).subscribe(
+    this.guiaService.updateGuide(guide, this.userData.id).subscribe(
       response => {
         sessionStorage.removeItem('user');
         sessionStorage.setItem('user', JSON.stringify(response));

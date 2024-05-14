@@ -12,6 +12,7 @@ userData: any = {};
 
   getDataUser(): Tourist | Guide | null {
     const userDataString = sessionStorage.getItem('user');
+    
     if (userDataString) {
       return JSON.parse(userDataString);
     }

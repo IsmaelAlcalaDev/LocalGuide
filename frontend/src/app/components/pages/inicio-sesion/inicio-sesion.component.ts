@@ -46,10 +46,7 @@ export class InicioSesionComponent implements OnInit {
       const password = this.loginForm.get('password')?.value;
       this.guiaService.login(email, password).subscribe(
         response => {
-          const userData = {
-            user: response,
-            userType: response.userType
-          };
+          const userData = response;
           sessionStorage.setItem('user', JSON.stringify(userData));
           this.authService.setUserType(userData.userType);
           this.router.navigate(['/inicio']);
@@ -64,12 +61,9 @@ export class InicioSesionComponent implements OnInit {
       if (this.url === '/inicio-sesion-guia') {
         this.guiaService.login(email, password).subscribe(
           response => {
-            const userData = {
-              user: response,
-              userType: 'guide'
-            };
+            const userData = response;
             sessionStorage.setItem('user', JSON.stringify(userData));
-            this.authService.setUserType(userData.userType);
+            this.authService.setUserType(userData.typeUser);
             this.router.navigate(['/inicio']);
           },
           error => {
@@ -82,12 +76,9 @@ export class InicioSesionComponent implements OnInit {
       } else if (this.url === '/inicio-sesion-turista') {
         this.turistaService.login(email, password).subscribe(
           response => {
-            const userData = {
-              user: response,
-              userType: 'turista'
-            };
+            const userData = response;
             sessionStorage.setItem('user', JSON.stringify(userData));
-            this.authService.setUserType(userData.userType);
+            this.authService.setUserType(userData.typeUser);
             this.router.navigate(['/inicio']);
           },
           error => {

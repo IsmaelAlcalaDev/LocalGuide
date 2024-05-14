@@ -6,20 +6,21 @@ import { UtilService } from '../utilServices/util.service';
   providedIn: 'root'
 })
 export class AuthService {
-  utilService = inject(UtilService);
-  private userType = this.utilService.getDataUser() ? JSON.parse(sessionStorage.getItem('user')!).typeUser : 'public';
-  private userType$ = new BehaviorSubject<string>(this.userType);
+  private userType$ = new BehaviorSubject<string>('public');
 
-
-  constructor() { }
+  constructor(private utilService: UtilService) {
+    // Obtener el tipo de usuario inicialmente
+    const userData = this.utilService.getDataUser();
+    const userType = userData?.typeUser || 'public';
+    this.setUserType(userType); // Emite el valor inicial
+  }
 
   get UserType() {
-    console.log(JSON.parse(sessionStorage.getItem('user')!))
-    console.log(this.userType)
     return this.userType$.asObservable();
   }
 
   setUserType(userType: string) {
+    // Actualizar el tipo de usuario y notificar a los observadores
     this.userType$.next(userType);
   }
 }

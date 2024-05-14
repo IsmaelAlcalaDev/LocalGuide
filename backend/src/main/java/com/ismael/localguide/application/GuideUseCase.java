@@ -82,7 +82,6 @@ public class GuideUseCase {
         if (!guideOptional.isPresent()) {
             return Optional.empty();
         }
-
         guideOptional.ifPresent(guide -> {
             for (Map.Entry<String, Object> entry : updatesRequest.entrySet()) {
                 final String fieldName = entry.getKey();

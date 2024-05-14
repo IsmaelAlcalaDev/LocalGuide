@@ -36,7 +36,7 @@ export class ConfiguracionTuristaComponent {
     this.updateForm = this.validacionService.validateUpdateFormTourist(this.userData);
     this.chargeJsonLocation();
     this.changeCityAndPrefix();
-    this.profileImg = this.userData.user.profileImg ? this.userData.user.profileImg : 'assets/images/default-profile.png'; 
+    this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png'; 
   }
 
   chargeJsonLocation() {
@@ -53,7 +53,7 @@ export class ConfiguracionTuristaComponent {
 
   changeCityAndPrefix() {
     if(this.userData){
-      this.selectedCountry = this.userData.user.country;
+      this.selectedCountry = this.userData.country;
       this.phonePrefix = this.phonePrefixes[this.selectedCountry];
     }
       this.updateForm.get('country')?.valueChanges.subscribe(country => {
@@ -76,7 +76,7 @@ export class ConfiguracionTuristaComponent {
         const usuario = {
           name: this.updateForm.get('name')?.value,
           surname: this.updateForm.get('surname')?.value,
-          password: this.updateForm.get('password')?.value === '' ? this.userData.user.password : this.updateForm.get('password')?.value,
+          password: this.updateForm.get('password')?.value === '' ? this.userData.password : this.updateForm.get('password')?.value,
           country: this.updateForm.get('country')?.value,
           city: this.updateForm.get('city')?.value,
           phone: this.updateForm.get('phone')?.value,

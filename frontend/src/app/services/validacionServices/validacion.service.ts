@@ -64,21 +64,21 @@ export class ValidacionService {
   // Validación del formulario de actualización de información de turistas
   validateUpdateFormTourist(userData: any): FormGroup {
     return this.formBuilder.group({
-      name: [userData.user.name || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
-      surname: [userData.user.surname || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
+      name: [userData.name || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
+      surname: [userData.surname || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
       password: ['', [
         Validators.minLength(6),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$')
       ]],
       matchPassword: [''],
-      country: [userData.user.country || '', [Validators.required]],
-      city: [userData.user.city || '', [Validators.required]],
-      phone: [userData.user.phone || '', [
+      country: [userData.country || '', [Validators.required]],
+      city: [userData.city || '', [Validators.required]],
+      phone: [userData.phone || '', [
         Validators.required,
         Validators.pattern('^\\d{9}$')
       ]],
-      gender: [userData.user.gender || '', Validators.required],
-      email: [userData.user.email || '', [
+      gender: [userData.gender || '', Validators.required],
+      email: [userData.email || '', [
         Validators.required,
         Validators.email
       ]],
