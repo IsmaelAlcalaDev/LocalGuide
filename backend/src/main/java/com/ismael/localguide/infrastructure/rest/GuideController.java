@@ -28,6 +28,7 @@ public class GuideController {
     private GuideUseCase guideService;
     @Autowired
     private TouristUseCase touristService;
+    @Autowired
     private GuideMapper guideMapper;
 
     @PostMapping("v1/login")
@@ -105,17 +106,18 @@ public class GuideController {
 
     @PutMapping(value = "v1/update/{id}")
     public ResponseEntity<?> updateGuide(@PathVariable final Long id, @RequestBody final Map<String, Object> data) {
-        final  Optional<Guide> guide = this.guideService.updateGuide(id, data);
-        try{
-            if (guide.isEmpty()) {
+        GuideDataDTO guide = guideMapper.toDto(this.guideService.updateGuide(id, data).get()) ;
+        try {
+            if (guide == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El guía no existe.");
             }
             return ResponseEntity.ok(guide);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el guía: " + e.getMessage());
-
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al actualizar el guía: " + e.getMessage());
         }
     }
+
 
 
 }

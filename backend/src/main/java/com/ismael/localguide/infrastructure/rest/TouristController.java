@@ -59,13 +59,13 @@ public class TouristController {
             if (existingTouristOptional.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El turista no existe.");
             }
-
             // Obtener el turista existente de la base de datos
             Tourist existingTourist = existingTouristOptional.get();
 
             // Actualizar los campos del turista existente con los proporcionados en el cuerpo de la solicitud
             existingTourist.setName(tourist.getName());
             existingTourist.setSurname(tourist.getSurname());
+            existingTourist.setEmail(tourist.getEmail());
             existingTourist.setPassword(tourist.getPassword());
             existingTourist.setCountry(tourist.getCountry());
             existingTourist.setCity(tourist.getCity());

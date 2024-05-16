@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { profile } from 'node:console';
 
 @Injectable({
   providedIn: 'root'
@@ -113,7 +114,7 @@ export class ValidacionService {
       hourlyPrice: [user.hourlyPrice || 0],
       identityDocument: [user.identityDocument || ''],
       backgroundCheckCertificate: [user.backgroundCheckCertificate || ''],
-
+      profileImg: [user.profileImg || ''],
     }, { validators: this.validateMatchPassword });
   }
 

@@ -30,7 +30,7 @@ export class ConfiguracionGuiaComponent {
   hobbies: string[] = [];
   phrase: string = '';
   additionalInfo: string = '';
-  profileImgBase64: string = '';
+  profileImgBase64: string | null = null;
   existBackgroundCheckCertificate: Boolean = false;
   existIdentityDocument: Boolean = false;
 
@@ -45,6 +45,7 @@ export class ConfiguracionGuiaComponent {
 
   ngOnInit() {
     this.userData = this.utilService.getDataUser();
+    console.log(this.userData);
     this.updateForm = this.validacionService.validateUpdateFormGuide(this.userData);
     this.chargeJsonLocation();
     this.changeCityAndPrefix();
@@ -94,6 +95,16 @@ export class ConfiguracionGuiaComponent {
     });
   }
 
+  checkLanguage(lng: string): boolean {
+    const languages = this.userData.languages as string[]; // Suponiendo que userData.languages es un array de strings
+    return languages.includes(lng);
+  }
+
+  checkHobbies(hobb: string): boolean {
+      const hobbies = this.userData.hobbies as string[]; // Suponiendo que userData.hobbies es un array de strings
+      return hobbies.includes(hobb);
+  }
+
   onLanguageChange(checked: boolean, language: string) {
     const user = this.userData;
     const languages = user.languages;
@@ -139,7 +150,6 @@ export class ConfiguracionGuiaComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.profileImgBase64 = reader.result as string;
-      console.log('Archivo convertido a Base64:', this.profileImgBase64);
     }
     reader.readAsDataURL(file);
   }
@@ -174,12 +184,14 @@ export class ConfiguracionGuiaComponent {
       languages: this.updateForm.value.languages,
       hobbies: this.updateForm.value.hobbies,
       hourlyPrice: parseInt(this.updateForm.value.hourlyPrice),
-      profileImg: this.profileImgBase64,
+      profileImg: this.profileImgBase64 ? this.profileImgBase64: this.userData.profileImage,
       backgroundCheckCertificate: this.existBackgroundCheckCertificate as boolean | undefined,
       identityDocument: this.existIdentityDocument as boolean | undefined,
     }
+    console.log(guide)
     this.guiaService.updateGuide(guide, this.userData.id).subscribe(
       response => {
+        console.log(response)
         sessionStorage.removeItem('user');
         sessionStorage.setItem('user', JSON.stringify(response));
         this.updateForm.patchValue({
@@ -187,9 +199,11 @@ export class ConfiguracionGuiaComponent {
           matchPassword: ''
         });
         this.userData = this.utilService.getDataUser();
+        this.profileImg = this.userData.profileImg;
         this.message = 'Usuario actualizado correctamente.';
         setTimeout(() => {
           this.message = '';
+       window.location.reload();
         }, 3000);
       },
       error => {
@@ -198,9 +212,9 @@ export class ConfiguracionGuiaComponent {
         }
         setTimeout(() => {
           this.messageError = ''; 
+        //  window.location.reload();
         }, 3000); 
         }
-      
     );
   }
   }

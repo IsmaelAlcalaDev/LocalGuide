@@ -12,14 +12,12 @@ export class ConfiguracionPerfilComponent {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('entra confi perfil')
     this.getUserTypeFromSessionStorage();
   }
 
   getUserTypeFromSessionStorage() {
     this.authService.UserType.subscribe(userType => {
       this.userType = userType;
-      console.log(this.userType);
     });
   }
 }

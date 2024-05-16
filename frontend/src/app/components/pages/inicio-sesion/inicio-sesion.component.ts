@@ -44,20 +44,7 @@ export class InicioSesionComponent implements OnInit {
     if (this.loginForm && this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
-      this.guiaService.login(email, password).subscribe(
-        response => {
-          const userData = response;
-          sessionStorage.setItem('user', JSON.stringify(userData));
-          this.authService.setUserType(userData.userType);
-          this.router.navigate(['/inicio']);
-        },
-        error => {
-          console.error('Error al iniciar sesión:', error); 
-          if (error.status === 404 || error.status === 401) {
-            this.showErrorMessage = 'Usuario o contraseña incorrectos';
-          }
-        }
-      );  
+
       if (this.url === '/inicio-sesion-guia') {
         this.guiaService.login(email, password).subscribe(
           response => {

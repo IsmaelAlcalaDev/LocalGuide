@@ -82,7 +82,7 @@ export class ConfiguracionTuristaComponent {
           phone: this.updateForm.get('phone')?.value,
           gender: this.updateForm.get('gender')?.value,
           email: this.updateForm.get('email')?.value,
-          profileImg: this.profileImgBase64,
+          profileImg: this.profileImgBase64 ? this.profileImgBase64 : this.userData.profileImg,
         };
 
           this.turistaService.updateTourist(usuario).subscribe(
@@ -94,8 +94,10 @@ export class ConfiguracionTuristaComponent {
                 matchPassword: ''
               });
               this.message = 'Usuario actualizado correctamente.';
+              this.profileImg = this.userData.profileImg;
               setTimeout(() => {
                 this.message = '';
+                window.location.reload();
               }, 3000);
             },
             error => {
@@ -107,6 +109,7 @@ export class ConfiguracionTuristaComponent {
               }
               setTimeout(() => {
                 this.messageError = '';
+                window.location.reload();
               }, 3000);
             }
           );  

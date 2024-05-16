@@ -4,8 +4,8 @@
         <h2 class="text-center fs-3 mb-5">Mi Perfil</h2>
         <div class="row mt-4">
             <div class="col-md-4 text-center">
-                <img [src]="profileImg" alt="Imagen de perfil" class="img-fluid rounded-circle" style="width: 200px;">
-            </div>
+                <img [src]="profileImg" alt="Imagen de perfil" class="img-fluid rounded-circle" style="width: 200px; height: 200px;">
+            </div>            
             <div class="col-md-4 col-input">
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Nombre</mat-label>
@@ -177,7 +177,7 @@
                 </div>
                 <div class="row w-75">
                     <div class="col-3" *ngFor="let hobbie of hobbies">
-                        <mat-checkbox name="hobbies" (change)="onHobbiesChange($event.checked, hobbie)">{{ hobbie }}</mat-checkbox>
+                        <mat-checkbox name="hobbies" [checked]="checkHobbies(hobbie)" (change)="onHobbiesChange($event.checked, hobbie)">{{ hobbie }}</mat-checkbox>
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="row w-75">
                     <div class="col-2" *ngFor="let language of languages">
-                        <mat-checkbox name="languages" (change)="onLanguageChange($event.checked, language)">{{ language }}</mat-checkbox>
+                        <mat-checkbox name="languages" [checked]="checkLanguage(language)"  (change)="onLanguageChange($event.checked, language)">{{ language }}</mat-checkbox>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,9 @@ public class GuideUseCase {
 
     @Autowired
     private GuideRepository guideRepository;
+    @Autowired
     private LanguageRepository languageRepository;
+    @Autowired
     private HobbiesRepository hobbiesRepository;
 
     public Optional<Guide> findByEmail(final String email){
@@ -130,6 +132,7 @@ public class GuideUseCase {
                         guide.setPhrase(value.toString());
                         break;
                     case "languages":
+                        guide.getLanguages().clear();
                         Set<Language> languages = new HashSet<>();
                         for (String languageName : (List<String>) value) {
                             Language language = languageRepository.findByLanguage(languageName);
@@ -138,9 +141,11 @@ public class GuideUseCase {
                             }
                             languages.add(language);
                         }
+                        System.out.println(languages);
                         guide.setLanguages(languages);
                         break;
                     case "hobbies":
+                        guide.getHobbies().clear();
                         Set<Hobbies> hobbies = new HashSet<>();
                         for (String hobbyName : (List<String>) value) {
                             Hobbies hobby = hobbiesRepository.findByName(hobbyName);
@@ -173,7 +178,4 @@ public class GuideUseCase {
         guideRepository.save(guideOptionalFinal.get());
         return guideOptionalFinal;
     }
-
-
-
 }
