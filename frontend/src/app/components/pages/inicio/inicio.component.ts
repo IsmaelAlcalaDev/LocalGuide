@@ -9,6 +9,7 @@ import { GuiaService } from '../../../services/guiaService/guia.service';
 export class InicioComponent {
 guias:any = [];
 reservasRecientes:any = [];
+image:any = '';
   
   constructor(private guiaService:GuiaService){}
   
@@ -16,7 +17,6 @@ reservasRecientes:any = [];
  ngOnInit(){
   this.guias = this.guiaService.guiasInput;
   this.reservasRecientes = this.guiaService.reservasRecientes;
-  // this.guiaService.getListaGuias().subscribe(items => this.guias = items);
 }
 
 actualizarGuia(event:Event){

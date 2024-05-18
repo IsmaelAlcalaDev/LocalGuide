@@ -85,20 +85,8 @@ public class Guide {
     @Column(name = "typeUser")
     private String typeUser = "guide";
 
-    @Column(name = "contracted_plan_name", length = 100)
-    private String contractedPlanName;
-
-    @Column(name = "contracted_plan_duration")
-    private Integer contractedPlanDuration;
-
-    @Column(name = "contracted_plan_price")
-    private Double contractedPlanPrice = 0.0;
-
-    @Column(name = "plan_start_date")
-    private LocalDateTime planStartDate;
-
-    @Column(name = "plan_expiration_date")
-    private LocalDateTime  planExpirationDate;
+    @Column(name = "number_tours")
+    private int numberTours;
 
     @ManyToMany
     @JoinTable(name = "guide_language",

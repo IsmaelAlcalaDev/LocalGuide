@@ -13,7 +13,7 @@ export const environment = {
         update: 'http://localhost:8080/local-guide/api/tourist/v1/update',
       },
       reservation: {
-
+        recent: 'http://localhost:8080/local-guide/api/reservation/v1/recent',
       },
       transaction: {
 

@@ -1,34 +1,37 @@
-<div *ngFor="let reserva of reservasRecientes" class="col-md-3 mb-4 d-flex flex-column align-items-center">
+<div *ngFor="let reservation of recentReservation" class="col-md-3 mb-4 d-flex flex-column align-items-center">
     <div class="card rounded-4" style="width: 20rem;">
         <div class="background-container">
             <!-- Imagen de fondo oscurecida -->
             <div class="background-overlay rounded-4 rounded-bottom-0"></div>
-            <img src="assets\images\ciudad.jpeg" class="card-img-top rounded-4 rounded-bottom-0" alt="...">
+            <div class="image-container">
+                <!-- Utiliza la URL de la imagen del país correspondiente -->
+                <img *ngIf="imageCountry[reservation.country]" [src]="imageCountry[reservation.country]" class="card-img-top rounded-4 rounded-bottom-0" alt="...">
+              </div>
             <!-- Texto superpuesto -->
             <div class="text-overlay">
-                <p class="m-0 fw-light info_reserva"><span class="fw-bold">{{reserva.turista}}</span> hizo un tour con <span class="fw-bold">{{reserva.guia}}</span><br>en <span class="fw-bold ubicacion">{{reserva.ciudad}}, {{reserva.pais}}</span></p>
+                <p class="m-0 fw-light info_reserva"><span class="fw-bold">{{reservation.touristName}}</span> hizo un tour con <span class="fw-bold">{{reservation.guideName}}</span><br>en <span class="fw-bold ubicacion">{{reservation.city}}, {{reservation.country}}</span></p>
             </div>
             <!-- Imagen circular superpuesta -->
             <div class="circular-image">
-                <img src="assets\images\perfi-prueba.png" alt="Profile Image">
+                <img [src]="reservation.profileImgGuide" alt="Profile Image">
             </div>
             
         </div>
         
         <div class="card-body d-flex gap-3">
             <div class="d-flex flex-column align-items-center justify-content-center col-3 gap-2">
-                <img src="assets\images\perfil-turista.png" alt="Imagen de ejemplo" class="rounded-circle"  style="width: 50px; height: 50px;">
-                <span class="fw-medium text-dark">{{reserva.guia}}</span>
+                <img [src]="reservation.profileImgTourist" alt="Imagen de ejemplo" class="rounded-circle"  style="width: 50px; height: 50px;">
+                <span class="fw-medium text-dark">{{reservation.touristName}}</span>
             </div>
             <div class="col-8 d-flex flex-column ">
                 <p class="review_card">
-                    {{reserva.resena}}
+                    {{reservation.review}}
                 </p>
                 <div class="star-rating text-end">
                     <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
                       <i class="fa" [ngClass]="{
-                        'fa-star': reserva.valoracion >= star,
-                        'fa-star-half-stroke': reserva.valoracion + 0.5 >= star && reserva.valoracion < star
+                        'fa-star': reservation.reviewScore>= star,
+                        'fa-star-half-stroke': reservation.reviewScore+ 0.5 >= star && reservation.reviewScore< star
                       }"></i>
                     </ng-container>
                   </div>  

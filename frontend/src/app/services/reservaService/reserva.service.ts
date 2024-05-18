@@ -1,11 +1,20 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environment/environment';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservaService {
+  private apiUrl = environment.apiUrls;
   
-  constructor() {  }
+  constructor(private http: HttpClient) {  }
+
+  getRecentReservation(): Observable<any> {
+    return this.http.get<any>(this.apiUrl.reservation.recent);
+  }
+  
 
   reservasActivas: any[] = [
     {

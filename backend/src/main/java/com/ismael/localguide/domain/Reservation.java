@@ -51,5 +51,5 @@ public class Reservation {
     private int reservedHours;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private int price;
 }

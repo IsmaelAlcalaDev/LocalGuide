@@ -31,11 +31,6 @@ public class GuideDataDTO {
     private String additionalInfo;
     private String phrase;
     private String typeUser;
-    private String contractedPlanName;
-    private Integer contractedPlanDuration;
-    private Double contractedPlanPrice;
-    private LocalDateTime planStartDate;
-    private LocalDateTime planExpirationDate;
     private Set<String> languages = new HashSet<>();
     private Set<String> hobbies = new HashSet<>();
     private List<Long> reservations = new ArrayList<>();

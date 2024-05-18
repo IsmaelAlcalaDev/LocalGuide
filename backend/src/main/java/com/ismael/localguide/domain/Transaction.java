@@ -34,8 +34,4 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "reservationID", nullable = false)
     private Reservation reservation;
-
-    @ManyToOne
-    @JoinColumn(name = "guideID")
-    private Guide guide;
 }

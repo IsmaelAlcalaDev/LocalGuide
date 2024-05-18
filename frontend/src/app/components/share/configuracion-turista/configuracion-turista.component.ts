@@ -97,7 +97,7 @@ export class ConfiguracionTuristaComponent {
               this.profileImg = this.userData.profileImg;
               setTimeout(() => {
                 this.message = '';
-                window.location.reload();
+                window.location.reload(); //Solución provisional
               }, 3000);
             },
             error => {
@@ -109,7 +109,7 @@ export class ConfiguracionTuristaComponent {
               }
               setTimeout(() => {
                 this.messageError = '';
-                window.location.reload();
+                window.location.reload(); //Solución provisional
               }, 3000);
             }
           );  

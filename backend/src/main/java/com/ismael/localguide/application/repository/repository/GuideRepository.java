@@ -14,4 +14,5 @@ public interface GuideRepository extends JpaRepository<Guide, Long>, JpaSpecific
     @EntityGraph(attributePaths = {"languages"})
     Guide findByEmailAndPassword(final String email,final String password);
     Optional<Guide> findById(Long id);
+
 }
