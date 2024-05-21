@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,5 +24,4 @@ public class TouristDataDTO {
     private String email;
     private String password;
     private String typeUser;
-    private List<Reservation> reservations;
 }

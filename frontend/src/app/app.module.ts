@@ -19,7 +19,6 @@ import { RegistroComponent } from './components/pages/registro/registro.componen
 import { ReservasComponent } from './components/pages/reservas/reservas.component';
 import { ConfiguracionGuiaComponent } from './components/share/configuracion-guia/configuracion-guia.component';
 import { ConfiguracionTuristaComponent } from './components/share/configuracion-turista/configuracion-turista.component';
-import { HeaderPerfilComponent } from './components/share/header-perfil/header-perfil.component';
 import { InformacionAdicionalGuiaComponent } from './components/share/informacion-adicional-guia/informacion-adicional-guia.component';
 import { PagoReservaComponent } from './components/share/pago-reserva/pago-reserva.component';
 import { PagoAumentoVisibilidadComponent } from './components/share/pago-aumento-visibilidad/pago-aumento-visibilidad.component';
@@ -34,6 +33,8 @@ import { TarjetasGuiasComponent } from './components/share/tarjetas-guias/tarjet
 import { ConfiguracionPerfilComponent } from './components/pages/configuracion-perfil/configuracion-perfil.component';
 import { ResenasGuiaComponent } from './components/share/resenas-guia/resenas-guia.component';
 import { ReservasActivasTuristaComponent } from './components/share/reservas-activas-turista/reservas-activas-turista.component';
+import { InfoTuristaComponent } from './components/share/info-turista/info-turista.component';
+import { InfoGuiaComponent } from './components/share/info-guia/info-guia.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,6 @@ import { ReservasActivasTuristaComponent } from './components/share/reservas-act
         ReservasComponent,
         ConfiguracionGuiaComponent,
         ConfiguracionTuristaComponent,
-        HeaderPerfilComponent,
         InformacionAdicionalGuiaComponent,
         PagoReservaComponent,
         PagoAumentoVisibilidadComponent,
@@ -67,6 +67,8 @@ import { ReservasActivasTuristaComponent } from './components/share/reservas-act
         ConfiguracionPerfilComponent,
         ResenasGuiaComponent,
         ReservasActivasTuristaComponent,
+        InfoTuristaComponent,
+        InfoGuiaComponent,
     ],
     providers: [
         provideClientHydration(),

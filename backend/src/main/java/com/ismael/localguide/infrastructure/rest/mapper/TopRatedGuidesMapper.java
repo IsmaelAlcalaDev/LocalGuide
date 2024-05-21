@@ -7,17 +7,19 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface TopRatedGuidesMapper {
+
     @Mappings({
+            @Mapping(source = "guide.id", target = "id"),
             @Mapping(source = "guide.name", target = "name"),
             @Mapping(source = "guide.country", target = "country"),
             @Mapping(source = "guide.city", target = "city"),
             @Mapping(source = "guide.profileImg", target = "profileImg"),
             @Mapping(source = "guide.phrase", target = "phrase"),
             @Mapping(source = "guide.hourlyPrice", target = "hourlyPrice"),
-            @Mapping(source = "guide.numberTours", target = "numberTours"),
-            @Mapping(source = "reservation.reviewScore", target = "reviewScore"),
+            @Mapping(source = "totalReservations", target = "totalReservations"),
+            @Mapping(source = "averageScore", target = "averageScore")
     })
-    TopRatedGuidesDTO toDto(Guide guide, Reservation reservation);
+    TopRatedGuidesDTO toDto(Guide guide, int totalReservations, Integer averageScore);
 }

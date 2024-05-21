@@ -51,7 +51,10 @@ export class InicioSesionComponent implements OnInit {
             const userData = response;
             sessionStorage.setItem('user', JSON.stringify(userData));
             this.authService.setUserType(userData.typeUser);
-            this.router.navigate(['/inicio']);
+            this.router.navigateByUrl('/inicio').then(() => {
+              window.location.reload();
+            });
+
           },
           error => {
             console.error('Error al iniciar sesión:', error); 
@@ -66,7 +69,9 @@ export class InicioSesionComponent implements OnInit {
             const userData = response;
             sessionStorage.setItem('user', JSON.stringify(userData));
             this.authService.setUserType(userData.typeUser);
-            this.router.navigate(['/inicio']);
+            this.router.navigateByUrl('/inicio').then(() => {
+              window.location.reload();
+            });
           },
           error => {
             console.error('Error al iniciar sesión:', error); 

@@ -53,7 +53,7 @@ public class Tourist {
     private String phone;
 
     @Lob
-    @Column(name = "profile_img", length = 5000)
+    @Column(name = "profile_img", length =5000)
     private String profileImg;
 
     @Column(name = "email", nullable = false)
@@ -65,6 +65,4 @@ public class Tourist {
     @Column(name = "typeUser")
     private String typeUser = "tourist";
 
-    @OneToMany(mappedBy = "tourist")
-    private List<Reservation> reservations = new ArrayList<>();
 }

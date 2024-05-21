@@ -87,7 +87,6 @@
                     <mat-label>Teléfono</mat-label>
                     <span matTextPrefix>{{ phonePrefix }} &nbsp;</span>
                     <input type="tel" matInput placeholder="123 456 789" formControlName="phone" name="phone">
-                    <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-error
                         *ngIf="updateForm.get('phone')?.hasError('required') && updateForm.get('phone')?.touched">Teléfono
                         es obligatorio</mat-error>

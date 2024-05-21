@@ -10,16 +10,4 @@ export class InformacionPerfilComponent {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.comprobarUrlInfoTurista();
-  }
-
-  comprobarUrlInfoTurista() {
-    const url = this.router.url;
-    if (url.includes('perfil-turista')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

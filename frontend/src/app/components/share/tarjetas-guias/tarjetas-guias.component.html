@@ -1,42 +1,39 @@
-<div *ngFor="let guia of guias">
-    <div class="card mb-3 rounded-4" style="max-width: 600px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="../../../../assets/images/perfi-prueba.png" class="img-fluid rounded-start h-100 w-70" alt="">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div>
-                        <h4 class="card-title fw-medium">{{guia.nombre}}</h4>
-                        <h5>{{guia.ubicacion}}</h5>     
-                    </div>
-                    <div class="rounded-2 p-2 text-light fw-medium me-3 bg-precio">
-                        <span class="precio">{{guia.precio}}</span>
-                    </div>
-                </div>
-              
-              <p class="card-text">{{guia.descripcion}}</p>
-    
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="numero_resenas">
-                    <h5>TOURS</h5>  
-                    <span class="resenas fw-medium fs-5">{{guia.cantidadResenas}}</span>     
-                </div>
-                <div class="valoracion">
-                    <h5>VALORACIÓN</h5>  
-                    <div class="star-rating">
-                      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-                        <i class="fa" [ngClass]="{
-                          'fa-star': guia.valoracion >= star,
-                          'fa-star-half-stroke': guia.valoracion + 0.5 >= star && guia.valoracion < star
-                        }"></i>
-                      </ng-container>
-                    </div>                    
-                </div>
-            </div>
-            </div>
+<div class="container d-flex flex-wrap justify-content-center gap-5">
+  <div *ngFor="let guide of topRatedGuides" class="card rounded-4 mb-4" style="width: 300px;" (click)="showGuide(guide.id)"data-aos="zoom-in-up" data-aos-delay="100" data-aos-duration="1000"data-aos-duration="1000">
+    <div class="image-container text-center rounded-top-4">
+      <img [src]="guide.profileImg" class="card-img-top rounded-circle p-2" alt="" >
+    </div>
+
+    <div class="card-body">
+      <div class="d-flex align-items-start justify-content-between ">
+        <div>
+          <h4 class="card-title fw-medium mb-0">{{guide.name}}</h4>
+          <h5>{{guide.city}}</h5>
+        </div>
+        <div class="rounded-2 p-1 text-light fw-medium bg-precio">
+          <span class="precio">{{guide.hourlyPrice}}€/h</span>
+        </div>
+      </div>
+
+      <p class="card-text">{{guide.phrase}}</p>
+
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="numero_resenas">
+          <h5 class="mb-0">TOURS</h5>
+          <span class="resenas fw-medium fs-5">{{guide.totalReservations}}</span>
+        </div>
+        <div class="valoracion">
+          <h5 class="mb-0">VALORACIÓN</h5>
+          <div class="star-rating">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+              <i class="fa" [ngClass]="{
+                      'fa-star': guide.averageScore >= star,
+                      'fa-star-half-stroke': guide.averageScore + 0.5 >= star && guide.averageScore < star
+                    }"></i>
+            </ng-container>
           </div>
         </div>
-      </div>   
+      </div>
+    </div>
+  </div>
 </div>

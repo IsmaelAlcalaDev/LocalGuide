@@ -4,6 +4,7 @@ import com.ismael.localguide.application.TouristUseCase;
 import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.Tourist;
 import com.ismael.localguide.domain.dto.GuideDataDTO;
+import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
 import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -12,9 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ismael.localguide.application.GuideUseCase;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -62,48 +62,6 @@ public class GuideController {
         }
     }
 
-    @PutMapping("v1/updateData")
-    public ResponseEntity<?> updateGuide(@Valid Guide guide,
-                 //@RequestPart(value = "profileImage", required = false) MultipartFile profileImage,
-                 @RequestPart(value = "certificateFile", required = false) MultipartFile certificateFile,
-                 @RequestPart(value = "documentIdFile", required = false) MultipartFile documentIdFile) {
-        try {
-            // Verificar si el guía ya existe en la base de datos
-            Optional<Guide> existingGuideOptional = guideService.findByEmail(guide.getEmail());
-            if (existingGuideOptional.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El guía no existe.");
-            }
-
-            // Obtener el guía existente de la base de datos
-            Guide existingGuide = existingGuideOptional.get();
-
-            // Actualizar los campos del guía existente con los proporcionados en el cuerpo de la solicitud
-            existingGuide.setName(guide.getName());
-            existingGuide.setSurname(guide.getSurname());
-            existingGuide.setPassword(guide.getPassword());
-            existingGuide.setCountry(guide.getCountry());
-            existingGuide.setCity(guide.getCity());
-            existingGuide.setPhone(guide.getPhone());
-            existingGuide.setGender(guide.getGender());
-            // Ajusta el manejo de archivos según sea necesario
-
-            if (certificateFile != null) {
-                existingGuide.setBackgroundCheckCertificate(true);
-            }
-            if (documentIdFile != null) {
-                existingGuide.setIdentityDocument(true);
-            }
-            // Resto de la lógica de actualización
-
-            // Guardar el guía actualizado en la base de datos
-            Guide savedGuide = guideService.save(existingGuide);
-
-            return ResponseEntity.ok(savedGuide);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el guía: " + e.getMessage());
-        }
-    }
-
     @PutMapping(value = "v1/update/{id}")
     public ResponseEntity<?> updateGuide(@PathVariable final Long id, @RequestBody final Map<String, Object> data) {
         GuideDataDTO guide = guideMapper.toDto(this.guideService.updateGuide(id, data).get()) ;
@@ -117,7 +75,9 @@ public class GuideController {
                     .body("Error al actualizar el guía: " + e.getMessage());
         }
     }
-
-
-
+    @GetMapping (value = "v1/top-rated")
+    public ResponseEntity<List<TopRatedGuidesDTO>> getTopRatedGuides() {
+        List<TopRatedGuidesDTO> topRatedGuides = guideService.getTopRatedGuides();
+        return new ResponseEntity<>(topRatedGuides, HttpStatus.OK);
+    }
 }

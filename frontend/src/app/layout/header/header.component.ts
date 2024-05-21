@@ -20,8 +20,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getUserTypeFromSessionStorage();
     this.userData = this.utilService.getDataUser();
-    this.typeUser = this.userData.typeUser;
-    this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png'; 
+    if (this.userData) {
+      this.typeUser = this.userData.typeUser;
+      this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png';
+    } else {
+      // Si this.userData es null, establecer valores por defecto
+      this.typeUser = 'public';
+      this.profileImg = 'assets/images/default-profile.png';
+    }
   }
 
   getUserTypeFromSessionStorage(): void {

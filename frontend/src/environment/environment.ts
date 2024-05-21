@@ -6,6 +6,7 @@ export const environment = {
         create: 'http://localhost:8080/local-guide/api/guide/v1/create',
         update: 'http://localhost:8080/local-guide/api/guide/v1/update',
         updateImg: 'http://localhost:8080/local-guide/api/media/v1/images/upload',
+        topRated: 'http://localhost:8080/local-guide/api/guide/v1/top-rated',
       },
       tourist: {
         login: 'http://localhost:8080/local-guide/api/tourist/v1/login',

@@ -19,6 +19,7 @@ public class TouristUseCase {
         return this.touristRepository.findByEmail(email);
     }
 
+
     public Tourist findByEmailAndPassword(final String email, final String password){
         return this.touristRepository.findByEmailAndPassword(email, password);
     }

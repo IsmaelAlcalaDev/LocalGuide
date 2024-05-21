@@ -36,6 +36,11 @@ export class GuiaService {
     return this.http.put<any>(path, guide, {headers:this.headerDict});
   }
 
+  getTopRatedGuides(): Observable<any> {
+    return this.http.get<any>(this.apiUrl.guide.topRated);
+  }
+
+
   guiasInput: any = [
     {
       nombre: 'Juan',

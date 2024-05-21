@@ -2,6 +2,9 @@ package com.ismael.localguide.infrastructure.rest;
 
 import com.ismael.localguide.application.GuideUseCase;
 import com.ismael.localguide.domain.Tourist;
+import com.ismael.localguide.domain.dto.GuideDataDTO;
+import com.ismael.localguide.domain.dto.TouristDataDTO;
+import com.ismael.localguide.infrastructure.rest.mapper.TouristMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,15 @@ public class TouristController {
 
     @Autowired
     private TouristUseCase touristService;
+    @Autowired
     private GuideUseCase guideService;
+    @Autowired
+    private TouristMapper touristMapper;
 
     @PostMapping("v1/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
         try {
-            Tourist foundTurist = touristService.findByEmailAndPassword(email, password);
+            TouristDataDTO foundTurist = touristMapper.toDto(touristService.findByEmailAndPassword(email, password));
             if (foundTurist != null) {
                 return ResponseEntity.ok(foundTurist);
             } else {
@@ -81,5 +87,4 @@ public class TouristController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el turista: " + e.getMessage());
         }
     }
-
 }

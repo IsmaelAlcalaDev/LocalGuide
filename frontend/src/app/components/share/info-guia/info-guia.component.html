@@ -1,0 +1,95 @@
+<div class="container_info_profile p-5">
+    <div class="row mt-4">
+        <div class="col-md-4 text-center d-flex flex-column align-items-center gap-5">
+            <img [src]="profileImg" alt="Imagen de perfil" class="img-fluid rounded-circle"
+                style="width: 200px; height: 200px;">
+            <form class="mat-form-field d-flex flex-column align-items-center w-100">
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Fecha de inicio:</mat-label>
+                    <input matInput type="date" id="startDate" name="startDate">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Fecha de fin:</mat-label>
+                    <input matInput type="date" id="endDate" name="endDate">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="w-75">
+                    <mat-label>Número de horas:</mat-label>
+                    <input matInput type="number" id="hours" name="hours">
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="mt-3 w-75">Reservar</button>
+            </form>
+        </div>
+        <div class="col-md-8 col-input">
+            <div class="aditionalInfo">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="fs-3 mb-5">
+                            <mat-icon *ngIf="guide.gender === 'MASCULINO'" class="gender-icon"
+                                style="color:rgb(0, 140, 255)">male</mat-icon>
+                            <mat-icon *ngIf="guide.gender === 'FEMENINO'" class="gender-icon"
+                                style="color:rgb(255, 81, 154)">female</mat-icon>
+                            <mat-icon *ngIf="guide.gender === 'OTRO'" class="gender-icon">person</mat-icon>
+                            {{ guide.name }} {{ guide.surname }}
+                            <span class="fw-light">{{ guide.city }}, {{ guide.country }}</span>
+                        </h2>
+                        <div class="col-md-6 w-75">
+                            <p class="text-secondary">El plan perfecto para conocer {{guide.city}}</p>
+                            <p>{{guide.phrase}}</p>
+                        </div>
+                        <div class="col-md-6 w-75">
+                            <p class="text-secondary">Información adicional</p>
+                            <p>{{guide.additionalInfo}}</p>
+                        </div>
+
+                        <div class="col-md-6 w-75">
+                            <p class="text-secondary">Tarifa por hora:</p>
+                            <p>{{guide.hourlyPrice}}</p>
+                        </div>
+                        <div class="col-md-6 w-75 mb-3">
+                            <p class="text-secondary">Actividades:</p>
+                            <div class="d-flex">
+                                <div *ngFor="let hobbie of hobbies; let last = last">
+                                    {{ hobbie }}{{ !last ? ' ,' : '' }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 w-75 mb-5">
+                            <p class="text-secondary">Idiomas:</p>
+                            <div class="d-flex">
+                                <div *ngFor="let language of languages; let last = last">
+                                    {{ language }}{{ !last ? ' ,' : '' }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h3>Validación de documentos</h3>
+                            <div *ngIf="existBackgroundCheckCertificate" class="d-flex gap-2 mb-2">
+                                <mat-icon class="text-success">check_circle</mat-icon>
+                                <p>Certificado de antecedentes validado</p>
+                            </div>
+                            <div *ngIf="existBackgroundCheckCertificate" class="d-flex gap-2 mb-2">
+                                <mat-icon class="text-danger">cancel</mat-icon>
+                                <p>Certificado de antecedentes no validado</p>
+                            </div>
+                            <div *ngIf="existIdentityDocument" class="d-flex gap-2">
+                                <mat-icon class="text-success">check_circle</mat-icon>
+                                <p>Documentación validada</p>
+                            </div>
+                            <div *ngIf="existIdentityDocument" class="d-flex gap-2">
+                                <mat-icon class="text-danger">cancel</mat-icon>
+                                <p>Guía no validado</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

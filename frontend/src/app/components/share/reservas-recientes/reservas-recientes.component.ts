@@ -56,6 +56,4 @@ export class ReservasRecientesComponent {
       return null;
     }
   }
-
-
 }

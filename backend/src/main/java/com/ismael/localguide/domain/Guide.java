@@ -85,9 +85,6 @@ public class Guide {
     @Column(name = "typeUser")
     private String typeUser = "guide";
 
-    @Column(name = "number_tours")
-    private int numberTours;
-
     @ManyToMany
     @JoinTable(name = "guide_language",
             joinColumns = @JoinColumn(name = "guide_id"),

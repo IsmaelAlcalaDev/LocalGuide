@@ -3,10 +3,12 @@ package com.ismael.localguide.application;
 import com.ismael.localguide.application.repository.repository.GuideRepository;
 import com.ismael.localguide.application.repository.repository.HobbiesRepository;
 import com.ismael.localguide.application.repository.repository.LanguageRepository;
+import com.ismael.localguide.application.repository.repository.ReservationRepository;
 import com.ismael.localguide.domain.Gender;
 import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.Hobbies;
 import com.ismael.localguide.domain.Language;
+import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class GuideUseCase {
     private LanguageRepository languageRepository;
     @Autowired
     private HobbiesRepository hobbiesRepository;
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     public Optional<Guide> findByEmail(final String email){
         try{
@@ -177,5 +181,29 @@ public class GuideUseCase {
         }
         guideRepository.save(guideOptionalFinal.get());
         return guideOptionalFinal;
+    }
+
+    public List<TopRatedGuidesDTO> getTopRatedGuides() {
+        List<Guide> guides = guideRepository.findAllByReservationWithHighReviewScore();
+        return guides.stream()
+                .map(this::mapToTopRatedGuidesDTO)
+                .collect(Collectors.toList());
+    }
+
+    private TopRatedGuidesDTO mapToTopRatedGuidesDTO(Guide guide) {
+        double averageScore = reservationRepository.getAverageReviewScoreByGuideId(guide.getId());
+        int totalReservations = reservationRepository.countReservationsByGuideId(guide.getId());
+
+        return new TopRatedGuidesDTO(
+                guide.getId(),
+                guide.getName(),
+                guide.getCountry(),
+                guide.getCity(),
+                guide.getProfileImg(),
+                guide.getPhrase(),
+                guide.getHourlyPrice(),
+                totalReservations,
+                (int) averageScore  // Asumiendo que reviewScore es un Integer
+        );
     }
 }

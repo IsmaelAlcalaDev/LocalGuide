@@ -45,7 +45,6 @@ export class ConfiguracionGuiaComponent {
 
   ngOnInit() {
     this.userData = this.utilService.getDataUser();
-    console.log(this.userData);
     this.updateForm = this.validacionService.validateUpdateFormGuide(this.userData);
     this.chargeJsonLocation();
     this.changeCityAndPrefix();
@@ -53,6 +52,7 @@ export class ConfiguracionGuiaComponent {
     this.languages = this.chargeJsonLanguages(); 
     this.hobbies = this.chargueJsonHobbies();
     this.changeStateCertificate();
+
   }
 
   changeStateCertificate() {

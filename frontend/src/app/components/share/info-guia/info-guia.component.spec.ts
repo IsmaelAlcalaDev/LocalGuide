@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderPerfilComponent } from './header-perfil.component';
+import { InfoGuiaComponent } from './info-guia.component';
 
-describe('HeaderPerfilComponent', () => {
-  let component: HeaderPerfilComponent;
-  let fixture: ComponentFixture<HeaderPerfilComponent>;
+describe('InfoGuiaComponent', () => {
+  let component: InfoGuiaComponent;
+  let fixture: ComponentFixture<InfoGuiaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderPerfilComponent]
+      declarations: [InfoGuiaComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(HeaderPerfilComponent);
+    fixture = TestBed.createComponent(InfoGuiaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
