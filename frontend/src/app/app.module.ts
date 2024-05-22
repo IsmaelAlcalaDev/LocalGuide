@@ -33,7 +33,6 @@ import { TarjetasGuiasComponent } from './components/share/tarjetas-guias/tarjet
 import { ConfiguracionPerfilComponent } from './components/pages/configuracion-perfil/configuracion-perfil.component';
 import { ResenasGuiaComponent } from './components/share/resenas-guia/resenas-guia.component';
 import { ReservasActivasTuristaComponent } from './components/share/reservas-activas-turista/reservas-activas-turista.component';
-import { InfoTuristaComponent } from './components/share/info-turista/info-turista.component';
 import { InfoGuiaComponent } from './components/share/info-guia/info-guia.component';
 
 @NgModule({
@@ -67,7 +66,6 @@ import { InfoGuiaComponent } from './components/share/info-guia/info-guia.compon
         ConfiguracionPerfilComponent,
         ResenasGuiaComponent,
         ReservasActivasTuristaComponent,
-        InfoTuristaComponent,
         InfoGuiaComponent,
     ],
     providers: [

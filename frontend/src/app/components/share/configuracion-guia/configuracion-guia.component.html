@@ -1,11 +1,12 @@
-<form [formGroup]="updateForm" (ngSubmit)="updateGuide()"  enctype="multipart/form-data">
+<form [formGroup]="updateForm" (ngSubmit)="updateGuide()" enctype="multipart/form-data">
     <div class="container_setting_profile p-5">
-        <div class="imagen-de-fondo" style="background-image: url('../../../../assets/images/ciudad.jpeg');"></div>
+        <div class="imagen-de-fondo"
+            style="background-image: url('../../../../assets/images/image-configuracion.png');"></div>
         <h2 class="text-center fs-3 mb-5">Mi Perfil</h2>
         <div class="row mt-4">
             <div class="col-md-4 text-center">
-                <img [src]="profileImg" alt="Imagen de perfil" class="img-fluid rounded-circle" style="width: 200px; height: 200px;">
-            </div>            
+                <img [src]="profileImg" alt="Imagen de perfil" class="profile-img img-fluid rounded-5">
+            </div>
             <div class="col-md-4 col-input">
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Nombre</mat-label>
@@ -36,7 +37,7 @@
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Introduce tu contraseña</mat-label>
                     <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" name="password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" aria-label="Toggle Visibility">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" aria-label="Toggle Visibility">
                         <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
                     <mat-error
@@ -49,10 +50,11 @@
 
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Repite tu contraseña</mat-label>
-                    <input matInput formControlName="matchPassword" [type]="hide ? 'password' : 'text'" name="matchPassword">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" aria-label="Toggle Visibility">
-                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    </button>
+                    <input matInput formControlName="matchPassword" [type]="hide ? 'password' : 'text'"
+                        name="matchPassword">
+                        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" aria-label="Toggle Visibility">
+                            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
                     <mat-error
                         *ngIf="updateForm.get('matchPassword')?.hasError('required') && updateForm.get('matchPassword')?.touched">Repetir
                         contraseña es obligatorio</mat-error>
@@ -113,7 +115,8 @@
                     <label class="text-secondary" for="backgroundCheckCertificate"><mat-icon
                             class="text-danger">cancel</mat-icon> Certificado de antecedentes</label>
                     <div class="input-group w-50">
-                        <input class="form-control" type="file" name="backgroundCheckCertificate" (change)="onCertificateSelected($event)">
+                        <input class="form-control" type="file" name="backgroundCheckCertificate"
+                            (change)="onCertificateSelected($event)">
                     </div>
                 </div>
 
@@ -124,10 +127,11 @@
                             class="text-success">check_circle</mat-icon> Documento de identidad</label>
                 </div>
                 <div *ngIf="!existIdentityDocument" class="input-group-append mb-3">
-                    <label class="text-secondary" for="identityDocument"><mat-icon
-                            class="text-danger">cancel</mat-icon> Documento de identidad</label>
+                    <label class="text-secondary" for="identityDocument"><mat-icon class="text-danger">cancel</mat-icon>
+                        Documento de identidad</label>
                     <div class="input-group w-50">
-                        <input class="form-control" type="file" name="identityDocument" (change)="onIdentityDocumentSelected($event)">
+                        <input class="form-control" type="file" name="identityDocument"
+                            (change)="onIdentityDocumentSelected($event)">
                     </div>
                 </div>
             </div>
@@ -152,8 +156,10 @@
                 <div class="col-md-6 w-75">
                     <mat-form-field appearance="fill">
                         <mat-label>Información adicional</mat-label>
-                        <textarea matInput id="textarea2" rows="3" maxlength="255" formControlName="additionalInfo"></textarea>
-                        <mat-hint align="end">{{ updateForm.get('additionalInfo')?.value.length }}/255 caracteres</mat-hint>
+                        <textarea matInput id="textarea2" rows="3" maxlength="255"
+                            formControlName="additionalInfo"></textarea>
+                        <mat-hint align="end">{{ updateForm.get('additionalInfo')?.value.length }}/255
+                            caracteres</mat-hint>
                     </mat-form-field>
                 </div>
             </div>
@@ -162,7 +168,8 @@
                 <div class="col-md-6">
                     <mat-form-field appearance="fill">
                         <mat-label>Tarifa por hora</mat-label>
-                        <input matInput type="number" placeholder="Cantidad" min="0" max="50" step="1" formControlName="hourlyPrice">
+                        <input matInput type="number" placeholder="Cantidad" min="0" max="50" step="1"
+                            formControlName="hourlyPrice">
                         <span matSuffix>&nbsp;€</span> <!-- Agrega el sufijo de moneda con espacio -->
                     </mat-form-field>
                 </div>
@@ -176,7 +183,8 @@
                 </div>
                 <div class="row w-75">
                     <div class="col-3" *ngFor="let hobbie of hobbies">
-                        <mat-checkbox name="hobbies" [checked]="checkHobbies(hobbie)" (change)="onHobbiesChange($event.checked, hobbie)">{{ hobbie }}</mat-checkbox>
+                        <mat-checkbox name="hobbies" [checked]="checkHobbies(hobbie)"
+                            (change)="onHobbiesChange($event.checked, hobbie)">{{ hobbie }}</mat-checkbox>
                     </div>
                 </div>
             </div>
@@ -189,7 +197,8 @@
                 </div>
                 <div class="row w-75">
                     <div class="col-2" *ngFor="let language of languages">
-                        <mat-checkbox name="languages" [checked]="checkLanguage(language)"  (change)="onLanguageChange($event.checked, language)">{{ language }}</mat-checkbox>
+                        <mat-checkbox name="languages" [checked]="checkLanguage(language)"
+                            (change)="onLanguageChange($event.checked, language)">{{ language }}</mat-checkbox>
                     </div>
                 </div>
             </div>

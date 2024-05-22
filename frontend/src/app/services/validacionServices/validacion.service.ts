@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { profile } from 'node:console';
 
 @Injectable({
   providedIn: 'root'
@@ -116,6 +115,14 @@ export class ValidacionService {
       backgroundCheckCertificate: [user.backgroundCheckCertificate || ''],
       profileImg: [user.profileImg || ''],
     }, { validators: this.validateMatchPassword });
+  }
+
+  validateReserveForm(): FormGroup {
+    return this.formBuilder.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      hours: ['', [Validators.required, Validators.min(0)]]
+    });
   }
 
   // Validación de la coincidencia de contraseñas

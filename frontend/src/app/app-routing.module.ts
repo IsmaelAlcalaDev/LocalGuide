@@ -25,7 +25,6 @@ const routes: Routes = [
       { path: "configuracion-perfil-turista", component: ConfiguracionPerfilComponent },
       { path: "configuracion-perfil-guia", component: ConfiguracionPerfilComponent },
       { path: "perfil-guia/:id", component: InformacionPerfilComponent },
-      { path: "perfil-turista/:id", component: InformacionPerfilComponent },
       { path: "pago-reserva", component: PasarelaPagoComponent },
       { path: "pago-aumento-visibilidad", component: PasarelaPagoComponent },
       { path: "mis-viajes", component: ReservasComponent },

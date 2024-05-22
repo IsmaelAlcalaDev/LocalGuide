@@ -35,10 +35,10 @@ img {
     flex-direction: column;
 }
 
-.col-input{
+.col-input {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
 }
 
 .form-group.mb-3 {
@@ -57,7 +57,7 @@ img {
     border-color: white !important;
 }
 
-.btn{
+.btn {
     background-color: #fe7f00;
     width: fit-content;
     border: none;
@@ -65,7 +65,14 @@ img {
     text-transform: none;
 }
 
-.btn:hover{
+.btn:hover {
     border: 1px solid white;
     box-shadow: none;
+}
+
+.profile-img {
+    width: 250px !important;
+    height: 250px !important;
+    border: 5px solid white;
+    padding: 5px;
 }

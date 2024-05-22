@@ -35,10 +35,10 @@ img {
     flex-direction: column;
 }
 
-.col-input{
+.col-input {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
 }
 
 .form-group.mb-3 {
@@ -58,10 +58,11 @@ img {
 }
 
 ::ng-deep .mdc-label {
-    color: rgb(255, 255, 255); /* Cambia "blue" al color que desees */
-  }
+    color: rgb(255, 255, 255);
+    /* Cambia "blue" al color que desees */
+}
 
-.btn{
+.btn {
     background-color: #fe7f00;
     width: fit-content;
     border: none;
@@ -69,31 +70,38 @@ img {
     text-transform: none;
 }
 
-.btn:hover{
+.btn:hover {
     border: 1px solid white;
     box-shadow: none;
 }
-h3{
+
+h3 {
     font-size: 2.5em;
     font-weight: 500;
     margin-bottom: 1em;
 }
 
-.mat-mdc-form-field{
+.mat-mdc-form-field {
     width: 100%;
 }
 
-label.text-secondary{
+label.text-secondary {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-::ng-deep .mat-mdc-form-field-icon-suffix{
+::ng-deep .mat-mdc-form-field-icon-suffix {
     margin: 10px;
 }
 
-.alert{
+.alert {
     width: fit-content !important;
 }
 
+.profile-img {
+    width: 250px !important;
+    height: 250px !important;
+    border: 5px solid white;
+    padding: 5px;
+}

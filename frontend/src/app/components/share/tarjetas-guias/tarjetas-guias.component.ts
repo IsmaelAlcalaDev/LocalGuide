@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GuiaService } from '../../../services/guiaService/guia.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-tarjetas-guias',
@@ -11,7 +12,7 @@ export class TarjetasGuiasComponent {
   topRatedGuides: any[] = []; // Lista completa de guías
   guideSubscription: Subscription | undefined;
   
-  constructor(private guiaService: GuiaService) { }
+  constructor(private guiaService: GuiaService, private router: Router,) { }
 
   ngOnInit(): void {
     this.getTopRatedGuides();
@@ -34,7 +35,7 @@ export class TarjetasGuiasComponent {
     }
   }
 
-  showGuide(guide: any): void {
-    console.log('Detalles del guía:', guide);
+  showGuide(idGuide: any): void {
+    this.router.navigate(['/perfil-guia', idGuide]);
   }
 }

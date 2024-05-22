@@ -53,7 +53,7 @@ public class Tourist {
     private String phone;
 
     @Lob
-    @Column(name = "profile_img", length =5000)
+    @Column(name = "profile_img", length =1000000)
     private String profileImg;
 
     @Column(name = "email", nullable = false)

@@ -8,6 +8,7 @@ import com.ismael.localguide.domain.Gender;
 import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.Hobbies;
 import com.ismael.localguide.domain.Language;
+import com.ismael.localguide.domain.dto.GuideInformationDTO;
 import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,7 +204,38 @@ public class GuideUseCase {
                 guide.getPhrase(),
                 guide.getHourlyPrice(),
                 totalReservations,
-                (int) averageScore  // Asumiendo que reviewScore es un Integer
+                (int) averageScore
         );
+    }
+
+    public GuideInformationDTO getGuideDetails(long idGuide) {
+        Guide guide = guideRepository.findById(idGuide).orElse(null);
+        if (guide == null) {
+            return null;
+        }
+
+        List<String> listLanguages = languageRepository.findLanguagesByGuideId(idGuide);
+        List<String> listHobbies = hobbiesRepository.findHobbiesByGuideId(idGuide);
+
+        GuideInformationDTO guideInformationDTO = new GuideInformationDTO();
+        guideInformationDTO.setId(guide.getId());
+        guideInformationDTO.setName(guide.getName());
+        guideInformationDTO.setSurname(guide.getSurname());
+        guideInformationDTO.setCountry(guide.getCountry());
+        guideInformationDTO.setCity(guide.getCity());
+        guideInformationDTO.setGender(guide.getGender());
+        guideInformationDTO.setPhone(guide.getPhone());
+        guideInformationDTO.setProfileImg(guide.getProfileImg());
+        guideInformationDTO.setEmail(guide.getEmail());
+        guideInformationDTO.setBackgroundCheckCertificate(guide.getBackgroundCheckCertificate());
+        guideInformationDTO.setIdentityDocument(guide.getIdentityDocument());
+        guideInformationDTO.setHourlyPrice(guide.getHourlyPrice());
+        guideInformationDTO.setAdditionalInfo(guide.getAdditionalInfo());
+        guideInformationDTO.setPhrase(guide.getPhrase());
+        guideInformationDTO.setTypeUser(guide.getTypeUser());
+        guideInformationDTO.setLanguages(new HashSet<>(listLanguages));
+        guideInformationDTO.setHobbies(new HashSet<>(listHobbies));
+
+        return guideInformationDTO;
     }
 }

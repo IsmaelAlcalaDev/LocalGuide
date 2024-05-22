@@ -40,6 +40,11 @@ export class GuiaService {
     return this.http.get<any>(this.apiUrl.guide.topRated);
   }
 
+  getGuideDetails(id: number): Observable<Guide> {
+    const path = `${this.apiUrl.guide.detailGuide}/${id}`;
+    return this.http.get<Guide>(path);
+  }
+
 
   guiasInput: any = [
     {

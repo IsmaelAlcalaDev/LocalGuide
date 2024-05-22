@@ -1,23 +1,34 @@
-<div class="container_info_profile p-5">
+<div class="container_info_profile px-5 py-3">
     <div class="row mt-4">
         <div class="col-md-4 text-center d-flex flex-column align-items-center gap-5">
-            <img [src]="profileImg" alt="Imagen de perfil" class="img-fluid rounded-circle"
-                style="width: 200px; height: 200px;">
-            <form class="mat-form-field d-flex flex-column align-items-center w-100">
-                <mat-form-field appearance="fill" class="w-75">
+            <img [src]="guide.profileImg" alt="Imagen de perfil" class="profile-img img-fluid rounded-5">
+            <form class="mat-form-field d-flex flex-column align-items-center w-100" [formGroup]="reserveForm" (ngSubmit)="reserveGuide()">
+                <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Fecha de inicio:</mat-label>
-                    <input matInput type="date" id="startDate" name="startDate">
+                    <input matInput [matDatepicker]="startDatePicker" placeholder="Seleccione una fecha" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                    <mat-error *ngIf="reserveForm.get('startDate')?.hasError('required') && reserveForm.get('startDate')?.touched">La fecha de inicio es requerida</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="w-75">
+            
+                <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Fecha de fin:</mat-label>
-                    <input matInput type="date" id="endDate" name="endDate">
+                    <input matInput [matDatepicker]="endDatePicker" placeholder="Seleccione una fecha" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                    <mat-error *ngIf="reserveForm.get('endDate')?.hasError('required') && reserveForm.get('endDate')?.touched">La fecha de fin es requerida</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="w-75">
+            
+                <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Número de horas:</mat-label>
-                    <input matInput type="number" id="hours" name="hours">
+                    <input matInput type="number" id="hours" formControlName="hours" autocomplete="off">
+                    <mat-error *ngIf="reserveForm.get('hours')?.hasError('required') && reserveForm.get('hours')?.touched">El número de horas es requerido</mat-error>
+                    <mat-error *ngIf="reserveForm.get('hours')?.hasError('min') && reserveForm.get('hours')?.touched">El número de horas debe ser mayor o igual a 0</mat-error>
                 </mat-form-field>
-                <button mat-raised-button color="primary" class="mt-3 w-75">Reservar</button>
+
+                <button mat-raised-button class="button-reserve mt-3 w-50">Reservar</button>
             </form>
+            
         </div>
         <div class="col-md-8 col-input">
             <div class="aditionalInfo">
@@ -29,67 +40,82 @@
                             <mat-icon *ngIf="guide.gender === 'FEMENINO'" class="gender-icon"
                                 style="color:rgb(255, 81, 154)">female</mat-icon>
                             <mat-icon *ngIf="guide.gender === 'OTRO'" class="gender-icon">person</mat-icon>
-                            {{ guide.name }} {{ guide.surname }}
+                            {{ guide.name }} {{ guide.surname }} -
                             <span class="fw-light">{{ guide.city }}, {{ guide.country }}</span>
                         </h2>
                         <div class="col-md-6 w-75">
-                            <p class="text-secondary">El plan perfecto para conocer {{guide.city}}</p>
-                            <p>{{guide.phrase}}</p>
+                            <p class="text-secondary d-flex align-items-center">
+                                <mat-icon class="me-2 title-icon">explore</mat-icon>El plan perfecto para conocer
+                                {{guide.city}}
+                            </p>
+                            <p *ngIf="guide.phrase !== ''">{{guide.phrase}}</p>
+                            <p *ngIf="guide.phrase === ''">{{guide.phrase}}</p>
                         </div>
                         <div class="col-md-6 w-75">
-                            <p class="text-secondary">Información adicional</p>
+                            <p class="text-secondary d-flex align-items-center">
+                                <mat-icon class="me-2 title-icon">info</mat-icon>Información adicional
+                            </p>
                             <p>{{guide.additionalInfo}}</p>
                         </div>
 
                         <div class="col-md-6 w-75">
-                            <p class="text-secondary">Tarifa por hora:</p>
-                            <p>{{guide.hourlyPrice}}</p>
+                            <p class="text-secondary d-flex align-items-center">
+                                <mat-icon class="me-2 title-icon">euro</mat-icon>Tarifa por hora:
+                            </p>
+                            <p>{{guide.hourlyPrice}}€ / Hora</p>
                         </div>
                         <div class="col-md-6 w-75 mb-3">
-                            <p class="text-secondary">Actividades:</p>
+                            <p class="text-secondary d-flex align-items-center">
+                                <mat-icon class="me-2 title-icon">emoji_objects</mat-icon>Actividades:
+                            </p>
                             <div class="d-flex">
-                                <div *ngFor="let hobbie of hobbies; let last = last">
-                                    {{ hobbie }}{{ !last ? ' ,' : '' }}
-                                </div>
+                                <span *ngFor="let hobbie of guide.hobbies let last = last"
+                                    style="white-space: pre-wrap;">
+                                    {{ hobbie }}<ng-container *ngIf="!last">, </ng-container>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-6 w-75 mb-5">
-                            <p class="text-secondary">Idiomas:</p>
+                            <p class="text-secondary d-flex align-items-center">
+                                <mat-icon class="me-2 title-icon">language</mat-icon>Idiomas:
+                            </p>
                             <div class="d-flex">
-                                <div *ngFor="let language of languages; let last = last">
-                                    {{ language }}{{ !last ? ' ,' : '' }}
-                                </div>
+                                <span *ngFor="let language of guide.languages; let last = last"
+                                    style="white-space: pre-wrap;">
+                                    {{ language }}<ng-container *ngIf="!last">, </ng-container>
+                                </span>
                             </div>
                         </div>
                         <div class="row">
                             <h3>Validación de documentos</h3>
-                            <div *ngIf="existBackgroundCheckCertificate" class="d-flex gap-2 mb-2">
-                                <mat-icon class="text-success">check_circle</mat-icon>
-                                <p>Certificado de antecedentes validado</p>
-                            </div>
-                            <div *ngIf="existBackgroundCheckCertificate" class="d-flex gap-2 mb-2">
+                            <div *ngIf="!guide.backgroundCheckCertificate" class="d-flex gap-2 mb-2">
                                 <mat-icon class="text-danger">cancel</mat-icon>
                                 <p>Certificado de antecedentes no validado</p>
                             </div>
-                            <div *ngIf="existIdentityDocument" class="d-flex gap-2">
+                            <div *ngIf="guide.backgroundCheckCertificate" class="d-flex gap-2 mb-2">
                                 <mat-icon class="text-success">check_circle</mat-icon>
-                                <p>Documentación validada</p>
+                                <p>Certificado de antecedentes validado</p>
                             </div>
-                            <div *ngIf="existIdentityDocument" class="d-flex gap-2">
+                            <div *ngIf="guide.identityDocument" class="d-flex gap-2">
+                                <mat-icon class="text-success">check_circle</mat-icon>
+                                <p>Documento de identidad validado</p>
+                            </div>
+                            <div *ngIf="!guide.identityDocument" class="d-flex gap-2">
                                 <mat-icon class="text-danger">cancel</mat-icon>
-                                <p>Guía no validado</p>
+                                <p>Documento de identidad no validado</p>
+                            </div>
+                            <div class="mt-2" *ngIf="!guide.backgroundCheckCertificate || !guide.identityDocument">
+                                <small class="text-danger">Por su seguridad, le recomendamos contratar solo guías que
+                                    tengan todos sus documentos validados.</small>
+                            </div>
+                            <div class="mt-2" *ngIf="guide.backgroundCheckCertificate && guide.identityDocument">
+                                <small class="text-success">Este guía ha validado todos sus documentos y está altamente
+                                    recomendado para sus servicios.</small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
-
-                    </div>
                 </div>
-
-
-
             </div>
-
         </div>
     </div>
 </div>

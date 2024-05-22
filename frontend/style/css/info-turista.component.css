@@ -34,7 +34,8 @@ h3 {
 
 .gender-icon {
   vertical-align: middle;
-  font-size: 2rem;
+  margin-right: 0.5rem;
+  font-size: 3rem;
   width: fit-content;
   height: auto;
 }
@@ -67,11 +68,4 @@ h3 {
 
 ::ng-deep mat-label {
   color: #454545 !important;
-}
-
-.profile-img {
-  width: 250px !important;
-  height: 250px !important;
-  border: 5px solid rgb(255, 229, 197);
-  padding: 5px;
-}/*# sourceMappingURL=info-guia.component.css.map */
+}/*# sourceMappingURL=info-turista.component.css.map */

@@ -8,7 +8,7 @@ import { ReservaService } from '../../../services/reservaService/reserva.service
 })
 export class ReservasRecientesComponent {
   recentReservation: any = [];
-  imageCountry: { [city: string]: string } = {};
+  imageCity: { [city: string]: string } = {};
 
   constructor(private reservationService: ReservaService) { }
 
@@ -21,7 +21,7 @@ export class ReservasRecientesComponent {
       (data) => {
         this.recentReservation = data;
         this.recentReservation.forEach((reserva: any) => {
-          this.getImageCity(reserva.country);
+          this.getImageCountryBackground(reserva.city);
         });
       },
       (error) => {
@@ -30,13 +30,13 @@ export class ReservasRecientesComponent {
     );
   }
 
-  getImageCity(city: string): void {
-    this.buscarImagenPais(city).then(url => {
-      this.imageCountry[city] = url as string;
+  getImageCountryBackground(city: string): void {
+    this.getImageCountry(city).then(url => {
+      this.imageCity[city] = url as string;
     });
   }
 
-  async buscarImagenPais(city: string) {
+  async getImageCountry(city: string) {
     let imgUrl = '';
     try {
       // Construir la URL de la solicitud a la API de Pixabay para buscar imágenes del país
@@ -46,8 +46,9 @@ export class ReservasRecientesComponent {
       const response = await fetch(url);
       const data = await response.json();
 
+      const randomIndex = Math.floor(Math.random() * data.hits.length);
       // Obtener la URL de la primera imagen encontrada
-      imgUrl = data.hits[0].largeImageURL;
+      imgUrl = data.hits[randomIndex].largeImageURL;
 
       // Devolver la URL de la imagen
       return imgUrl;

@@ -56,7 +56,7 @@ public class Guide {
     private String phone;
 
     @Lob
-    @Column(name = "profile_img", length = 5000)
+    @Column(name = "profile_img", length = 1000000)
     private String profileImg;
 
     @NotBlank(message = "Email cannot be empty")

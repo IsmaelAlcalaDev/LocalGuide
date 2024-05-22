@@ -45,8 +45,8 @@ img {
   width: 100% !important;
 }
 
-::ng-deep .mdc-form-field > .mdc-checkbox + label[class=mdc-label] {
-  color: rgb(0, 0, 0);
+::ng-deep .mdc-form-field > label {
+  color: white;
 }
 
 ::ng-deep mat-label.label-genero {
@@ -55,11 +55,6 @@ img {
 
 ::ng-deep .mdc-radio__outer-circle {
   border-color: white !important;
-}
-
-::ng-deep .mdc-label {
-  color: rgb(255, 255, 255);
-  /* Cambia "blue" al color que desees */
 }
 
 .btn {
@@ -75,33 +70,9 @@ img {
   box-shadow: none;
 }
 
-h3 {
-  font-size: 2.5em;
-  font-weight: 500;
-  margin-bottom: 1em;
-}
-
-.mat-mdc-form-field {
-  width: 100%;
-}
-
-label.text-secondary {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-::ng-deep .mat-mdc-form-field-icon-suffix {
-  margin: 10px;
-}
-
-.alert {
-  width: fit-content !important;
-}
-
 .profile-img {
   width: 250px !important;
   height: 250px !important;
   border: 5px solid white;
   padding: 5px;
-}/*# sourceMappingURL=configuracion-guia.component.css.map */
+}/*# sourceMappingURL=configuracion-turista.component.css.map */

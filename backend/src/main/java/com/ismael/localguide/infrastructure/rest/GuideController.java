@@ -4,6 +4,7 @@ import com.ismael.localguide.application.TouristUseCase;
 import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.Tourist;
 import com.ismael.localguide.domain.dto.GuideDataDTO;
+import com.ismael.localguide.domain.dto.GuideInformationDTO;
 import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
 import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
 import jakarta.validation.Valid;
@@ -79,5 +80,15 @@ public class GuideController {
     public ResponseEntity<List<TopRatedGuidesDTO>> getTopRatedGuides() {
         List<TopRatedGuidesDTO> topRatedGuides = guideService.getTopRatedGuides();
         return new ResponseEntity<>(topRatedGuides, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "v1/detail/{id}")
+    public ResponseEntity<?> getGuideDetail(@PathVariable final Long id) {
+        GuideInformationDTO guide = guideService.getGuideDetails(id);
+        if (guide == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El guía no existe.");
+        } else {
+            return ResponseEntity.ok(guide);
+        }
     }
 }

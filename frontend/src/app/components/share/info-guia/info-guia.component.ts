@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { GuiaService } from '../../../services/guiaService/guia.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ValidacionService } from '../../../services/validacionServices/validacion.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-info-guia',
@@ -7,22 +11,62 @@ import { Component } from '@angular/core';
 })
 export class InfoGuiaComponent {
 
-  profileImg: string = "../../../../assets/images/ciudad.jpeg";
-  existBackgroundCheckCertificate: boolean = true; // Debes definir estas variables según corresponda en tu lógica
-  existIdentityDocument: boolean = false;
-  guide = {
-    city: 'ciudad',
-    country: 'país',
-    phrase: 'mi plan perfecto para conocer la ciudadmi plan perfecto para conocer la ciudadmi plan perfecto para conocer la ciudadmi plan perfecto para conocer la ciudadmi plan perfecto para conocer la ciudadmi plan perfecto para conocer la ciudadmi plan perfecto para conocer la ciudad',
-    additionalInfo: 'información adicionalinformación adicionalinformación adicionalinformación adicionalinformación adicionalinformación adicional',
-    hourlyPrice: 'precio',
-    name: 'nombre',
-    surname: 'apellido',
-    gender: 'FEMENINO'
-  };
-  hobbies: string[] = ['Hobbie 1', 'Hobbie 2', 'Hobbie 3','Idioma 1', 'Idioma 2', 'Idioma 3']; // Debes definir estos arreglos según corresponda en tu lógica
-  languages: string[] = ['Idioma 1', 'Idioma 2', 'Idioma 3','Idioma 1', 'Idioma 2', 'Idioma 3'];
+  guide:any = {};
+  reserveForm!: FormGroup;
 
-  constructor() { }
+  constructor( 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private guiaService: GuiaService, 
+    private validationService: ValidacionService
+  ) { }
+  
+  ngOnInit(): void {
+    this.reserveForm = this.validationService.validateReserveForm();
+    this.getGuideDetails();
+  }
 
+  getGuideDetails(): void {
+    this.route.params.subscribe(params => {
+      const guiaId = +params['id']; // Obtén el ID del guía de los parámetros de la ruta
+      this.guiaService.getGuideDetails(guiaId).subscribe(
+        (guideDetails: any) => {
+          this.guide = guideDetails;
+        },
+        (error: any) => {
+          this.router.navigate(['/inicio']);
+          console.error('Error al obtener los detalles del guía:', error);
+        }
+      );
+    });
+  }
+
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+  
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
+  reserveGuide(): void {
+    if (this.reserveForm.valid) {
+      this.router.navigate(
+        [
+          '/pago-reserva', 
+          this.guide.id, 
+          this.guide.hourlyPrice, 
+          this.guide.name,
+          this.reserveForm.value.startDate,
+          this.reserveForm.value.endDate,
+          this.reserveForm.value.hours
+        ]
+      );
+    } else {
+      // Marca todos los controles del formulario como "touched"
+      this.markFormGroupTouched(this.reserveForm);
+    }
+  }
 }
