@@ -1,12 +1,9 @@
 package com.ismael.localguide.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "reservation")
@@ -22,10 +19,14 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "touristID", nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Tourist tourist;
 
     @ManyToOne
     @JoinColumn(name = "guideID", nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Guide guide;
 
     @Column(name = "date_reservation", nullable = false)
@@ -51,5 +52,5 @@ public class Reservation {
     private int reservedHours;
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private double price;
 }

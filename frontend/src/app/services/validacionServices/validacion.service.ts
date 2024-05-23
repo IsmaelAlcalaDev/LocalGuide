@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -119,10 +119,34 @@ export class ValidacionService {
 
   validateReserveForm(): FormGroup {
     return this.formBuilder.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
       hours: ['', [Validators.required, Validators.min(0)]]
-    });
+    }, { validators: this.dateRangeValidator });
+  }
+
+  private dateRangeValidator(formGroup: FormGroup) {
+    const startDate = new Date(formGroup.get('startDate')?.value);
+    const endDate = new Date(formGroup.get('endDate')?.value);
+    const currentDate = new Date();
+
+    if (endDate < startDate) {
+      formGroup.get('endDate')?.setErrors({ 'fechaInvalida': true });
+    }
+
+    if (endDate < currentDate) {
+      formGroup.get('endDate')?.setErrors({ 'fechaInvalida': true });
+    }
+
+    if (startDate < currentDate) {
+      formGroup.get('startDate')?.setErrors({ 'fechaInvalida': true });
+    }
+
+    if (endDate < startDate || endDate < currentDate || startDate < currentDate) {
+      return { 'rangoInvalido': true };
+    } else {
+      return null;
+    }
   }
 
   // Validación de la coincidencia de contraseñas
@@ -153,6 +177,52 @@ export class ValidacionService {
       return { invalidCity: true };
     }
     return null;
+  }
+
+  validatePaymentForm(): FormGroup {
+    return this.formBuilder.group({
+      paymentMethod: ['', [Validators.required, Validators.pattern('^(BIZUM|TARJETA|TRANSFERENCIA)$')]],
+      cardNumber: ['', [Validators.required, Validators.pattern('^\\d{4}(?:\\s\\d{4}){3}$')]],
+      expiryDate: ['', [Validators.required, this.futureDateValidator()]], 
+      cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3}$')]]
+    });
+  }
+  
+  futureDateValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const inputValue = control.value;
+      
+      // Verificar el formato mm/yy
+      const pattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+      if (!pattern.test(inputValue)) {
+        return { invalidFormat: true };
+      }
+      
+      // Extraer mes y año
+      const [month, year] = inputValue.split('/');
+      const inputDate = new Date(`20${year}-${month}-01`); // Agregamos '20' al año para obtener el año completo
+      
+      // Obtener fecha actual
+      const currentDate = new Date();
+      
+      // Verificar si es una fecha válida y no es anterior al día actual
+      if (isNaN(inputDate.getTime()) || inputDate < currentDate) {
+        return { invalidExpiryDate: true };
+      }
+      
+      return null;
+    };
+  }
+  
+
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+  
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 
 }

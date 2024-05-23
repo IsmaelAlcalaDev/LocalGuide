@@ -25,12 +25,11 @@ const routes: Routes = [
       { path: "configuracion-perfil-turista", component: ConfiguracionPerfilComponent },
       { path: "configuracion-perfil-guia", component: ConfiguracionPerfilComponent },
       { path: "perfil-guia/:id", component: InformacionPerfilComponent },
-      { path: "pago-reserva", component: PasarelaPagoComponent },
+      { path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours", component: PasarelaPagoComponent },
       { path: "pago-aumento-visibilidad", component: PasarelaPagoComponent },
       { path: "mis-viajes", component: ReservasComponent },
       { path: "resumen-reservas", component: ReservasComponent },
       { path: "admin", component: InicioSesionComponent },
-      //Faltan url y componentes de admin
     ]
   }
 ];

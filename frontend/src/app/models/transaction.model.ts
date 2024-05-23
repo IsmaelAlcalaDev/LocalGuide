@@ -4,11 +4,10 @@ import { Reservation } from './reservation.model';
 import { Guide } from './guide.model';
 
 export interface Transaction {
-  id: number;
   amount: number;
   type: TransactionType;
   paymentType: PaymentType;
-  transactionDate: string;
+  transactionDate: Date;
   reservation: Reservation;
   guide?: Guide;
 }

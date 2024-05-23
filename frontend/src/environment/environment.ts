@@ -16,6 +16,7 @@ export const environment = {
       },
       reservation: {
         recent: 'http://localhost:8080/local-guide/api/reservation/v1/recent',
+        process: 'http://localhost:8080/local-guide/api/reservation/v1/process',
       },
       transaction: {
 

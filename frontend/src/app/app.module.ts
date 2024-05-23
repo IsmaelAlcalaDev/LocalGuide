@@ -34,6 +34,10 @@ import { ConfiguracionPerfilComponent } from './components/pages/configuracion-p
 import { ResenasGuiaComponent } from './components/share/resenas-guia/resenas-guia.component';
 import { ReservasActivasTuristaComponent } from './components/share/reservas-activas-turista/reservas-activas-turista.component';
 import { InfoGuiaComponent } from './components/share/info-guia/info-guia.component';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { LOCALE_ID } from '@angular/core';
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
     declarations: [
@@ -72,6 +76,7 @@ import { InfoGuiaComponent } from './components/share/info-guia/info-guia.compon
         provideClientHydration(),
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
+        { provide: LOCALE_ID, useValue: 'es' }
     ],
     bootstrap: [AppComponent],
     imports: [

@@ -1,7 +1,5 @@
 # LocalGuide
 
-# LocalGuide
-
 LocalGuide es una aplicación web desarrollada como proyecto final para el Ciclo Superior de Desarrollo de Aplicaciones Web (DAW). Esta aplicación tiene como objetivo proporcionar a los usuarios una plataforma para encontrar guías locales en diferentes destinos turísticos.
 
 ## Características principales

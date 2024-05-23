@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Reservation } from '../../models/reservation.model';
+import { Transaction } from '../../models/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,10 @@ export class ReservaService {
     return this.http.get<any>(this.apiUrl.reservation.recent);
   }
   
-
+  processReservation(reservation: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl.reservation.process, reservation);
+  }
+  
   reservasActivas: any[] = [
     {
       guia: {

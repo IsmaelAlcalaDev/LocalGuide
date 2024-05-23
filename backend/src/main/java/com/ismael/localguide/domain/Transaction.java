@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "transaction")
 @Data
@@ -29,7 +31,7 @@ public class Transaction {
     private PaymentType paymentType;
 
     @Column(name = "transaction_date", nullable = false)
-    private String transactionDate;
+    private LocalDateTime transactionDate;
 
     @ManyToOne
     @JoinColumn(name = "reservationID", nullable = false)

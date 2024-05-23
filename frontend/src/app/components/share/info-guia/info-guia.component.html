@@ -9,14 +9,17 @@
                     <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #startDatePicker></mat-datepicker>
                     <mat-error *ngIf="reserveForm.get('startDate')?.hasError('required') && reserveForm.get('startDate')?.touched">La fecha de inicio es requerida</mat-error>
+                    <mat-error *ngIf="reserveForm.get('startDate')?.hasError('fechaInvalida')">Fecha inválida</mat-error>
                 </mat-form-field>
-            
+                
                 <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Fecha de fin:</mat-label>
                     <input matInput [matDatepicker]="endDatePicker" placeholder="Seleccione una fecha" formControlName="endDate">
                     <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #endDatePicker></mat-datepicker>
                     <mat-error *ngIf="reserveForm.get('endDate')?.hasError('required') && reserveForm.get('endDate')?.touched">La fecha de fin es requerida</mat-error>
+                    <mat-error *ngIf="reserveForm.get('endDate')?.hasError('fechaInvalida')">Fecha inválida</mat-error>
+                    <mat-error *ngIf="reserveForm.hasError('rangoInvalido')">La fecha de fin debe ser posterior a la fecha de inicio</mat-error>
                 </mat-form-field>
             
                 <mat-form-field appearance="fill" class="w-50">

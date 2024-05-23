@@ -41,16 +41,6 @@ export class InfoGuiaComponent {
     });
   }
 
-  markFormGroupTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-  
-      if (control instanceof FormGroup) {
-        this.markFormGroupTouched(control);
-      }
-    });
-  }
-
   reserveGuide(): void {
     if (this.reserveForm.valid) {
       this.router.navigate(
@@ -59,14 +49,14 @@ export class InfoGuiaComponent {
           this.guide.id, 
           this.guide.hourlyPrice, 
           this.guide.name,
-          this.reserveForm.value.startDate,
-          this.reserveForm.value.endDate,
+          encodeURIComponent(this.reserveForm.value.startDate),
+          encodeURIComponent(this.reserveForm.value.endDate),
           this.reserveForm.value.hours
         ]
       );
     } else {
       // Marca todos los controles del formulario como "touched"
-      this.markFormGroupTouched(this.reserveForm);
+      this.validationService.markFormGroupTouched(this.reserveForm);
     }
   }
 }
