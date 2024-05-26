@@ -19,4 +19,5 @@ export class UbicacionService {
   getPhonePrefixes(): Observable<{ [key: string]: string }> {
     return this.http.get<{ [key: string]: string }>('../../../../assets/json/phonePrefixes.json');
   }
+  
 }

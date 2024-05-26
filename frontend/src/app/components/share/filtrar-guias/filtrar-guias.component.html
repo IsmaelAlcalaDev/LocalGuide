@@ -1,15 +1,29 @@
 <div class="form_filter_container w-100">
-    <form class="col">
+    <form [formGroup]="filterForm" class="col">
         <div class="form_title">
             <h2>Descubre tu Guía Ideal y Emprende tu Próxima Aventura</h2>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="destino" placeholder="Introducir destino">
-                    <label for="destino">Destino</label>
+                    <select formControlName="country" id="country" class="form-select" aria-label="Country">
+                        <option selected>Selecciona un país</option>
+                        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                    </select>
+                    <label for="country">País</label>
                 </div>
             </div>
+            <div class="col">
+                <div class="form-floating">
+                    <select formControlName="city" id="city" class="form-select" aria-label="City">
+                        <option selected>Selecciona una ciudad</option>
+                        <option *ngFor="let city of cities[selectedCountry]" [value]="city">{{city}}</option>
+                    </select>
+                    <label for="city">Ciudad</label>
+                </div>
+                
+            </div>
+            
             <div class="col">
                 <div class="form-floating">
                     <input type="date" class="form-control" id="fechaInicio">

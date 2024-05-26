@@ -1,0 +1,24 @@
+.table-container {
+  padding: 50px 50px 50px 110px;
+}
+
+::ng-deep .mat-mdc-cell,
+.mat-mdc-header-cell {
+  text-align: center !important;
+  width: fit-content !important;
+}
+
+::ng-deep tr.mat-mdc-row.mdc-data-table__row.cdk-row {
+  height: 80px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+
+.mat-table-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+}/*# sourceMappingURL=tabla-guias.component.css.map */

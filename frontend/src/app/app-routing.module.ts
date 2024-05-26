@@ -9,6 +9,8 @@ import { RegistroComponent } from './components/pages/registro/registro.componen
 import { PasarelaPagoComponent } from './components/pages/pasarela-pago/pasarela-pago.component';
 import { ReservasComponent } from './components/pages/reservas/reservas.component';
 import { BuscarGuiasComponent } from './components/pages/buscar-guias/buscar-guias.component';
+import { InicioSesionAdminComponent } from './components/pages/inicio-sesion-admin/inicio-sesion-admin.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -26,10 +28,10 @@ const routes: Routes = [
       { path: "configuracion-perfil-guia", component: ConfiguracionPerfilComponent },
       { path: "perfil-guia/:id", component: InformacionPerfilComponent },
       { path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours", component: PasarelaPagoComponent },
-      { path: "pago-aumento-visibilidad", component: PasarelaPagoComponent },
       { path: "mis-viajes", component: ReservasComponent },
       { path: "resumen-reservas", component: ReservasComponent },
-      { path: "admin", component: InicioSesionComponent },
+      { path: "admin", component: InicioSesionAdminComponent },
+      { path: "admin-dashboard", component: DashboardComponent }
     ]
   }
 ];

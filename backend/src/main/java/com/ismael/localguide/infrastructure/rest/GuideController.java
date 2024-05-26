@@ -6,6 +6,7 @@ import com.ismael.localguide.domain.Tourist;
 import com.ismael.localguide.domain.dto.GuideDataDTO;
 import com.ismael.localguide.domain.dto.GuideInformationDTO;
 import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
+import com.ismael.localguide.domain.dto.TouristDataDTO;
 import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ismael.localguide.application.GuideUseCase;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -89,6 +91,20 @@ public class GuideController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El guía no existe.");
         } else {
             return ResponseEntity.ok(guide);
+        }
+    }
+
+    @GetMapping(value = "v1/listGuides")
+    public ResponseEntity<?> findAll() {
+        try {
+            List<Guide> guides = guideService.findAll();
+            List<GuideDataDTO> touristDTOs = new ArrayList<>();
+            for (Guide guide : guides) {
+                touristDTOs.add(guideMapper.toDto(guide));
+            }
+            return ResponseEntity.ok(touristDTOs);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al recuperar los datos de los turistas: " + e.getMessage());
         }
     }
 }

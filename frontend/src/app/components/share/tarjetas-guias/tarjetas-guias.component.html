@@ -1,9 +1,9 @@
 <div class="container d-flex flex-wrap justify-content-center gap-5">
   <div *ngFor="let guide of topRatedGuides" class="card rounded-4 mb-4" style="width: 300px;" (click)="showGuide(guide.id)"data-aos="zoom-in-up" data-aos-delay="100" data-aos-duration="500">
     <div class="image-container text-center rounded-top-4">
-      <img [src]="guide.profileImg" class="card-img-top rounded-circle p-2" alt="" >
+      <div class="overlay rounded-top-4"></div>
+      <img [src]="guide.profileImg" class="card-img-top rounded-circle p-2" alt="">
     </div>
-
     <div class="card-body">
       <div class="d-flex align-items-start justify-content-between ">
         <div>

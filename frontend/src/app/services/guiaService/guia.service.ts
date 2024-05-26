@@ -45,6 +45,10 @@ export class GuiaService {
     return this.http.get<Guide>(path);
   }
 
+  getGuides(): Observable<any> {
+    return this.http.get<any>(this.apiUrl.guide.listGuides);
+  }
+
 
   guiasInput: any = [
     {

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long>, JpaSpecificationExecutor<Reservation> {
 
@@ -19,4 +20,15 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
 
     @Query("SELECT ROUND(AVG(r.reviewScore)) FROM Reservation r WHERE r.guide.id = :guideId")
     double getAverageReviewScoreByGuideId(@Param("guideId") Long guideId);
+
+    @Query("SELECT COUNT(r) FROM Reservation r WHERE r.status = 'ACEPTADA'")
+    int countAcceptedReservations();
+
+    @Query("SELECT COUNT(r) FROM Reservation r WHERE r.status = 'ACEPTADA' AND MONTH(r.reservationDate) = MONTH(CURRENT_DATE()) AND YEAR(r.reservationDate) = YEAR(CURRENT_DATE())")
+    int countAcceptedReservationsForCurrentMonth();
+
+    @Query(value = "SELECT guideid FROM reservation GROUP BY guideid ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
+    Long findMostFrequentGuideId();
+
+
 }

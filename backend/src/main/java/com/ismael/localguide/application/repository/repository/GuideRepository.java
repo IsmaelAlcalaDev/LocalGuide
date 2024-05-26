@@ -20,4 +20,7 @@ public interface GuideRepository extends JpaRepository<Guide, Long>, JpaSpecific
 
     @Query("SELECT g FROM Guide g JOIN g.reservations r WHERE r.reviewScore > 3 GROUP BY g.id")
     List<Guide> findAllByReservationWithHighReviewScore();
+
+    @Query("SELECT COUNT(g) FROM Guide g")
+    int countAll();
 }

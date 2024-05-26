@@ -20,6 +20,10 @@ export class ReservaService {
   processReservation(reservation: any): Observable<any> {
     return this.http.post<any>(this.apiUrl.reservation.process, reservation);
   }
+
+  getReservations(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.apiUrl.reservation.listReservations);
+  }
   
   reservasActivas: any[] = [
     {

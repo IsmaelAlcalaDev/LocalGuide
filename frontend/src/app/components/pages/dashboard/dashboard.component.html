@@ -1,0 +1,53 @@
+<nav class="main-menu">
+    <ul>
+        <li (click)="showComponent('kpis')">
+
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+                KPIs Dashboard
+            </span>
+        </li>
+        <li class="has-subnav" (click)="showComponent('turistas')">
+
+            <i class="fa fa-users fa-2x"></i>
+            <span class="nav-text">
+                Turistas
+            </span>
+
+        </li>
+        <li class="has-subnav" (click)="showComponent('guias')">
+            <i class="fa fa-location-dot"></i>
+            <span class="nav-text">
+                Guías
+            </span>
+        </li>
+        <li class="has-subnav" (click)="showComponent('transacciones')">
+            <i class="fa fa-exchange-alt fa-x2"></i>
+            <span class="nav-text">
+                Transacciones
+            </span>
+        </li>
+        <li (click)="showComponent('reservas')">
+            <i class="fa fa-calendar-check fa-x2"></i>
+            <span class="nav-text">
+                Reservas
+            </span>
+        </li>
+    </ul>
+
+    <ul class="logout" (click)="logOut()">
+        <li>
+            <a href="#">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">
+                    Logout
+                </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<app-kpis *ngIf="componentToShow === 'kpis'"></app-kpis>
+<app-tabla-turistas *ngIf="componentToShow === 'turistas'"></app-tabla-turistas>
+<app-tabla-guias *ngIf="componentToShow === 'guias'"></app-tabla-guias>
+<app-tabla-transacciones *ngIf="componentToShow === 'transacciones'"></app-tabla-transacciones>
+<app-tabla-reservas *ngIf="componentToShow === 'reservas'"></app-tabla-reservas>

@@ -4,7 +4,11 @@ import com.ismael.localguide.application.RecentReservationUseCase;
 import com.ismael.localguide.application.ReservationUseCase;
 import com.ismael.localguide.application.TransactionUseCase;
 import com.ismael.localguide.domain.Reservation;
+import com.ismael.localguide.domain.Transaction;
 import com.ismael.localguide.domain.dto.RecentReservationsDTO;
+import com.ismael.localguide.domain.dto.ReservationDTO;
+import com.ismael.localguide.domain.dto.TransactionDTO;
+import com.ismael.localguide.infrastructure.rest.mapper.ReservationMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/reservation")
@@ -30,6 +35,8 @@ public class ReservationController {
     private final ReservationUseCase reservationService;
     @Autowired
     private final TransactionUseCase transactionService;
+    @Autowired
+    private final ReservationMapper reservationMapper;
 
     @GetMapping("v1/recent")
     public ResponseEntity<List<RecentReservationsDTO>> getRecentReservations() {
@@ -52,6 +59,17 @@ public class ReservationController {
         }
     }
 
-
+    @GetMapping(value = "v1/listReservations")
+    public ResponseEntity<?> findAll() {
+        try {
+            List<Reservation> reservations = reservationService.findAll();
+            List<ReservationDTO> reservationDTOs = reservations.stream()
+                    .map(reservationMapper::toDto)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(reservationDTOs);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al recuperar los datos de las transacciones: " + e.getMessage());
+        }
+    }
 
 }

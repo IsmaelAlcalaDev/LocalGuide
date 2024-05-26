@@ -29,4 +29,8 @@ export class TuristaService {
     // Realizar la solicitud POST con los parámetros
     return this.http.post<any>(this.apiUrl.tourist.login, {}, { params: params });
   }
+
+  getTourist(): Observable<any> {
+    return this.http.get<any>(this.apiUrl.tourist.listTourists);
+  }
 }

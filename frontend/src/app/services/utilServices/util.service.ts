@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Tourist } from '../../models/tourist.model';
 import { Guide } from '../../models/guide.model';
+import { Administrator } from '../../models/administrator.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ userData: any = {};
     if (userDataString) {
       return JSON.parse(userDataString);
     }
-    return null; // O cualquier otro valor por defecto que quieras manejar si no hay datos de usuario
+    return null;
   }
 }
 

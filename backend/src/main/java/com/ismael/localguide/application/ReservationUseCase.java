@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -58,7 +59,6 @@ public class ReservationUseCase {
         }
     }
 
-
     public boolean validationReservation(Map<String, Object> reservation) {
         boolean validation = true;
         double totalPriceReservation;
@@ -91,4 +91,7 @@ public class ReservationUseCase {
         return validation;
     }
 
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
+    }
 }

@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ismael.localguide.application.TouristUseCase;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -87,4 +90,21 @@ public class TouristController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el turista: " + e.getMessage());
         }
     }
+
+
+    @GetMapping(value = "v1/listTourists")
+    public ResponseEntity<?> findAll() {
+        try {
+            List<Tourist> tourists = touristService.findAll();
+            List<TouristDataDTO> touristDTOs = new ArrayList<>();
+            for (Tourist tourist : tourists) {
+                touristDTOs.add(touristMapper.toDto(tourist));
+            }
+            return ResponseEntity.ok(touristDTOs);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al recuperar los datos de los turistas: " + e.getMessage());
+        }
+    }
+
+
 }

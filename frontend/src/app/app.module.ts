@@ -37,6 +37,14 @@ import { InfoGuiaComponent } from './components/share/info-guia/info-guia.compon
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
+import { InicioSesionAdminComponent } from './components/pages/inicio-sesion-admin/inicio-sesion-admin.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { KpisComponent } from './components/share/kpis/kpis.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { TablaGuiasComponent } from './components/share/tabla-guias/tabla-guias.component';
+import { TablaTuristasComponent } from './components/share/tabla-turistas/tabla-turistas.component';
+import { TablaReservasComponent } from './components/share/tabla-reservas/tabla-reservas.component';
+import { TablaTransaccionesComponent } from './components/share/tabla-transacciones/tabla-transacciones.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -71,18 +79,26 @@ registerLocaleData(localeEs, 'es');
         ResenasGuiaComponent,
         ReservasActivasTuristaComponent,
         InfoGuiaComponent,
+        InicioSesionAdminComponent,
+        DashboardComponent,
+        KpisComponent,
+        TablaGuiasComponent,
+        TablaTuristasComponent,
+        TablaReservasComponent,
+        TablaTransaccionesComponent,
     ],
     providers: [
         provideClientHydration(),
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
-        { provide: LOCALE_ID, useValue: 'es' }
+        { provide: LOCALE_ID, useValue: 'es' },
+        provideCharts(withDefaultRegisterables())
     ],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        CoreModule
+        CoreModule,
     ]
 })
 export class AppModule { }

@@ -25,7 +25,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -83,6 +85,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     NgxPaginationModule,
     ReactiveFormsModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatPaginator,
+    MatSortModule
   ]
 })
 export class CoreModule { }

@@ -14,10 +14,14 @@ export class HeaderComponent implements OnInit {
   profileImg?: string;
   userData: any = {};
   typeUser$ = new BehaviorSubject<string>('public');
+  isAdmin: boolean = false;
+  url: string = '';
   
   constructor(private router: Router, private authService: AuthService, private utilService: UtilService) { }
 
   ngOnInit(): void {
+    this.url = this.router.url;
+    this.isAdmin = this.url.includes('admin');
     this.getUserTypeFromSessionStorage();
     this.userData = this.utilService.getDataUser();
     if (this.userData) {

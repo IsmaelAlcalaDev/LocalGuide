@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -22,6 +23,10 @@ public class TouristUseCase {
 
     public Tourist findByEmailAndPassword(final String email, final String password){
         return this.touristRepository.findByEmailAndPassword(email, password);
+    }
+
+    public List<Tourist> findAll() {
+        return touristRepository.findAll();
     }
 
     public Tourist save(Tourist tourist){

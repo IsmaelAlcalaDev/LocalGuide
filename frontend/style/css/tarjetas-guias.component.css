@@ -63,7 +63,24 @@ h5 {
 }
 
 .image-container.text-center {
-  background-color: #ffe8d2;
+  position: relative;
+  background-image: url("../../../../assets/images/image-configuracion.png");
+  background-size: cover;
+}
+
+.image-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.image-container img {
+  position: relative;
+  z-index: 2;
 }
 
 .card-img-top {
