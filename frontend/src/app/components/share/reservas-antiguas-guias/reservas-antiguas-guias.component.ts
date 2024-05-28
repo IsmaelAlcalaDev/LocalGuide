@@ -7,14 +7,27 @@ import { ReservaService } from '../../../services/reservaService/reserva.service
   styleUrl: './reservas-antiguas-guias.component.scss'
 })
 export class ReservasAntiguasGuiasComponent {
-  reservasActivas: any[] = [];
-  pageSize: number = 6; // Define el número de elementos por página
-  currentPage: number = 1; // Define la página actual
+  pastReservation: any = [];
+  guideId: any;
+  pageSize: number = 6; 
+  currentPage: number = 1; 
 
   constructor(private reservaService: ReservaService) { }
 
   ngOnInit() {
-    this.reservasActivas = this.reservaService.reservasActivas;
+    this.guideId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
+    this.getPastGuideReservation();
+  }
+
+  getPastGuideReservation() {
+    this.reservaService.getPastGuideReservation(this.guideId).subscribe(
+      (reservation: any) => {
+        this.pastReservation = reservation;
+      },
+      (error: any) => {
+        console.error('Error al obtener la reserva activa:', error);
+      }
+    );
   }
 
   pageChanged(event: any): void {

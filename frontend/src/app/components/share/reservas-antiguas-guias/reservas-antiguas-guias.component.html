@@ -1,26 +1,26 @@
 <div class="container my-5 pb-5">
   <h2 class="fs-2 mt-5 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Historial de reservas</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-      <ng-container *ngFor="let reserva of reservasActivas | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'paginacionReservas' }">
+      <h3 class="text-center" *ngIf="pastReservation.length === 0">Aun no has realizado ningun tour</h3>
+      <ng-container *ngFor="let reservation of pastReservation | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'paginacionReservas' }">
         <div class="col">
           <div class="card rounded-4">
             <div class="card-img-container">
-              <img [src]="reserva.guia.ciudadFoto" class="card-img-top img-fluid rounded" alt="Foto de la ciudad del guía">
+              <img src="../../../../assets/images/image-configuracion.png" class="card-img-top img-fluid rounded" alt="Foto de la ciudad del guía">
             </div>
             <div class="card-body mx-3">
-              <h4 class="card-title fw-bold mb-3">{{ reserva.guia.nombre }}</h4>
-              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de inicio: {{ reserva.fechaInicio }}</p>
-              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de fin: {{ reserva.fechaFin }}</p>
-              <p class="card-text mb-2"><i class="far fa-clock"></i> {{ reserva.horas }} horas de tour</p>
-              
-              <!-- Condición para mostrar estrellas de calificación o enlace para dejar reseña -->
-              <ng-container *ngIf="reserva.rating !== null; else anyReview">
+              <h4 class="card-title fw-bold mb-3">{{ reservation.nameTourist }}</h4>
+              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de inicio: {{ reservation.startDate | date}}</p>
+              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de fin: {{ reservation.endDate | date }}</p>
+              <p class="card-text mb-2"><i class="far fa-clock"></i> {{ reservation.reservedHours }} horas de tour</p>
+
+                <ng-container *ngIf="reservation.reviewScore !== null; else anyReview">
                 <div class="star-rating mb-3">
                   <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
                     <i class="fa" [ngClass]="{
-                      'fa-star': reserva.rating >= star,
-                      'fa-star-half-alt': reserva.rating + 0.5 >= star && reserva.rating < star,
-                      'fa-star-o': reserva.rating < star
+                      'fa-star': reservation.reviewScore >= star,
+                      'fa-star-half-alt': reservation.reviewScore + 0.5 >= star && reservation.reviewScore < star,
+                      'fa-star-o': reservation.reviewScore < star
                     }"></i>
                   </ng-container>
                 </div>
@@ -29,7 +29,7 @@
                 <p class="text-secondary">Sin valoración</p>
               </ng-template>
   
-              <p class="card-text mb-3 precio"> {{ reserva.precio }} €</p>
+              <p class="card-text mb-3 precio"> {{ reservation.price }} €</p>
             </div>
           </div>
         </div>

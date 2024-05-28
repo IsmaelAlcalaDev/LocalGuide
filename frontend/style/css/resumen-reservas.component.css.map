@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../src/app/components/share/resumen-reservas/resumen-reservas.component.scss"],"names":[],"mappings":"AAAA;EACI;EACA;EACA","file":"resumen-reservas.component.css"}
+{"version":3,"sourceRoot":"","sources":["../../src/app/components/share/resumen-reservas/resumen-reservas.component.scss"],"names":[],"mappings":"AAAA;EACI;EACA;;;AAGJ;EACI","file":"resumen-reservas.component.css"}

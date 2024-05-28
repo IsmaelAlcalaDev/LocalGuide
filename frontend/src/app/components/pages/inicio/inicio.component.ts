@@ -7,5 +7,4 @@ import { GuiaService } from '../../../services/guiaService/guia.service';
   styleUrl: './inicio.component.scss'
 })
 export class InicioComponent {
-
 }

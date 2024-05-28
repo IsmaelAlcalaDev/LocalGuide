@@ -22,12 +22,10 @@ export class GuiaService {
   }
 
   login(email: string, password: string): Observable<any> {
-    // Definir los parámetros de la solicitud
     const params = new HttpParams()
       .set('email', email)
       .set('password', password);
 
-    // Realizar la solicitud POST con los parámetros
     return this.http.post<any>(this.apiUrl.guide.login, {}, { params: params });
   }
 
@@ -45,10 +43,9 @@ export class GuiaService {
     return this.http.get<Guide>(path);
   }
 
-  getGuides(): Observable<any> {
-    return this.http.get<any>(this.apiUrl.guide.listGuides);
+  getGuides(): Observable<Guide[]> {
+    return this.http.get<Guide[]>(this.apiUrl.guide.listGuides);
   }
-
 
   guiasInput: any = [
     {

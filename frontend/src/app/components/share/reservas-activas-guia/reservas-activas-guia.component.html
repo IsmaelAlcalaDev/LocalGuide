@@ -2,23 +2,25 @@
   <h2 class="fs-2 mt-5 mb-3 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Reservas activas</h2>
   <p class="text-center mb-5" style="font-family: 'Montserrat', sans-serif;">La cancelación de la reserva solo será posible dentro de las primeras 48 horas posteriores a su aceptación</p>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-      <ng-container *ngFor="let reserva of reservasActivas">
+      <h3 class="text-center" *ngIf="activeReservation.length === 0">No tienes reservas activas</h3>
+      <ng-container *ngFor="let reservation of activeReservation">
         <div class="col">
           <div class="card rounded-4">
             <div class="card-img-container">
-              <img [src]="reserva.guia.ciudadFoto" class="card-img-top img-fluid rounded" alt="Foto de la ciudad del guía">
+              <img src="../../../../assets/images/image-configuracion.png" class="card-img-top img-fluid rounded" alt="Foto de la ciudad del guía">
             </div>
               <div class="card-body mx-3">
-              <h4 class="card-title fw-bold mb-3">{{ reserva.guia.nombre }}</h4>
-              <p class="card-text mb-2"><i class="fas fa-envelope"></i> {{ reserva.guia.correo }}</p>
+              <h4 class="card-title fw-bold mb-3">{{ reservation.nameTourist }}</h4>
+              <p class="card-text mb-2"><i class="fas fa-envelope"></i> {{ reservation.emailTourist }}</p>
               <p class="card-text mb-2"><i class="fab fa-whatsapp"></i> 
-                <a class="link_whastapp" href="https://wa.me/{{ reserva.guia.whatsapp }}" target="_blank"> {{ reserva.guia.whatsapp }}</a>
+                <a class="link_whatsapp" href="https://wa.me/{{phonePrefixes[reservation.countryTourist] + reservation.phoneTourist}}" target="_blank">
+                  {{phonePrefixes[reservation.countryTourist]}} {{ reservation.phoneTourist }}</a>
               </p>
-              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de inicio: {{ reserva.fechaInicio }}</p>
-              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de fin: {{ reserva.fechaFin }}</p>
-              <p class="card-text mb-2"><i class="far fa-clock"></i> {{ reserva.horas }} horas reservadas</p>
-              <p class="card-text mb-3 precio"> {{ reserva.precio }} €</p>
-              <a href="#" class="btn_cancelar">Cancelar reserva</a>
+              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de inicio: {{ reservation.startDate | date }}</p>
+              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de fin: {{ reservation.endDate | date }}</p>
+              <p class="card-text mb-2"><i class="far fa-clock"></i> {{ reservation.reservedHours }} horas reservadas</p>
+              <p class="card-text mb-3 precio"> {{ reservation.price }} €</p>
+              <p *ngIf="!hasMoreThan24HoursPassed(reservation.reservationDate)" class="btn_cancelar" (click)="deletedReservation(reservation.id)">Cancelar reserva</p>
             </div>
           </div>
         </div>

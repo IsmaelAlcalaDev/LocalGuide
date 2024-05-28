@@ -27,22 +27,18 @@
                 Transacciones
             </span>
         </li>
-        <li (click)="showComponent('reservas')">
+        <li class="has-subnav" (click)="showComponent('reservas')">
             <i class="fa fa-calendar-check fa-x2"></i>
             <span class="nav-text">
                 Reservas
             </span>
         </li>
     </ul>
-
     <ul class="logout" (click)="logOut()">
+
         <li>
-            <a href="#">
-                <i class="fa fa-power-off fa-2x"></i>
-                <span class="nav-text">
-                    Logout
-                </span>
-            </a>
+            <i class="fa fa-power-off fa-2x"></i>
+            <a href="#" class="nav-text" (click)="logOut()">Logout</a>
         </li>
     </ul>
 </nav>

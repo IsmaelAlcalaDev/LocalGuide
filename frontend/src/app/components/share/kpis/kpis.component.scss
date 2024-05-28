@@ -1,42 +1,46 @@
-    /* Estilos personalizados */
-    .container-kpi {
-        padding: 50px 50px 50px 110px;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-      }
+ .container-kpi {
+   padding: 50px 50px 50px 110px;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+ }
 
-      .row{
-        padding: 0 20px;
-      }
-      .kpi-title {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-      .kpi-card {
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        height: 200px;
-        width: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+ .row {
+   padding: 0 20px;
+ }
 
-      .kpi-card h5 {
-        font-size: 1em;
-      }
-      .kpi-card p {
-        font-size: 24px;
-        font-weight: bold;
-        color: #fe7f00
-      }
+ .kpi-title {
+   text-align: center;
+   margin-bottom: 30px;
+ }
 
-      .mb-4{
-        display: flex;
-        justify-content: center;
-      }
+ .kpi-card {
+   background-color: #f8f9fa;
+   border-radius: 10px;
+   padding: 20px;
+   box-shadow: 0px 2px 5px rgba(122, 122, 122, 0.8);
+   height: 200px;
+   width: 400px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap:30px;
+ }
+
+ .kpi-card h5 {
+  font-size: 2em;
+  color: white;
+ }
+
+ .kpi-card p {
+   font-size: 2em;
+   font-weight: bold;
+   color: white;
+ }
+
+ .mb-4 {
+   display: flex;
+   justify-content: center;
+ }

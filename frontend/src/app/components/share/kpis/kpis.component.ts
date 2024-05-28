@@ -14,17 +14,28 @@ export class KpisComponent {
   totalReservationsMonths?: number;
   totalUsers?: number;
   mostVisitedCountry?: string;
-
+  actualDate?: Date;
+  indexMonth?: number;
+  actualMonth?: string;
+  actualYear?: number;
+  month: string[] = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+  
   constructor(private administradorService: AdministradorService) { }
-
+  
   ngOnInit(): void {
     this.getKpis();
+    this.actualDate = new Date();
+    this.indexMonth = this.actualDate.getMonth();
+    this.actualMonth = this.month[this.indexMonth];
+    this.actualYear = this.actualDate.getFullYear();
   }
 
   getKpis(): void {
     this.administradorService.getKpis().subscribe(
       (response) => {
-        console.log(response);
         this.totalBillingYears = response.totalTransactionsYearToDate;
         this.totalBillingMonths = response.totalTransactionsCurrentMonth        ;
         this.totalReservations = response.totalAcceptedReservations;

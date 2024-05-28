@@ -1,12 +1,9 @@
 package com.ismael.localguide.infrastructure.rest;
 
+import com.ismael.localguide.application.ReservationUseCase;
 import com.ismael.localguide.application.TouristUseCase;
 import com.ismael.localguide.domain.Guide;
-import com.ismael.localguide.domain.Tourist;
-import com.ismael.localguide.domain.dto.GuideDataDTO;
-import com.ismael.localguide.domain.dto.GuideInformationDTO;
-import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
-import com.ismael.localguide.domain.dto.TouristDataDTO;
+import com.ismael.localguide.domain.dto.*;
 import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ismael.localguide.application.GuideUseCase;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/guide")
@@ -33,6 +27,8 @@ public class GuideController {
     private TouristUseCase touristService;
     @Autowired
     private GuideMapper guideMapper;
+    @Autowired
+    private ReservationUseCase reservationService;
 
     @PostMapping("v1/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
@@ -105,6 +101,42 @@ public class GuideController {
             return ResponseEntity.ok(touristDTOs);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al recuperar los datos de los turistas: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("v1/activeReservation/{guideId}")
+    public ResponseEntity<List<ActiveReservationGuideDTO>> getActiveReservations(@PathVariable Long guideId) {
+        try {
+            List<ActiveReservationGuideDTO> activeReservations = reservationService.activeReservationGuide(guideId);
+            return ResponseEntity.ok(activeReservations);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("v1/pastReservation/{guideId}")
+    public ResponseEntity<List<PastGuideReservationsDTO>> getPastReservations(@PathVariable Long guideId) {
+        try {
+            List<PastGuideReservationsDTO> pastReservations = reservationService.pastReservationGuide(guideId);
+            return ResponseEntity.ok(pastReservations);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("v1/summaryReservation/{guideId}")
+    public ResponseEntity<SummaryReservationsDTO> summaryReservations(@PathVariable Long guideId) {
+        try {
+            SummaryReservationsDTO summaryReservations = reservationService.summaryReservations(guideId);
+            return ResponseEntity.ok(summaryReservations);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

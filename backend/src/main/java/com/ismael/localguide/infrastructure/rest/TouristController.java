@@ -1,9 +1,9 @@
 package com.ismael.localguide.infrastructure.rest;
 
 import com.ismael.localguide.application.GuideUseCase;
+import com.ismael.localguide.application.ReservationUseCase;
 import com.ismael.localguide.domain.Tourist;
-import com.ismael.localguide.domain.dto.GuideDataDTO;
-import com.ismael.localguide.domain.dto.TouristDataDTO;
+import com.ismael.localguide.domain.dto.*;
 import com.ismael.localguide.infrastructure.rest.mapper.TouristMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -13,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ismael.localguide.application.TouristUseCase;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/tourist")
@@ -30,6 +27,8 @@ public class TouristController {
     private GuideUseCase guideService;
     @Autowired
     private TouristMapper touristMapper;
+    @Autowired
+    private ReservationUseCase reservationService;
 
     @PostMapping("v1/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
@@ -91,7 +90,6 @@ public class TouristController {
         }
     }
 
-
     @GetMapping(value = "v1/listTourists")
     public ResponseEntity<?> findAll() {
         try {
@@ -106,5 +104,27 @@ public class TouristController {
         }
     }
 
+    @GetMapping("v1/activeReservation/{touristId}")
+    public ResponseEntity<List<ActiveReservationTouristDTO>> getActiveReservations(@PathVariable Long touristId) {
+        try {
+            List<ActiveReservationTouristDTO> activeReservations = reservationService.activeReservationTourist(touristId);
+            return ResponseEntity.ok(activeReservations);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
+    @GetMapping("v1/pastReservation/{touristId}")
+    public ResponseEntity<List<PastReservationTouristDTO>> getPastReservations(@PathVariable Long touristId) {
+        try {
+            List<PastReservationTouristDTO> pastReservations = reservationService.pastReservationTourist(touristId);
+            return ResponseEntity.ok(pastReservations);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

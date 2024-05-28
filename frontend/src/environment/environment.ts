@@ -9,17 +9,24 @@ export const environment = {
         topRated: 'http://localhost:8080/local-guide/api/guide/v1/top-rated',
         detailGuide: 'http://localhost:8080/local-guide/api/guide/v1/detail',
         listGuides: 'http://localhost:8080/local-guide/api/guide/v1/listGuides',
+        activeReservation: 'http://localhost:8080/local-guide/api/guide/v1/activeReservation',
+        pastReservation: 'http://localhost:8080/local-guide/api/guide/v1/pastReservation',
+        summaryReservation: 'http://localhost:8080/local-guide/api/guide/v1/summaryReservation',
       },
       tourist: {
         login: 'http://localhost:8080/local-guide/api/tourist/v1/login',
         create: 'http://localhost:8080/local-guide/api/tourist/v1/create',
         update: 'http://localhost:8080/local-guide/api/tourist/v1/update',
-        listTourists: 'http://localhost:8080/local-guide/api/tourist/v1/listTourists'
+        listTourists: 'http://localhost:8080/local-guide/api/tourist/v1/listTourists',
+        activeReservation: 'http://localhost:8080/local-guide/api/tourist/v1/activeReservation',
+        pastReservation: 'http://localhost:8080/local-guide/api/tourist/v1/pastReservation',
       },
       reservation: {
         recent: 'http://localhost:8080/local-guide/api/reservation/v1/recent',
         process: 'http://localhost:8080/local-guide/api/reservation/v1/process',
-        listReservations: 'http://localhost:8080/local-guide/api/reservation/v1/listReservations'
+        listReservations: 'http://localhost:8080/local-guide/api/reservation/v1/listReservations',
+        deleteReservation: 'http://localhost:8080/local-guide/api/reservation/v1/delete',
+        leaveReview: 'http://localhost:8080/local-guide/api/reservation/v1/leaveReview',
       },
       transaction: {
         listTransactions: 'http://localhost:8080/local-guide/api/transactions/v1/listTransactions',

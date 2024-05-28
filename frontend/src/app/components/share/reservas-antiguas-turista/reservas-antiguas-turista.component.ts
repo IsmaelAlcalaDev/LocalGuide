@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { ReservaService } from '../../../services/reservaService/reserva.service';
+import { DialogoResenaComponent } from '../dialogo-resena/dialogo-resena.component';
+import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
+import { response } from 'express';
 
 @Component({
   selector: 'app-reservas-antiguas-turista',
@@ -7,14 +11,76 @@ import { ReservaService } from '../../../services/reservaService/reserva.service
   styleUrl: './reservas-antiguas-turista.component.scss'
 })
 export class ReservasAntiguasTuristaComponent {
-  reservasActivas: any[] = [];
-  pageSize: number = 6; // Define el número de elementos por página
-  currentPage: number = 1; // Define la página actual
-  constructor(private reservaService: ReservaService) { }
+  pastReservation: any = [];
+  touristId: any;
+  pageSize: number = 6; 
+  currentPage: number = 1; 
+
+  constructor(
+    private reservaService: ReservaService, 
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
-    this.reservasActivas = this.reservaService.reservasActivas;
+    this.touristId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
+    this.getPastTouristReservation();
   }
+
+  getPastTouristReservation() {
+    this.reservaService.getPastTouristReservation(this.touristId).subscribe(
+      (response) => {
+        this.pastReservation = response;
+      },
+      (error: any) => {
+        console.error('Error al obtener la reserva activa:', error);
+      }
+    );
+  }
+  
+  openLeaveReviewDialog(reservationData: any): void {
+    const dialogRef = this.dialog.open(DialogoResenaComponent, {
+      width: '800px',
+      data: { reservationData: reservationData }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const { resena, score } = result as { resena: string, score: number }; 
+        this.leaveReview(reservationData.id, resena, score);
+      } 
+    });
+  }
+  
+  leaveReview(reservationId: any, review: string, score: number) {
+    this.reservaService.leaveReview(reservationId, review, score).subscribe(
+      (response) => {
+        this.getPastTouristReservation();
+        this.showSuccessAlert();
+      },
+      (error) => {
+        this.showErrorAlert();
+      }
+    );
+  }
+
+  showSuccessAlert() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Reseña enviada',
+      text: '¡Gracias por tu reseña!',
+      confirmButtonText: 'Cerrar'
+    });
+  }
+
+  showErrorAlert() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No se pudo enviar la reseña',
+      confirmButtonText: 'Cerrar'
+    });
+  }
+
   pageChanged(event: any): void {
     this.currentPage = event.page;
   }

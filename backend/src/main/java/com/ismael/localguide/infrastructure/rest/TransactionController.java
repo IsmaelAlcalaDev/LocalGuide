@@ -1,9 +1,7 @@
 package com.ismael.localguide.infrastructure.rest;
 
 import com.ismael.localguide.application.TransactionUseCase;
-import com.ismael.localguide.domain.Tourist;
 import com.ismael.localguide.domain.Transaction;
-import com.ismael.localguide.domain.dto.TouristDataDTO;
 import com.ismael.localguide.domain.dto.TransactionDTO;
 import com.ismael.localguide.infrastructure.rest.mapper.TransactionMapper;
 import lombok.AllArgsConstructor;
@@ -27,9 +25,9 @@ public class TransactionController {
     private TransactionMapper transactionMapper;
 
     @GetMapping(value = "v1/listTransactions")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<?> listTransaction() {
         try {
-            List<Transaction> transactions = transactionService.findAll();
+            List<Transaction> transactions = transactionService.listTransaction();
             List<TransactionDTO> transactionDTOs = transactions.stream()
                     .map(transactionMapper::toDto)
                     .collect(Collectors.toList());

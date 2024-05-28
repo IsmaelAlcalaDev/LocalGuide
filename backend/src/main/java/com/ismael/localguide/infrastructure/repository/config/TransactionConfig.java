@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Primary;
 public class TransactionConfig {
     @Bean
     @Primary
-    public TransactionMapper transactionMapperMapper() {
+    public TransactionMapper transactionMapper() {
         return new TransactionMapperImpl();
     }
 }

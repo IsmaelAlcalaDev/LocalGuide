@@ -42,4 +42,8 @@
 mat-error {
   color: rgb(199, 0, 50);
   font-size: smaller;
+}
+
+.link-inicio {
+  color: #fe7f00;
 }/*# sourceMappingURL=inicio-sesion-admin.component.css.map */

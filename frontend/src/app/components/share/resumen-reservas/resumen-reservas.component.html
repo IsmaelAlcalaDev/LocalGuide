@@ -1,55 +1,56 @@
 <div class="container mt-3 mx-5 px-5">
     <div class="card">
         <div class="card-header d-flex justify-content-center align-content-center">
-            <h2 class="card-title m-0" style="font-family: 'Bebas Neue', sans-serif;">Estadísticas de Reservas</h2>
+            <h2 class="card-title m-0" style="font-family: 'Bebas Neue', sans-serif;">Estadísticas de Reservas:</h2>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Número de Tours Realizados</h6>
-                            <h4 class="card-title">100</h4>
+                            <h4 class="card-subtitle text-muted">{{summaryReservations.totalTour}} Tours realizados</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Horas de Tour</h6>
-                            <h4 class="card-title">500</h4>
+                            <h4 class="card-subtitle text-muted">{{summaryReservations.totalDays}} Dias</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Días Totales</h6>
-                            <h4 class="card-title">50</h4>
+                            <h4 class="card-subtitle text-muted">{{summaryReservations.totalHours}} Horas</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Número de Reseñas</h6>
-                            <h4 class="card-title">80</h4>
+                            <h4 class="card-subtitle text-muted">{{summaryReservations.totalReviews}} Reseñas</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Ganancias</h6>
-                            <h4 class="card-title">900€</h4>
+                            <h4 class="card-subtitle text-muted">{{summaryReservations.totalEarnings}}€</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">Puntuación</h6>
-                            <h4 class="card-title">4.5</h4>
+                        <div class="card-body d-flex align-items-center justify-content-center gap-2">
+                            <h4 class="m-0">Valoración:</h4>
+                            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">      
+                                <i class="fa" [ngClass]="{
+                                    'fa-star': summaryReservations.averageScore >= star,
+                                    'fa-star-half-alt': summaryReservations.averageScore + 0.5 >= star && summaryReservations.averageScore < star,
+                                    'fa-star-o': summaryReservations.averageScore < star
+                                }"></i>
+                            </ng-container>
                         </div>
                     </div>
                 </div>

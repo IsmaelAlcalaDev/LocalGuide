@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TuristaService } from '../../../services/turistaService/turista.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tabla-turistas',
@@ -12,6 +14,9 @@ export class TablaTuristasComponent {
 
   displayedColumns: string[] = ['profileImg', 'name', 'surname','gender', 'country', 'city', 'phone', 'email'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor( private touristService: TuristaService) {}
 
   ngOnInit(): void {
@@ -20,12 +25,23 @@ export class TablaTuristasComponent {
 
   getTourist(): void {
     this.touristService.getTourist().subscribe(
-      (data: any[]) => {
-        this.dataSource = new MatTableDataSource<any>(data);
+      (response) => {
+        this.dataSource.data = response;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       error => {
         console.error('Error al cargar los datos de los turistas', error);
       }
     );
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

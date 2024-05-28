@@ -47,6 +47,7 @@ export class InicioSesionAdminComponent {
         this.adminService.login(email, password).subscribe(
           (response) => {
             if (response) {
+              sessionStorage.setItem('user', JSON.stringify(response));
               this.router.navigate(['/admin-dashboard']);
             }
           },

@@ -21,18 +21,31 @@ public class TransactionUseCase {
     public void processTransaction(Map<String, Object> dataReservation, Reservation reservation) throws Exception {
         try {
             Transaction transaction = new Transaction();
-            transaction.setAmount((Double) dataReservation.get("totalPrice"));
+
+            Object totalPriceObj = dataReservation.get("totalPrice");
+            if (totalPriceObj == null) {
+                throw new Exception("totalPrice is null");
+            }
+            double totalPrice = (totalPriceObj instanceof Number) ? ((Number) totalPriceObj).doubleValue() : Double.parseDouble((String) totalPriceObj);
+
+            transaction.setAmount(totalPrice);
             transaction.setType(TransactionType.RESERVA);
-            transaction.setPaymentType(PaymentType.valueOf((String) dataReservation.get("paymentType")));
+
+            String paymentTypeStr = (String) dataReservation.get("paymentType");
+            if (paymentTypeStr == null) {
+                throw new Exception("paymentType is null or not a valid string");
+            }
+            transaction.setPaymentType(PaymentType.valueOf(paymentTypeStr));
             transaction.setTransactionDate(LocalDateTime.now());
             transaction.setReservation(reservation);
+
             transactionRepository.save(transaction);
         } catch (Exception e) {
             throw new Exception("Error processing transaction: " + e.getMessage());
         }
     }
 
-    public List<Transaction> findAll() {
+    public List<Transaction> listTransaction() {
         return transactionRepository.findAll();
     }
 }

@@ -37,6 +37,11 @@ img.card-img-top.img-fluid.rounded {
 
 .btn_cancelar {
   color: #fe7f00;
+  cursor: pointer;
+}
+
+.btn_cancelar:hover {
+  text-decoration: underline;
 }
 
 h4 {
@@ -62,4 +67,12 @@ a.link_whastapp {
   color: #fe7f00;
   font-weight: 600;
   font-size: 1.3em;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #fe7f00;
 }/*# sourceMappingURL=reservas-activas-turista.component.css.map */

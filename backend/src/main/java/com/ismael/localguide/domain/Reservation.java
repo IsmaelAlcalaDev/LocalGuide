@@ -53,4 +53,7 @@ public class Reservation {
 
     @Column(name = "price", nullable = false)
     private double price;
+
+    @Column(name = "deleted", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean deleted;
 }

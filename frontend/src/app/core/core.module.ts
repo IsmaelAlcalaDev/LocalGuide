@@ -26,8 +26,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -58,6 +61,12 @@ import { MatSortModule } from '@angular/material/sort';
     NgxPaginationModule,
     ReactiveFormsModule,
     MatNativeDateModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatSortModule,
+    SweetAlert2Module,
+    MatPaginator,
+    MatDialogModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -86,8 +95,11 @@ import { MatSortModule } from '@angular/material/sort';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatTableModule,
+    BrowserAnimationsModule,
+    MatSortModule,
+    SweetAlert2Module,
     MatPaginator,
-    MatSortModule
+    MatDialogModule
   ]
 })
 export class CoreModule { }

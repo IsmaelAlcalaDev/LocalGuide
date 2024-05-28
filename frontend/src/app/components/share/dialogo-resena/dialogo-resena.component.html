@@ -1,0 +1,16 @@
+<h1 class="text-center" mat-dialog-title>Escribe tu reseña a {{reservationData.nameGuide}}</h1>
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <textarea matInput placeholder="Escribe tu reseña aquí (máximo 255 caracteres)" [(ngModel)]="resena" maxlength="255" rows="5"></textarea>
+  </mat-form-field>
+  <div class="rating-container">
+    <button mat-icon-button *ngFor="let star of stars" (click)="setRating(star.value)" [ngClass]="{'selected': star.value <= score}">
+      <mat-icon>{{ star.icon }}</mat-icon>
+    </button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cerrarDialogo()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="{ resena: resena, score: score }" cdkFocusInitial>Aceptar</button>
+</mat-dialog-actions>
+

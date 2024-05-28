@@ -4,10 +4,7 @@ import com.ismael.localguide.application.RecentReservationUseCase;
 import com.ismael.localguide.application.ReservationUseCase;
 import com.ismael.localguide.application.TransactionUseCase;
 import com.ismael.localguide.domain.Reservation;
-import com.ismael.localguide.domain.Transaction;
-import com.ismael.localguide.domain.dto.RecentReservationsDTO;
-import com.ismael.localguide.domain.dto.ReservationDTO;
-import com.ismael.localguide.domain.dto.TransactionDTO;
+import com.ismael.localguide.domain.dto.*;
 import com.ismael.localguide.infrastructure.rest.mapper.ReservationMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -50,6 +42,7 @@ public class ReservationController {
     public ResponseEntity<Map<String, String>> processReservation(@RequestBody Map<String, Object> dataReservation) {
         try {
             Reservation reservation = reservationService.processReservation(dataReservation);
+            System.out.println("ha llegado hasta aquí");
             transactionService.processTransaction(dataReservation, reservation);
             Map<String, String> responseBody = new HashMap<>();
             responseBody.put("message", "La reserva se ha procesado correctamente");
@@ -60,9 +53,9 @@ public class ReservationController {
     }
 
     @GetMapping(value = "v1/listReservations")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<?> listReservation() {
         try {
-            List<Reservation> reservations = reservationService.findAll();
+            List<Reservation> reservations = reservationService.listReservation();
             List<ReservationDTO> reservationDTOs = reservations.stream()
                     .map(reservationMapper::toDto)
                     .collect(Collectors.toList());
@@ -71,5 +64,31 @@ public class ReservationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al recuperar los datos de las transacciones: " + e.getMessage());
         }
     }
+
+    @DeleteMapping(value = "v1/delete/{id}")
+    public ResponseEntity<?> deleteReservation(@PathVariable final Long id) {
+        try {
+            reservationService.deleteReservation(id);
+            return ResponseEntity.ok().build(); // Devuelve una respuesta vacía con estado 200 OK
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar la reserva: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/v1/leaveReview/{reservationId}")
+    public ResponseEntity<?> leaveReview(
+            @PathVariable Long reservationId,
+            @RequestBody Map<String, Object> reviewMap) {
+        try {
+            String review = (String) reviewMap.get("review");
+            Integer score = (Integer) reviewMap.get("score");
+            reservationService.leaveReview(reservationId, review, score);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to save review");
+        }
+    }
+
+
 
 }

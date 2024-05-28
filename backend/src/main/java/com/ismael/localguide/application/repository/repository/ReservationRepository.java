@@ -30,5 +30,19 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
     @Query(value = "SELECT guideid FROM reservation GROUP BY guideid ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
     Long findMostFrequentGuideId();
 
+    @Query("SELECT r FROM Reservation r WHERE r.guide.id = :guideId AND DATE(r.endDate) > CURRENT_DATE AND r.deleted != true")
+    List<Reservation> findActiveReservationsGuide(@Param("guideId") Long guideId);
+
+    @Query("SELECT r FROM Reservation r WHERE r.tourist.id = :touristId AND DATE(r.endDate) > CURRENT_DATE AND r.deleted != true")
+    List<Reservation> findActiveReservationsTourist(@Param("touristId") Long touristId);
+
+    @Query("SELECT r FROM Reservation r WHERE r.endDate < CURRENT_DATE AND r.guide.id = :guideId")
+    List<Reservation> findPastReservationsGuide(@Param("guideId") Long guideId);
+
+    @Query("SELECT r FROM Reservation r WHERE r.endDate < CURRENT_DATE AND r.tourist.id = :touristId")
+    List<Reservation> findPastReservationsTourist(@Param("touristId") Long touristId);
+
+    @Query("SELECT COUNT(r) FROM Reservation r WHERE r.guide.id = :guideId AND r.review IS NOT NULL")
+    int countReviewsByGuideId(@Param("guideId") Long guideId);
 
 }

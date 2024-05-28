@@ -1,41 +1,41 @@
 <div class="container-kpi">
-    <h1 class="kpi-title">KPIs Dashboard</h1>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="kpi-card">
-          <h5 class="card-title">Facturación Anual</h5>
-          <p class="card-text">{{totalBillingYears}}€</p>
-        </div>
+  <h1 class="kpi-title">KPIs Dashboard</h1>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="kpi-card" style="background-color: #ffc107;">
+        <h5 class="card-title">Facturación total {{actualYear}}</h5>
+        <p class="card-text">{{totalBillingYears}}€</p>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="kpi-card">
-          <h5 class="card-title">Facturación Mensual</h5>
-          <p class="card-text">{{totalBillingMonths}}€</p>
-        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="kpi-card" style="background-color: #28a745;">
+        <h5 class="card-title">Facturación de {{actualMonth}}</h5>
+        <p class="card-text">{{totalBillingMonths}}€</p>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="kpi-card">
-          <h5 class="card-title">Reservas Totales</h5>
-          <p class="card-text">{{totalReservations}}</p>
-        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="kpi-card" style="background-color: #007bff;">
+        <h5 class="card-title">Reservas de {{actualMonth}}</h5>
+        <p class="card-text">{{totalReservationsMonths}}</p>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="kpi-card">
-          <h5 class="card-title">Reservas Mensuales</h5>
-          <p class="card-text">{{totalReservationsMonths}}</p>
-        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="kpi-card" style="background-color: #dc3545;">
+        <h5 class="card-title">Reservas Totales</h5>
+        <p class="card-text">{{totalReservations}}</p>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="kpi-card">
-          <h5 class="card-title">Usuarios Registrados</h5>
-          <p class="card-text">{{totalUsers}}</p>
-        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="kpi-card" style="background-color: #6f42c1;">
+        <h5 class="card-title">Usuarios Registrados</h5>
+        <p class="card-text">{{totalUsers}}</p>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="kpi-card">
-          <h5 class="card-title">País Más Visitado</h5>
-          <p class="card-text">{{mostVisitedCountry}}</p>
-        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="kpi-card" style="background-color: #17a2b8;">
+        <h5 class="card-title">País Más Visitado</h5>
+        <p class="card-text">{{mostVisitedCountry}}</p>
       </div>
     </div>
   </div>
+</div>

@@ -6,7 +6,6 @@ import com.ismael.localguide.domain.Language;
 import com.ismael.localguide.domain.Reservation;
 import com.ismael.localguide.domain.dto.GuideDataDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 import java.util.Set;

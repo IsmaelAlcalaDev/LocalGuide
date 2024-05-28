@@ -55,4 +55,12 @@ h4 > span {
 .star-rating {
   color: #fe7f00;
   margin-top: 10px;
+}
+
+.link-review {
+  cursor: pointer;
+}
+
+.link-review:hover {
+  text-decoration: underline;
 }/*# sourceMappingURL=reservas-antiguas-turista.component.css.map */

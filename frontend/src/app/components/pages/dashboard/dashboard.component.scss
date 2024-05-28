@@ -16,7 +16,6 @@ body{
     font-size: 20px;
 }
 
-
 .main-menu:hover,
 nav.main-menu.expanded {
     width: 250px;
@@ -49,21 +48,6 @@ nav.main-menu.expanded {
     position: relative;
     display: block;
     width: 250px;
-}
-
-.main-menu li>a {
-    position: relative;
-    display: table;
-    border-collapse: collapse;
-    border-spacing: 0;
-    color: #ffffff;
-    font-family: arial;
-    font-size: 14px;
-    text-decoration: none;
-
-    -webkit-transition: all .1s linear;
-    transition: all .1s linear;
-
 }
 
 .main-menu .nav-icon {
@@ -99,11 +83,6 @@ nav.main-menu.expanded {
     overflow: visible;
 }
 
-a:hover,
-a:focus {
-    text-decoration: none;
-}
-
 nav {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -120,17 +99,24 @@ nav li {
     color:white
 }
 
-.main-menu li:hover>a,
-nav.main-menu li.active>a,
-.dropdown-menu>li>a:hover,
-.dropdown-menu>li>a:focus,
-.dropdown-menu>.active>a,
-.dropdown-menu>.active>a:hover,
-.dropdown-menu>.active>a:focus,
-.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
-.dashboard-page nav.dashboard-menu ul li.active a {
+.main-menu li:hover {
     color: #fe7f00;
     background-color: #ffffff;
+    font-size: 1.2em;
+}
+
+li:hover {
+    background-color: #ffffff;
+} 
+
+a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.main-menu li:hover a {
+    color: #fe7f00;
 }
 
 @font-face {

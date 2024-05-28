@@ -1,7 +1,6 @@
 package com.ismael.localguide.application.repository.repository;
 
 import com.ismael.localguide.domain.Administrator;
-import com.ismael.localguide.domain.Tourist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

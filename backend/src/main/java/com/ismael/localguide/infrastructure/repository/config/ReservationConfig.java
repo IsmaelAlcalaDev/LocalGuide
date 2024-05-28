@@ -11,7 +11,7 @@ public class ReservationConfig {
 
     @Bean
     @Primary
-    public ReservationMapper reservationMapperMapper() {
+    public ReservationMapper reservationMapper() {
         return new ReservationMapperImpl();
     }
 }

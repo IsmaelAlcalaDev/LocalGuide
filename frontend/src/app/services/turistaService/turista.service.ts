@@ -30,7 +30,7 @@ export class TuristaService {
     return this.http.post<any>(this.apiUrl.tourist.login, {}, { params: params });
   }
 
-  getTourist(): Observable<any> {
-    return this.http.get<any>(this.apiUrl.tourist.listTourists);
+  getTourist(): Observable<Tourist[]> {
+    return this.http.get<Tourist[]>(this.apiUrl.tourist.listTourists);
   }
 }

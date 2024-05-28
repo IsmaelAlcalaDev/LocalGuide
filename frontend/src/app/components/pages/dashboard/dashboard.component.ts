@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/authServices/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,16 +9,17 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   componentToShow: string = 'kpis';
+  userData: any;
 
-  constructor( private router: Router) {}
+  constructor( private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
+      this.userData = JSON.parse(sessionStorage.getItem('user') || '{}');
     this.showComponent('kpis'); 
   }
 
   logOut(): void {
-    sessionStorage.clear();
-    this.router.navigate(['/inicio']);
+    this.authService.logOutAdmin();
   }
 
   showComponent(componentName: string): void {

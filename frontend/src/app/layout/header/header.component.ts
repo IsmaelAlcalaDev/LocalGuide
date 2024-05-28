@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
       this.typeUser = this.userData.typeUser;
       this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png';
     } else {
-      // Si this.userData es null, establecer valores por defecto
       this.typeUser = 'public';
       this.profileImg = 'assets/images/default-profile.png';
     }
@@ -37,14 +36,11 @@ export class HeaderComponent implements OnInit {
   getUserTypeFromSessionStorage(): void {
     this.authService.UserType.subscribe(userType => {
       this.typeUser = userType;
-
       this.typeUser$.next(userType);
     });
   }
   
-  logout(): void {
-    sessionStorage.clear();
-    this.router.navigate(['/inicio']);
-    this.typeUser = 'public';
+  logOut(): void {
+    this.authService.logOut();
   }
 }

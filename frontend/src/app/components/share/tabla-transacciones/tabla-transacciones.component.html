@@ -1,33 +1,39 @@
-<div class="table-container">
-    <h1 class="text-center mb-5 ">Historial de transacciones</h1>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="table-container d-flex flex-column">
+    <h1 class="text-center mb-5">Historial de transacciones</h1>
+
+    <mat-form-field class="filter-input">
+        <input matInput #filterInput (keyup)="applyFilter($event)" placeholder="Filtrar transacciones">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="reservation">
-            <th mat-header-cell *matHeaderCellDef> ID de Reserva </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID de Reserva </th>
             <td mat-cell *matCellDef="let transaction"> {{ transaction.id }} </td>
         </ng-container>
 
         <ng-container matColumnDef="transactionDate">
-            <th mat-header-cell *matHeaderCellDef> Fecha de Transacción </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Transacción </th>
             <td mat-cell *matCellDef="let transaction"> {{ transaction.transactionDate | date }} </td>
         </ng-container>
 
         <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
             <td mat-cell *matCellDef="let transaction"> {{ transaction.type }} </td>
         </ng-container>
 
         <ng-container matColumnDef="paymentType">
-            <th mat-header-cell *matHeaderCellDef> Tipo de Pago </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Pago </th>
             <td mat-cell *matCellDef="let transaction"> {{ transaction.paymentType }} </td>
         </ng-container>
 
         <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
             <td mat-cell *matCellDef="let transaction"> {{ transaction.amount }}€ </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let transaction; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

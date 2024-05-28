@@ -1,12 +1,8 @@
 package com.ismael.localguide.application;
 
-import com.ismael.localguide.application.repository.repository.GuideRepository;
 import com.ismael.localguide.application.repository.repository.ReservationRepository;
-import com.ismael.localguide.application.repository.repository.TouristRepository;
-import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.Reservation;
 import com.ismael.localguide.domain.ReservationStatus;
-import com.ismael.localguide.domain.Tourist;
 import com.ismael.localguide.domain.dto.RecentReservationsDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

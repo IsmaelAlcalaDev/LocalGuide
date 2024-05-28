@@ -28,7 +28,4 @@ public class Administrator {
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "typeUser")
-    private String typeUser = "administrator";
 }
