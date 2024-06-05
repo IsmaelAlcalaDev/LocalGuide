@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/authGuardService/auth-guard.service';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { InicioComponent } from './components/pages/inicio/inicio.component';
 import { InicioSesionComponent } from './components/pages/inicio-sesion/inicio-sesion.component';
@@ -17,21 +18,94 @@ const routes: Routes = [
     path:"",
     component: SkeletonComponent,
     children:[
-      { path: "", redirectTo: "inicio", pathMatch: "full" },
-      { path: "inicio", component: InicioComponent },
-      { path: "buscar-guia", component: BuscarGuiasComponent },
-      { path: "inicio-sesion-guia", component: InicioSesionComponent },
-      { path: "registro-guia", component: RegistroComponent },
-      { path: "inicio-sesion-turista", component: InicioSesionComponent },
-      { path: "registro-turista", component: RegistroComponent },
-      { path: "configuracion-perfil-turista", component: ConfiguracionPerfilComponent },
-      { path: "configuracion-perfil-guia", component: ConfiguracionPerfilComponent },
-      { path: "perfil-guia/:id", component: InformacionPerfilComponent },
-      { path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours", component: PasarelaPagoComponent },
-      { path: "mis-viajes", component: ReservasComponent },
-      { path: "resumen-reservas", component: ReservasComponent },
-      { path: "admin", component: InicioSesionAdminComponent },
-      { path: "admin-dashboard", component: DashboardComponent }
+      { 
+        path: "inicio", 
+        component: InicioComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public', 'guide', 'tourist'] } 
+      },
+      { 
+        path: "buscar-guia", 
+        component: BuscarGuiasComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public', 'tourist'] } 
+      },
+      { 
+        path: "inicio-sesion-guia", 
+        component: InicioSesionComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public'] } 
+      },
+      { 
+        path: "registro-guia", 
+        component: RegistroComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public'] } 
+      },
+      { 
+        path: "inicio-sesion-turista", 
+        component: InicioSesionComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public'] } 
+      },
+      { 
+        path: "registro-turista", 
+        component: RegistroComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public'] } 
+      },
+      { 
+        path: "configuracion-perfil-turista", 
+        component: ConfiguracionPerfilComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['tourist'] } 
+      },
+      { 
+        path: "configuracion-perfil-guia", 
+        component: ConfiguracionPerfilComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['guide'] } 
+      },
+      { 
+        path: "perfil-guia/:id", 
+        component: InformacionPerfilComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['guide'] } 
+      },
+      { 
+        path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours", 
+        component: PasarelaPagoComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['tourist'] } 
+      },
+      { 
+        path: "mis-viajes", 
+        component: ReservasComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['tourist'] } 
+      },
+      { 
+        path: "resumen-reservas", 
+        component: ReservasComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['guide'] } 
+      },
+      { 
+        path: "admin", 
+        component: InicioSesionAdminComponent, 
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['public'] } 
+      },
+      { 
+        path: "admin-dashboard", 
+        component: DashboardComponent,
+        canActivate: [AuthGuard], 
+        data: { expectedRoles: ['admin'] } 
+      },
+      { 
+        path: '**', 
+        redirectTo: '/inicio' 
+      }
     ]
   }
 ];

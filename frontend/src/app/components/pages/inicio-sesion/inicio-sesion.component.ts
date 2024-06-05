@@ -40,7 +40,6 @@ export class InicioSesionComponent implements OnInit {
   }
 
   iniciarSesion() {
-
     if (this.loginForm && this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
@@ -54,7 +53,6 @@ export class InicioSesionComponent implements OnInit {
             this.router.navigateByUrl('/inicio').then(() => {
               window.location.reload();
             });
-
           },
           error => {
             console.error('Error al iniciar sesión:', error); 
@@ -74,7 +72,6 @@ export class InicioSesionComponent implements OnInit {
             });
           },
           error => {
-            console.error('Error al iniciar sesión:', error); 
             if (error.status === 404 || error.status === 401) {
               this.showErrorMessage = 'Usuario o contraseña incorrectos';
             }
@@ -86,5 +83,4 @@ export class InicioSesionComponent implements OnInit {
       this.showErrorMessage = 'Por favor, rellena los campos correctamente.';
     }
   }
-  
 }

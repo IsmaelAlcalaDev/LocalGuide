@@ -43,7 +43,6 @@ export class RegistroComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.profileImgBase64 = reader.result as string;
-      console.log('Archivo convertido a Base64:', this.profileImgBase64);
     }
     reader.readAsDataURL(file);
   }

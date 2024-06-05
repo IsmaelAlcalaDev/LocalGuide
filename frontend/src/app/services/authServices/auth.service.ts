@@ -34,4 +34,8 @@ export class AuthService {
     this.setUserType('public');
     sessionStorage.clear();
   }
+
+  getUserType(): string {
+    return this.userType$.value;
+  }
 }

@@ -188,10 +188,8 @@ export class ConfiguracionGuiaComponent {
       backgroundCheckCertificate: this.existBackgroundCheckCertificate as boolean | undefined,
       identityDocument: this.existIdentityDocument as boolean | undefined,
     }
-    console.log(guide)
     this.guiaService.updateGuide(guide, this.userData.id).subscribe(
       response => {
-        console.log(response)
         sessionStorage.removeItem('user');
         sessionStorage.setItem('user', JSON.stringify(response));
         this.updateForm.patchValue({
