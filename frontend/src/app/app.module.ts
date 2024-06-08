@@ -45,6 +45,7 @@ import { TablaTuristasComponent } from './components/share/tabla-turistas/tabla-
 import { TablaReservasComponent } from './components/share/tabla-reservas/tabla-reservas.component';
 import { TablaTransaccionesComponent } from './components/share/tabla-transacciones/tabla-transacciones.component';
 import { DialogoResenaComponent } from './components/share/dialogo-resena/dialogo-resena.component';
+import { TarjetasGuiasFiltradosComponent } from './components/share/tarjetas-guias-filtrados/tarjetas-guias-filtrados.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -87,6 +88,7 @@ registerLocaleData(localeEs, 'es');
         TablaReservasComponent,
         TablaTransaccionesComponent,
         DialogoResenaComponent,
+        TarjetasGuiasFiltradosComponent,
     ],
     providers: [
         provideClientHydration(),

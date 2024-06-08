@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./tarjetas-guias.component.scss']
 })
 export class TarjetasGuiasComponent {
-  topRatedGuides: any[] = []; // Lista completa de guías
+  topRatedGuides: any[] = []; 
   guideSubscription: Subscription | undefined;
-  currentPage: number = 1; // Número de página actual
-  itemsPerPage: number = 6; // Cantidad de elementos por página
+  currentPage: number = 1;
+  itemsPerPage: number = 6; 
 
   constructor(private guiaService: GuiaService, private router: Router) { }
 
@@ -21,11 +21,9 @@ export class TarjetasGuiasComponent {
   }
 
   getTopRatedGuides(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
     this.guideSubscription = this.guiaService.getTopRatedGuides().subscribe(
       (guides: any) => {
-        this.topRatedGuides = guides.slice(startIndex, endIndex);
+        this.topRatedGuides = guides;
       },
       (error: any) => {
         console.error('Error al obtener la lista de guías:', error);
@@ -39,19 +37,17 @@ export class TarjetasGuiasComponent {
     }
   }
 
-  onPageChange(pageNumber: number): void {
-    this.currentPage = pageNumber;
-    this.getTopRatedGuides();
+  getPaginatedGuides(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.topRatedGuides.slice(startIndex, endIndex);
   }
 
   showGuide(idGuide: any): void {
     this.router.navigate(['/perfil-guia', idGuide]);
   }
 
-  onPageBoundsCorrection(event: any): void {
-    if (event.action === 'prev' && this.currentPage === 1) {
-      this.currentPage = event.page;
-      this.getTopRatedGuides();
-    }
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
   }
 }

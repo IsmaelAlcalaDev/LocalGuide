@@ -76,3 +76,7 @@ a{
 a:hover{
     color: #fe7f00;
 }
+
+::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+}

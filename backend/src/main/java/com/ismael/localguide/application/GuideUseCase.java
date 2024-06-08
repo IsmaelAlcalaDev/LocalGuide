@@ -10,6 +10,7 @@ import com.ismael.localguide.domain.Hobbies;
 import com.ismael.localguide.domain.Language;
 import com.ismael.localguide.domain.dto.GuideInformationDTO;
 import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
+import com.sun.tools.jconsole.JConsoleContext;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -192,9 +193,8 @@ public class GuideUseCase {
     }
 
     private TopRatedGuidesDTO mapToTopRatedGuidesDTO(Guide guide) {
-        double averageScore = reservationRepository.getAverageReviewScoreByGuideId(guide.getId());
-        int totalReservations = reservationRepository.countReservationsByGuideId(guide.getId());
-
+        double averageScore = reservationRepository.getAverageReviewScoreByGuideIdAndStatusAcceptedAndNotDeleted(guide.getId());
+        int totalReservations = reservationRepository.countReservationsByGuideIdAndStatusAcceptedAndNotDeleted(guide.getId());
         return new TopRatedGuidesDTO(
                 guide.getId(),
                 guide.getName(),
@@ -237,5 +237,28 @@ public class GuideUseCase {
         guideInformationDTO.setHobbies(new HashSet<>(listHobbies));
 
         return guideInformationDTO;
+    }
+
+    public List<Guide> searchGuideFilter(
+            String guideName,
+            String country,
+            String city,
+            List<String> languages,
+            List<String> hobbies,
+            Integer priceMin,
+            Integer priceMax,
+            Gender gender) {
+        System.out.println("precio minimo: " + priceMin);
+        System.out.println("precio maximo: " + priceMax);
+        return guideRepository.searchGuideFilter(guideName, country, city, languages, hobbies, priceMin,priceMax, gender);
+    }
+
+    public int calculateTotalReservations(Guide guide) {
+        return reservationRepository.countReservationsByGuideIdAndStatusAcceptedAndNotDeleted(guide.getId());
+    }
+
+    public double calculateAverageScore(Guide guide) {
+        Double averageScore = reservationRepository.getAverageReviewScoreByGuideIdAndStatusAcceptedAndNotDeleted(guide.getId());
+        return (averageScore != null) ? averageScore : 0;
     }
 }

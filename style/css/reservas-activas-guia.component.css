@@ -1,0 +1,84 @@
+.row.row-cols-1.row-cols-md-2.row-cols-lg-3.g-3 {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 320px;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+img {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+}
+
+img.card-img-top.img-fluid.rounded {
+  border-radius: 15px 15px 0px 0px !important;
+}
+
+.btn {
+  background-color: #fe7f00;
+  cursor: pointer;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #959595;
+  color: white;
+}
+
+h4 {
+  color: #fe7f00;
+  font-weight: 500 !important;
+}
+
+h4 > span {
+  color: #989898;
+  font-weight: 500;
+  font-size: small;
+}
+
+p > span {
+  color: #989898;
+}
+
+a.link_whastapp {
+  color: #000000 !important;
+}
+
+.precio {
+  color: #fe7f00;
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #fe7f00;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+  display: none !important;
+}/*# sourceMappingURL=reservas-activas-guia.component.css.map */

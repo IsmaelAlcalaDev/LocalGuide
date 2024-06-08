@@ -13,8 +13,8 @@ export class ReservasActivasTuristaComponent {
   touristId: any;
   phonePrefixes: { [key: string]: string } = {};
   cancelReservationDate: any;
-  pageSize: number = 6; 
-  currentPage: number = 1; 
+  currentPage: number = 1;
+  itemsPerPage: number = 6; 
 
   constructor(private reservaService: ReservaService, private ubicacionService: UbicacionService) { }
 
@@ -77,7 +77,13 @@ export class ReservasActivasTuristaComponent {
     );
   }
 
-  pageChanged(event: any): void {
-    this.currentPage = event;
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  getPaginatedReservation(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.activeReservation.slice(startIndex, endIndex);
   }
 }

@@ -17,5 +17,4 @@ public class TopRatedGuidesDTO {
     private int hourlyPrice;
     private int totalReservations;
     private Integer averageScore;
-    //Esta clase contiene campos de la clase Guide para mostrar en la vista de guias mejor valorados
 }

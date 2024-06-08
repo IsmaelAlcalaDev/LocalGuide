@@ -9,8 +9,8 @@ import { ReservaService } from '../../../services/reservaService/reserva.service
 export class ReservasAntiguasGuiasComponent {
   pastReservation: any = [];
   guideId: any;
-  pageSize: number = 6; 
-  currentPage: number = 1; 
+  currentPage: number = 1;
+  itemsPerPage: number = 6; 
 
   constructor(private reservaService: ReservaService) { }
 
@@ -30,7 +30,13 @@ export class ReservasAntiguasGuiasComponent {
     );
   }
 
-  pageChanged(event: any): void {
-    this.currentPage = event.page;
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  getPaginatedReservation(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.pastReservation.slice(startIndex, endIndex);
   }
 }

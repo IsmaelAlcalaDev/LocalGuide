@@ -24,6 +24,4 @@ public class BestGuidesDTO {
     private Boolean identityDocument;
     private int hourlyPrice;
     private String phrase;
-    //Este DTO debe devolver estos datos con la siguiente condicion:
-    // Guias que tengan todos los campos completos, con al menos 1 reserva y con una valoracion de 4 o mas
 }

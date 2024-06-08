@@ -3,7 +3,7 @@
     <p class="text-center mb-5" style="font-family: 'Montserrat', sans-serif;">La cancelación de la reserva solo será posible dentro de las primeras 48 horas posteriores a su aceptación</p>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
       <h3 class="text-center" *ngIf="activeReservation.length === 0">No tienes reservas activas</h3>
-      <ng-container *ngFor="let reservation of activeReservation | paginate: { itemsPerPage: pageSize, currentPage: currentPage, id: 'paginacionReservas' }">
+      <ng-container *ngFor="let reservation of getPaginatedReservation()">
         <div class="col">
           <div class="card rounded-4">
             <div class="card-img-container">
@@ -27,8 +27,12 @@
         </div>
       </ng-container>
     </div>
-    <div class="d-flex justify-content-center mt-5">
-      <pagination-controls (pageChange)="pageChanged($event)" id="paginacionReservas" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    <div *ngIf="activeReservation.length !== 0" class="d-flex justify-content-center mt-5">
+      <mat-paginator [length]="activeReservation.length"
+        [pageSize]="itemsPerPage"
+        [pageIndex]="currentPage - 1"
+        (page)="onPageChange($event.pageIndex + 1)">
+      </mat-paginator>
     </div>
   </div>
   

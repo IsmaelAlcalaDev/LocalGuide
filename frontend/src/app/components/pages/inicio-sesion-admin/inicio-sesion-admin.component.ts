@@ -20,7 +20,8 @@ export class InicioSesionAdminComponent {
   constructor(
     private validacionService: ValidacionService,
     private router: Router,
-    private adminService: AdministradorService
+    private adminService: AdministradorService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +48,10 @@ export class InicioSesionAdminComponent {
         this.adminService.login(email, password).subscribe(
           (response) => {
             if (response) {
+              const userData = response;
+              this.authService.setUserType(userData.typeUser);
               sessionStorage.setItem('user', JSON.stringify(response));
-              this.router.navigate(['/admin-dashboard']);
+              this.router.navigateByUrl('/admin-dashboard');
             }
           },
           (error) => {

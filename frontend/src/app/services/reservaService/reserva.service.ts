@@ -59,5 +59,18 @@ export class ReservaService {
     const url = `http://localhost:8080/local-guide/api/reservation/v1/leaveReview/${reservationId}`;
     return this.http.put<any>(url, { review, score });
   }  
+
+  getReviewsTourist(idTourist: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl.reservation.touristReviews}/${idTourist}`);
+  }
+
+  getReviewGuide(idGuide: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl.reservation.guideReviews}/${idGuide}`);
+  }
+
+  acceptReservation(reservationId: number): Observable<any> {
+    const url = `${this.apiUrl.reservation.acceptReservation}/${reservationId}`;
+    return this.http.post<any>(url, {});
+  }
   
 }

@@ -35,13 +35,15 @@ img.card-img-top.img-fluid.rounded {
     border-radius: 15px 15px 0px 0px !important;
 }
 
-.btn_cancelar {
-    color: #fe7f00;
+.btn{
+    background-color: #fe7f00;
     cursor: pointer;
+    color: white;
 }
 
-.btn_cancelar:hover {
-    text-decoration: underline;
+.btn:hover{
+    background-color: #959595;
+    color: white;
 }
 
 h4 {
@@ -75,4 +77,8 @@ a{
 
 a:hover{
     color: #fe7f00;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
 }

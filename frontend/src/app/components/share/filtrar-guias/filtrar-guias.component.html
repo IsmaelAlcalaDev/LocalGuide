@@ -1,9 +1,17 @@
 <div class="form_filter_container w-100">
-    <form [formGroup]="filterForm" class="col">
+    <form [formGroup]="filterForm" class="col" (ngSubmit)="filterGuides()">
         <div class="form_title">
             <h2>Descubre tu Guía Ideal y Emprende tu Próxima Aventura</h2>
         </div>
         <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="guideName" formControlName="guideName" placeholder="Nombre del guía" pattern="[^0-9]*">
+                    <label class="text-secondary d-flex align-items-center" for="guideName">Nombre del guía</label>
+                </div>
+                <!-- Mostrar mensaje de error si se ingresan números -->
+                <div *ngIf="filterForm.get('guideName')?.errors?.['pattern']" class="text-danger">No se permiten números.</div>
+            </div>
             <div class="col">
                 <div class="form-floating">
                     <select formControlName="country" id="country" class="form-select" aria-label="Country">
@@ -23,29 +31,16 @@
                 </div>
                 
             </div>
-            
             <div class="col">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="fechaInicio">
-                    <label for="fechaInicio">Fecha de inicio</label>
+                    <input type="number" class="form-control" formControlName="priceMin" id="priceMin" value="0" min="0" max="50">
+                    <label for="priceMin">Precio Mínimo</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="fechaFin">
-                    <label for="fechaFin">Fecha fin</label>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-floating">
-                    <input type="number" class="form-control" id="precioMinimo" value="0" min="0" max="50">
-                    <label for="precioMinimo">Precio Mínimo</label>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-floating">
-                    <input type="number" class="form-control" id="precioMaximo" value="10" min="0" max="50">
-                    <label for="precioMaximo">Precio Máximo</label>
+                    <input type="number" class="form-control" formControlName="priceMax" id="priceMax" value="10" min="0" max="50">
+                    <label for="priceMax">Precio Máximo</label>
                 </div>
             </div>
         </div>
@@ -64,7 +59,7 @@
         <div class="row">
             <div class="col-3" *ngFor="let hobbie of hobbies">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="{{ hobbie }}">
+                    <input class="form-check-input" type="checkbox" id="{{ hobbie }}" (change)="onHobbyChange(hobbie)">
                     <label class="form-check-label" for="{{ hobbie }}">{{ hobbie }}</label>
                 </div>
             </div>
@@ -82,12 +77,20 @@
                 <!-- Radio Buttons Gender -->
                 <div class="d-flex gap-5">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="generoHombre" value="male">
-                        <label class="form-check-label" for="generoHombre">Hombre</label>
+                        <input class="form-check-input" type="radio" formControlName="gender" id="masculino" value="MASCULINO">
+                        <label class="form-check-label" for="masculino">Hombre</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="generoMujer" value="female">
-                        <label class="form-check-label" for="generoMujer">Mujer</label>
+                        <input class="form-check-input" type="radio" formControlName="gender" id="femenino" value="FEMENINO">
+                        <label class="form-check-label" for="femenino">Mujer</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="otros" value="OTRO">
+                        <label class="form-check-label" for="otros">Otro</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="todos" value="">
+                        <label class="form-check-label" for="todos">Todos</label>
                     </div>
                 </div>
             </div>
@@ -107,14 +110,16 @@
         <div class="row">
             <div class="col-2" *ngFor="let language of languages">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="{{ language }}">
+                    <input class="form-check-input" type="checkbox" id="{{ language }}" (change)="onLanguageChange(language)">
                     <label class="form-check-label" for="{{ language }}">{{ language }}</label>
                 </div>
             </div>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary mt-3">Filtrar guías</button>
+        <div class="d-flex align-items-center gap-3 mt-5">
+            <button type="submit" class="btn btn-primary">Filtrar guías</button>     
+            <p class="reset" (click)="resetFilter()">Reiniciar filtros</p>      
+        </div>
     </form>
   </div>
   

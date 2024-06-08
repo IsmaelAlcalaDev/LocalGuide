@@ -6,6 +6,8 @@ import com.ismael.localguide.application.TransactionUseCase;
 import com.ismael.localguide.domain.Reservation;
 import com.ismael.localguide.domain.dto.*;
 import com.ismael.localguide.infrastructure.rest.mapper.ReservationMapper;
+import com.ismael.localguide.infrastructure.rest.mapper.ReviewsGuideMapper;
+import com.ismael.localguide.infrastructure.rest.mapper.ReviewsTouristMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,10 @@ public class ReservationController {
     private final TransactionUseCase transactionService;
     @Autowired
     private final ReservationMapper reservationMapper;
+    @Autowired
+    private final ReviewsGuideMapper reviewsGuideMapper;
+    @Autowired
+    private final ReviewsTouristMapper reviewsTouristMapper;
 
     @GetMapping("v1/recent")
     public ResponseEntity<List<RecentReservationsDTO>> getRecentReservations() {
@@ -89,6 +95,33 @@ public class ReservationController {
         }
     }
 
+    @GetMapping("v1/reviewsGuide/{guideId}")
+    public ResponseEntity<List<ReviewsDTO>> getGuideReviews(@PathVariable Long guideId) {
+        System.out.println("Fetching reviews for guideId: " + guideId);
+        List<Reservation> reservations = reservationService.getReviewsByGuideId(guideId);
+        if (reservations.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            ReviewsDTO reviewsDTO = reviewsGuideMapper.toDTO(reservation);
+            reviewsDTOList.add(reviewsDTO);
+        }
+        return ResponseEntity.ok(reviewsDTOList);
+    }
 
 
+    @GetMapping("v1/reviewsTourist/{touristId}")
+    public ResponseEntity<List<ReviewsDTO>> getTouristReviews(@PathVariable Long touristId) {
+        List<Reservation> reservations = reservationService.getReviewsByTouristId(touristId);
+        if (reservations.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<ReviewsDTO> reviewsDTOList = new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            ReviewsDTO reviewsDTO = reviewsTouristMapper.toDTO(reservation);
+            reviewsDTOList.add(reviewsDTO);
+        }
+        return ResponseEntity.ok(reviewsDTOList);
+    }
 }

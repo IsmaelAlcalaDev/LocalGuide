@@ -91,3 +91,11 @@ h5 {
     padding: 0px !important;
     margin: 13px;
 }
+
+::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+}
+
+::ng-deep .mat-mdc-paginator-container{
+    background-color: #F5F5F5;
+}

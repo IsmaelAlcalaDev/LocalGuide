@@ -1,0 +1,101 @@
+@charset "UTF-8";
+.card {
+  font-family: "Montserrat", sans-serif;
+  max-width: 300px; /* Ajusta el ancho máximo de la tarjeta según tu preferencia */
+  cursor: pointer; /* Añadir cursor pointer */
+}
+
+.card-body {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-img-top {
+  max-width: 100%; /* Hace que la imagen ocupe todo el ancho disponible */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+h4.card-title {
+  font-weight: 500; /* Cambia la propiedad font-weight para hacerla menos gruesa */
+  margin-bottom: 0.5rem; /* Ajusta el margen inferior según tu preferencia */
+}
+
+h5 {
+  color: #fe7f00;
+  margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+.precio {
+  padding: 5px;
+  font-size: 1em; /* Ajusta el tamaño de la fuente del precio */
+}
+
+.bg-precio {
+  background-color: #0086ed;
+}
+
+.star-rating {
+  color: #fe7f00;
+  margin-top: 5px; /* Ajusta el margen superior del contenedor de valoración */
+}
+
+.numero_resenas, .valoracion {
+  text-align: center;
+}
+
+.numero_resenas {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Ajusta el espacio entre los elementos */
+}
+
+.resenas {
+  color: #fe7f00;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.image-container.text-center {
+  position: relative;
+  background-image: url("../../../../assets/images/image-configuracion.png");
+  background-size: cover;
+}
+
+.image-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.image-container img {
+  position: relative;
+  z-index: 2;
+}
+
+.card-img-top {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover !important;
+  border: 4px solid white;
+  padding: 0px !important;
+  margin: 13px;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+  display: none !important;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  background-color: #F5F5F5;
+}/*# sourceMappingURL=tarjetas-guias.component.css.map */

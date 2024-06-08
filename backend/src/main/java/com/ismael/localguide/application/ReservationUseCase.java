@@ -30,9 +30,7 @@ public class ReservationUseCase {
 
     public Reservation processReservation(Map<String, Object> dataReservation) throws Exception {
         try {
-            System.out.println("estoy en el controller1");
             Boolean isValidate = validationReservation(dataReservation);
-            System.out.println(dataReservation);
             if (!isValidate) {
                 throw new Exception("Validation failed");
             }
@@ -44,25 +42,21 @@ public class ReservationUseCase {
             if (guide == null) {
                 throw new Exception("Guide not found");
             }
-            System.out.println("estoy en el controller2");
 
             Long touristId = ((Number) dataReservation.get("tourist")).longValue();
             if (touristId == null) {
                 throw new Exception("Tourist ID is null");
             }
-            System.out.println("estoy en el controller3");
 
             Tourist tourist = touristRepository.findById(touristId).orElse(null);
             if (tourist == null) {
                 throw new Exception("Tourist not found");
             }
-            System.out.println("estoy en el controller4");
 
-            // Guardar la reserva
             reservation.setTourist(tourist);
             reservation.setGuide(guide);
             reservation.setReservationDate(LocalDateTime.now());
-            reservation.setStatus(ReservationStatus.PENDIENTE);
+            reservation.setStatus(ReservationStatus.ACEPTADA);
 
             String startDateStr = (String) dataReservation.get("startDate");
             String endDateStr = (String) dataReservation.get("endDate");
@@ -96,7 +90,6 @@ public class ReservationUseCase {
             }
 
             reservationRepository.save(reservation);
-            System.out.println("reservation: " + reservation);
             return reservation;
         } catch (Exception e) {
             throw new Exception("Error processing reservation: " + e.getMessage()); // Lanzar una excepción genérica en caso de cualquier error
@@ -319,6 +312,7 @@ public class ReservationUseCase {
                 return false;
             }
             existReservation.setDeleted(true);
+            existReservation.setStatus(ReservationStatus.CANCELADA);
             reservationRepository.save(existReservation);
             return true;
         } catch (Exception e) {
@@ -340,4 +334,14 @@ public class ReservationUseCase {
             e.printStackTrace();
         }
     }
+
+    public List<Reservation> getReviewsByGuideId(Long guideId) {
+        return reservationRepository.findByGuideIdAndReviewNotNull(guideId);
+    }
+
+    public List<Reservation> getReviewsByTouristId(Long touristId) {
+        return reservationRepository.findByTouristIdAndReviewNotNull(touristId);
+    }
+
+
 }

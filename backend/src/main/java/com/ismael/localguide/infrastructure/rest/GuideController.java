@@ -2,9 +2,12 @@ package com.ismael.localguide.infrastructure.rest;
 
 import com.ismael.localguide.application.ReservationUseCase;
 import com.ismael.localguide.application.TouristUseCase;
+import com.ismael.localguide.domain.Gender;
 import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.dto.*;
 import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
+import com.ismael.localguide.infrastructure.rest.mapper.SearchGuideFilterMapper;
+import com.ismael.localguide.infrastructure.rest.mapper.TopRatedGuidesMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import com.ismael.localguide.application.GuideUseCase;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/guide")
@@ -29,6 +33,8 @@ public class GuideController {
     private GuideMapper guideMapper;
     @Autowired
     private ReservationUseCase reservationService;
+    @Autowired
+    private SearchGuideFilterMapper searchGuideFilterMapper;
 
     @PostMapping("v1/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
@@ -139,4 +145,56 @@ public class GuideController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @GetMapping("/v1/search")
+    public ResponseEntity<List<SearchGuideFilterDTO>> searchGuideFilter(
+            @RequestParam(required = false) String guideName,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) List<String> languages,
+            @RequestParam(required = false) List<String> hobbies,
+            @RequestParam(required = false) String priceMax,
+            @RequestParam(required = false) String priceMin,
+            @RequestParam(required = false) Gender gender) {
+        try {
+            Integer minPrice = null;
+            Integer maxPrice = null;
+            if (priceMin != null && !priceMin.equals("null")) {
+                minPrice = Integer.parseInt(priceMin);
+            }
+            if (priceMax != null && !priceMax.equals("null")) {
+                maxPrice = Integer.parseInt(priceMax);
+            }
+
+            List<Guide> guides = guideService.searchGuideFilter(guideName, country, city, languages, hobbies, minPrice, maxPrice, gender);
+            List<SearchGuideFilterDTO> searchGuideFilterDTOs = guides.stream()
+                    .map(guide -> {
+                        try {
+                            int totalReservations = guideService.calculateTotalReservations(guide);
+                            double averageScore = guideService.calculateAverageScore(guide); // Corrección: coincide con el frontend
+                            return searchGuideFilterMapper.toDto(guide, totalReservations, (int) averageScore);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(searchGuideFilterDTOs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+

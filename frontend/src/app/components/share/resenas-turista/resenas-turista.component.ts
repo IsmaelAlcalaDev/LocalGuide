@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GuiaService } from '../../../services/guiaService/guia.service';
+import { ReservaService } from '../../../services/reservaService/reserva.service';
 
 @Component({
   selector: 'app-resenas-turista',
@@ -8,26 +9,37 @@ import { GuiaService } from '../../../services/guiaService/guia.service';
 })
 export class ResenasTuristaComponent {
   reviews: any[] = [];
-  totalItems?: number;
-  pageSize = 4;
-  currentPage = 1;
+  userData: any;
+  currentPage: number = 1;
+  itemsPerPage: number = 3; 
 
-  constructor(private guiaService : GuiaService) { }
+  constructor(private reservationService : ReservaService) { }
 
   ngOnInit(): void {
+    this.userData = JSON.parse(sessionStorage.getItem('user') || '{}');
     this.loadReviews();
+    
   }
 
   loadReviews(): void {
-    this.guiaService.getReviews(this.currentPage, this.pageSize)
-      .subscribe((data: any) => {
-        this.reviews = data.reviews;
-        this.totalItems = data.totalItems;
-      });
+    this.reservationService.getReviewsTourist(this.userData.id)
+      .subscribe(
+        (data: any) => {
+          this.reviews = data;
+        },
+        (error: any) => {
+          console.error('Error al cargar las reseñas', error);
+        }
+      );
   }
 
-  onPageChange(event: { pageIndex: number; }): void {
-    this.currentPage = event.pageIndex + 1;
-    this.loadReviews();
+  getPaginatedReview(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.reviews.slice(startIndex, endIndex);
+  }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
   }
 }

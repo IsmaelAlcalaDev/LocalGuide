@@ -14,8 +14,8 @@ export class ReservasActivasGuiaComponent {
   guideId: any;
   phonePrefixes: { [key: string]: string } = {};
   cancelReservationDate: any;
-  pageSize: number = 6; 
-  currentPage: number = 1; 
+  currentPage: number = 1;
+  itemsPerPage: number = 6; 
 
   constructor(private reservaService: ReservaService, private ubicacionService: UbicacionService) { }
 
@@ -68,20 +68,23 @@ export class ReservasActivasGuiaComponent {
   deleteReservation(reservationId: number) {
     this.reservaService.deletedReservation(reservationId).subscribe(
       (response) => {
-        // Si la petición se completó con éxito, actualiza las reservas activas
         this.getActiveGuideReservation();
-        // Muestra un mensaje de éxito genérico
         Swal.fire('Borrado exitoso', 'La reserva ha sido cancelada', 'success');
       },
       (error) => {
-        // En caso de error en la petición, muestra un mensaje de error genérico
         Swal.fire('Error', 'Hubo un problema al cancelar la reserva', 'error');
         console.error('Error al cancelar la reserva');
       }
     );
   }
 
-  pageChanged(event: any): void {
-    this.currentPage = event.page;
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  getPaginatedReservation(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.activeReservation.slice(startIndex, endIndex);
   }
 }

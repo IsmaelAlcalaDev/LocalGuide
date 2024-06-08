@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-informacion-perfil',
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './informacion-perfil.component.scss'
 })
 export class InformacionPerfilComponent {
-
-  constructor(private router: Router) {}
+  
+  constructor() {}
 
 }

@@ -56,3 +56,7 @@ h4>span {
     color: #fe7f00;
     margin-top: 10px;
 }
+
+::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+}

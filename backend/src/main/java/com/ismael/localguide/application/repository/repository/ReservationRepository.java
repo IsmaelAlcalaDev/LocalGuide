@@ -15,11 +15,11 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
 
     List<Reservation> findFirst6ByStatusAndReviewIsNotNullAndReviewScoreGreaterThanEqualOrderByReservedHoursDesc(ReservationStatus status, int score);
 
-    @Query("SELECT COUNT(r) FROM Reservation r WHERE r.guide.id = :guideId")
-    int countReservationsByGuideId(@Param("guideId") Long guideId);
+    @Query("SELECT COUNT(r) FROM Reservation r WHERE r.guide.id = :guideId AND r.status = 'aceptada' AND r.deleted = false")
+    int countReservationsByGuideIdAndStatusAcceptedAndNotDeleted(@Param("guideId") Long guideId);
 
-    @Query("SELECT ROUND(AVG(r.reviewScore)) FROM Reservation r WHERE r.guide.id = :guideId")
-    double getAverageReviewScoreByGuideId(@Param("guideId") Long guideId);
+    @Query("SELECT ROUND(AVG(r.reviewScore)) FROM Reservation r WHERE r.guide.id = :guideId AND r.status = 'aceptada' AND r.deleted = false")
+    Double getAverageReviewScoreByGuideIdAndStatusAcceptedAndNotDeleted(@Param("guideId") Long guideId);
 
     @Query("SELECT COUNT(r) FROM Reservation r WHERE r.status = 'ACEPTADA'")
     int countAcceptedReservations();
@@ -45,4 +45,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
     @Query("SELECT COUNT(r) FROM Reservation r WHERE r.guide.id = :guideId AND r.review IS NOT NULL")
     int countReviewsByGuideId(@Param("guideId") Long guideId);
 
+    List<Reservation> findByGuideIdAndReviewNotNull(Long guideId);
+
+    List<Reservation> findByTouristIdAndReviewNotNull(Long touristId);
 }

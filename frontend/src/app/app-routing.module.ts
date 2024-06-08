@@ -28,7 +28,7 @@ const routes: Routes = [
         path: "buscar-guia", 
         component: BuscarGuiasComponent,
         canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public', 'tourist'] } 
+        data: { expectedRoles: ['public', 'tourist','guide'] } 
       },
       { 
         path: "inicio-sesion-guia", 
@@ -70,13 +70,13 @@ const routes: Routes = [
         path: "perfil-guia/:id", 
         component: InformacionPerfilComponent,
         canActivate: [AuthGuard], 
-        data: { expectedRoles: ['guide'] } 
+        data: { expectedRoles: ['public', 'tourist'] } 
       },
       { 
         path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours", 
         component: PasarelaPagoComponent,
         canActivate: [AuthGuard], 
-        data: { expectedRoles: ['tourist'] } 
+        data: { expectedRoles: ['tourist', 'public'] } 
       },
       { 
         path: "mis-viajes", 
@@ -94,7 +94,7 @@ const routes: Routes = [
         path: "admin", 
         component: InicioSesionAdminComponent, 
         canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public'] } 
+        data: { expectedRoles: ['public', 'admin'] } 
       },
       { 
         path: "admin-dashboard", 
