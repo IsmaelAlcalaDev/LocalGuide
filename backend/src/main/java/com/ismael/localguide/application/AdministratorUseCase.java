@@ -15,23 +15,25 @@ public class AdministratorUseCase {
     @Autowired
     private AdministratorRepository administratorRepository;
 
-    public Optional<Administrator> findByEmail(final String email){
-        try{
+    public Optional<Administrator> findByEmail(final String email) {
+        try {
             return this.administratorRepository.findByEmail(email);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return Optional.empty();
         }
     }
 
-    public Administrator findByEmailAndPassword(final String email, final String password){
-        try{
+    public Administrator findByEmailAndPassword(final String email, final String password) {
+        try {
             return this.administratorRepository.findByEmailAndPassword(email, password);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Administrator save(Administrator administrator){ return this.administratorRepository.save(administrator);}
+    public Administrator save(Administrator administrator) {
+        return this.administratorRepository.save(administrator);
+    }
 }

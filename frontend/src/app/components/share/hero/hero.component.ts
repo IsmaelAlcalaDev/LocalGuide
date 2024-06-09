@@ -18,7 +18,7 @@ export class HeroComponent {
     private router: Router
   ) { }
 
-  searchGuides(){
+  searchGuides() {
     const params = {
       guideName: null,
       country: this.country,

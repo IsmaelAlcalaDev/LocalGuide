@@ -6,7 +6,7 @@ import { GuiaService } from '../../../services/guiaService/guia.service';
 import { IdiomaService } from '../../../services/idiomaService/idioma.service';
 import { AficionesService } from '../../../services/aficionesServices/aficiones.service';
 
-import { Guide} from '../../../models/guide.model';
+import { Guide } from '../../../models/guide.model';
 import { UtilService } from '../../../services/utilServices/util.service';
 
 @Component({
@@ -48,8 +48,8 @@ export class ConfiguracionGuiaComponent {
     this.updateForm = this.validacionService.validateUpdateFormGuide(this.userData);
     this.chargeJsonLocation();
     this.changeCityAndPrefix();
-    this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png';  
-    this.languages = this.chargeJsonLanguages(); 
+    this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png';
+    this.languages = this.chargeJsonLanguages();
     this.hobbies = this.chargueJsonHobbies();
     this.changeStateCertificate();
 
@@ -101,8 +101,8 @@ export class ConfiguracionGuiaComponent {
   }
 
   checkHobbies(hobb: string): boolean {
-      const hobbies = this.userData.hobbies as string[]; // Suponiendo que userData.hobbies es un array de strings
-      return hobbies.includes(hobb);
+    const hobbies = this.userData.hobbies as string[]; // Suponiendo que userData.hobbies es un array de strings
+    return hobbies.includes(hobb);
   }
 
   onLanguageChange(checked: boolean, language: string) {
@@ -110,14 +110,14 @@ export class ConfiguracionGuiaComponent {
     const languages = user.languages;
 
     if (checked) {
-        if (!languages.includes(language)) {
-            languages.push(language);
-        }
+      if (!languages.includes(language)) {
+        languages.push(language);
+      }
     } else {
-        const index = languages.indexOf(language);
-        if (index !== -1) {
-            languages.splice(index, 1);
-        }
+      const index = languages.indexOf(language);
+      if (index !== -1) {
+        languages.splice(index, 1);
+      }
     }
 
     // Actualiza los datos del usuario y guarda en el almacenamiento de sesión
@@ -130,14 +130,14 @@ export class ConfiguracionGuiaComponent {
     const hobbies = user.hobbies;
 
     if (checked) {
-        if (!hobbies.includes(hobby)) {
-            hobbies.push(hobby);
-        }
+      if (!hobbies.includes(hobby)) {
+        hobbies.push(hobby);
+      }
     } else {
-        const index = hobbies.indexOf(hobby);
-        if (index !== -1) {
-            hobbies.splice(index, 1);
-        }
+      const index = hobbies.indexOf(hobby);
+      if (index !== -1) {
+        hobbies.splice(index, 1);
+      }
     }
 
     // Actualiza los datos del usuario y guarda en el almacenamiento de sesión
@@ -156,64 +156,64 @@ export class ConfiguracionGuiaComponent {
 
   onCertificateSelected(event: any): void {
     const file: File = event.target.files[0];
-    if(file){
+    if (file) {
       this.existBackgroundCheckCertificate = true;
     }
   }
 
   onIdentityDocumentSelected(event: any): void {
     const file: File = event.target.files[0];
-    if(file){
+    if (file) {
       this.existIdentityDocument = true;
     }
   }
 
   updateGuide(): void {
     if (this.updateForm && this.updateForm.valid) {
-    const guide: Guide = {
-      name: this.updateForm.value.name,
-      surname: this.updateForm.value.surname,
-      email: this.updateForm.value.email,
-      password: this.updateForm.value.password === '' ? this.userData.password : this.updateForm.value.password,
-      country: this.updateForm.value.country,
-      city: this.updateForm.value.city,
-      phone: this.updateForm.value.phone,
-      gender: this.updateForm.value.gender,
-      phrase: this.updateForm.value.phrase,
-      additionalInfo: this.updateForm.value.additionalInfo,
-      languages: this.updateForm.value.languages,
-      hobbies: this.updateForm.value.hobbies,
-      hourlyPrice: parseInt(this.updateForm.value.hourlyPrice),
-      profileImg: this.profileImgBase64 ? this.profileImgBase64: this.userData.profileImage,
-      backgroundCheckCertificate: this.existBackgroundCheckCertificate as boolean | undefined,
-      identityDocument: this.existIdentityDocument as boolean | undefined,
+      const guide: Guide = {
+        name: this.updateForm.value.name,
+        surname: this.updateForm.value.surname,
+        email: this.updateForm.value.email,
+        password: this.updateForm.value.password === '' ? this.userData.password : this.updateForm.value.password,
+        country: this.updateForm.value.country,
+        city: this.updateForm.value.city,
+        phone: this.updateForm.value.phone,
+        gender: this.updateForm.value.gender,
+        phrase: this.updateForm.value.phrase,
+        additionalInfo: this.updateForm.value.additionalInfo,
+        languages: this.updateForm.value.languages,
+        hobbies: this.updateForm.value.hobbies,
+        hourlyPrice: parseInt(this.updateForm.value.hourlyPrice),
+        profileImg: this.profileImgBase64 ? this.profileImgBase64 : this.userData.profileImage,
+        backgroundCheckCertificate: this.existBackgroundCheckCertificate as boolean | undefined,
+        identityDocument: this.existIdentityDocument as boolean | undefined,
+      }
+      this.guiaService.updateGuide(guide, this.userData.id).subscribe(
+        response => {
+          sessionStorage.removeItem('user');
+          sessionStorage.setItem('user', JSON.stringify(response));
+          this.updateForm.patchValue({
+            password: '',
+            matchPassword: ''
+          });
+          this.userData = this.utilService.getDataUser();
+          this.profileImg = this.userData.profileImg;
+          this.message = 'Usuario actualizado correctamente.';
+          setTimeout(() => {
+            this.message = '';
+            window.location.reload();
+          }, 3000);
+        },
+        error => {
+          if (error.status === 409 || error.status === 401 || error.status === 403 || error.status === 404 || error.status === 500) {
+            this.messageError = 'Ha ocurrido un error inesperado.';
+          }
+          setTimeout(() => {
+            this.messageError = '';
+            //  window.location.reload();
+          }, 3000);
+        }
+      );
     }
-    this.guiaService.updateGuide(guide, this.userData.id).subscribe(
-      response => {
-        sessionStorage.removeItem('user');
-        sessionStorage.setItem('user', JSON.stringify(response));
-        this.updateForm.patchValue({
-          password: '',
-          matchPassword: ''
-        });
-        this.userData = this.utilService.getDataUser();
-        this.profileImg = this.userData.profileImg;
-        this.message = 'Usuario actualizado correctamente.';
-        setTimeout(() => {
-          this.message = '';
-       window.location.reload();
-        }, 3000);
-      },
-      error => {
-        if (error.status === 409 || error.status === 401 || error.status === 403 || error.status === 404 || error.status === 500){
-          this.messageError = 'Ha ocurrido un error inesperado.';
-        }
-        setTimeout(() => {
-          this.messageError = ''; 
-        //  window.location.reload();
-        }, 3000); 
-        }
-    );
-  }
   }
 }

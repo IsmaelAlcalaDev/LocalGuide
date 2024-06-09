@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HobbiesService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getHobbies(): Observable<string[]> {
     return this.http.get<string[]>('../../../../assets/json/hobbies.json');

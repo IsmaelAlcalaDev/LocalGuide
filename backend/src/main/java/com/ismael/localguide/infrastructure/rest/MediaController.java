@@ -1,22 +1,12 @@
 package com.ismael.localguide.infrastructure.rest;
 
-import com.ismael.localguide.application.GuideUseCase;
-import com.ismael.localguide.application.TouristUseCase;
 import com.ismael.localguide.application.UploadImageUseCase;
-import com.ismael.localguide.domain.Guide;
-import com.ismael.localguide.domain.dto.GuideDataDTO;
-import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/media")

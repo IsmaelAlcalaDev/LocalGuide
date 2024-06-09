@@ -9,7 +9,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .text-overlay {
@@ -17,9 +17,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px; /* Espaciado alrededor del texto */
+  padding: 10px;
   text-align: center;
-  color: white; /* Color del texto */
+  color: white; 
 }
 
 .circular-image {

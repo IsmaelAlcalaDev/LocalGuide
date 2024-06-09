@@ -19,7 +19,7 @@ export class TablaGuiasComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private guiaService: GuiaService) {}
+  constructor(private guiaService: GuiaService) { }
 
   ngOnInit(): void {
     this.getGuides();

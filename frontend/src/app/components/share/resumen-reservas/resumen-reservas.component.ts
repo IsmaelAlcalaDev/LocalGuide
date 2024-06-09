@@ -13,8 +13,8 @@ export class ResumenReservasComponent {
   constructor(private reservaService: ReservaService) { }
 
   ngOnInit() {
-  this.guideId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
-  this.getSummaryReservations();
+    this.guideId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
+    this.getSummaryReservations();
   }
 
   getSummaryReservations() {

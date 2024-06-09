@@ -1,23 +1,23 @@
-.form_content{
+.form_content {
     font-family: 'Montserrat', sans-serif;
-    
+
 }
 
-.form-floating{
+.form-floating {
     width: 90%;
 }
 
-.checkbox .mb-3{
+.checkbox .mb-3 {
     text-align: left;
 }
 
-.form_title{
+.form_title {
     font-family: 'Bebas Neue', sans-serif;
     text-align: center;
     font-size: 2em;
 }
 
-.login_img{
+.login_img {
     position: relative;
 }
 
@@ -26,12 +26,12 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 20px; /* Ajusta el grosor del borde difuminado */
+    height: 20px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 2));
     pointer-events: none;
 }
 
-.form_login{
+.form_login {
     border: 1px solid #e2e2e2;
     border-radius: 30px;
     padding: 30px;
@@ -42,30 +42,44 @@
     justify-content: space-around;
 }
 
-.btn_login{
+.btn_login {
     background-color: #fe7f00;
     color: white;
     border: 0;
     font-weight: 700;
 }
 
-.content_btn{
+.content_btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:35px;
+    gap: 35px;
 }
 
-.link_register{
-    color:#fe7f00;
+.link_register {
+    color: #fe7f00;
 }
 
-.link_login{
-    color:#fe7f00;
+.link_login {
+    color: #fe7f00;
     font-weight: bold;
 }
 
-mat-error{
+mat-error {
     color: rgb(199, 0, 50);
     font-size: smaller;
 }
+
+@media (max-width: 767px) {
+    .login_img {
+        display: none;
+    }
+
+    .form_login {
+        margin-left: 20px;
+        margin-right: 20px;
+        gap: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

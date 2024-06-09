@@ -23,10 +23,10 @@ export class InicioSesionComponent implements OnInit {
     private turistaService: TuristaService,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.url = this.router.url;  
+    this.url = this.router.url;
     this.loginForm = this.validacionService.validateLogin();
     this.autocompleteEmail();
   }
@@ -55,12 +55,12 @@ export class InicioSesionComponent implements OnInit {
             });
           },
           error => {
-            console.error('Error al iniciar sesión:', error); 
+            console.error('Error al iniciar sesión:', error);
             if (error.status === 404 || error.status === 401) {
               this.showErrorMessage = 'Usuario o contraseña incorrectos';
             }
           }
-        );  
+        );
       } else if (this.url === '/inicio-sesion-turista') {
         this.turistaService.login(email, password).subscribe(
           response => {

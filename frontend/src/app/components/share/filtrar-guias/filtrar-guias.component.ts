@@ -26,8 +26,8 @@ export class FiltrarGuiasComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private idiomaService: IdiomaService, 
-    private aficionesService: AficionesService, 
+    private idiomaService: IdiomaService,
+    private aficionesService: AficionesService,
     private ubicacionService: UbicacionService,
     private guideService: GuiaService,
     private guideFilterService: GuideFilterService,
@@ -41,9 +41,9 @@ export class FiltrarGuiasComponent {
       guideName: [''],
       country: [''],
       city: [''],
-      gender: [''], 
+      gender: [''],
       priceMin: [null],
-      priceMax: [null] 
+      priceMax: [null]
     });
     this.chargeJsonLocation();
     this.changeCity();
@@ -51,7 +51,7 @@ export class FiltrarGuiasComponent {
       this.flag = params['flag'] === 'true';
     });
     if (!this.flag) {
-      this.filterGuides(); 
+      this.filterGuides();
     }
   }
 
@@ -116,19 +116,19 @@ export class FiltrarGuiasComponent {
 
   filterGuides(): void {
     const selectedHobbies: string[] = this.selectedHobbies;
-    
+
     const selectedLanguages: string[] = this.selectedLanguages;
-    
+
     let priceMinValue = this.filterForm.get('priceMin')?.value;
     let priceMaxValue = this.filterForm.get('priceMax')?.value;
-    
+
     if (priceMinValue === undefined) {
       priceMinValue = null;
     }
     if (priceMaxValue === undefined) {
       priceMaxValue = null;
     }
-    
+
     let genderValue = null;
     const gender = this.filterForm.get('gender')?.value;
     if (gender) {
@@ -136,7 +136,7 @@ export class FiltrarGuiasComponent {
         genderValue = Gender.MASCULINO;
       } else if (gender === 'FEMENINO') {
         genderValue = Gender.FEMENINO;
-      }else if(gender === 'OTRO'){
+      } else if (gender === 'OTRO') {
         genderValue = Gender.OTRO;
       }
     }

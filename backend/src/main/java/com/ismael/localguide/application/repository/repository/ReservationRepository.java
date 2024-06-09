@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.awt.print.Pageable;
 import java.util.List;
-import java.util.Optional;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long>, JpaSpecificationExecutor<Reservation> {
 
@@ -41,9 +39,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
 
     @Query("SELECT r FROM Reservation r WHERE r.endDate < CURRENT_DATE AND r.tourist.id = :touristId")
     List<Reservation> findPastReservationsTourist(@Param("touristId") Long touristId);
-
-    @Query("SELECT COUNT(r) FROM Reservation r WHERE r.guide.id = :guideId AND r.review IS NOT NULL")
-    int countReviewsByGuideId(@Param("guideId") Long guideId);
 
     List<Reservation> findByGuideIdAndReviewNotNull(Long guideId);
 

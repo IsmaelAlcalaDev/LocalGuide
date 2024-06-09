@@ -12,12 +12,12 @@ import { MatSort } from '@angular/material/sort';
 export class TablaTransaccionesComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
 
-  displayedColumns: string[] = ['reservation','transactionDate','type', 'paymentType','amount'];
+  displayedColumns: string[] = ['reservation', 'transactionDate', 'type', 'paymentType', 'amount'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private transaccionService: TransaccionService) {}
+  constructor(private transaccionService: TransaccionService) { }
 
   ngOnInit(): void {
     this.getTransaction();

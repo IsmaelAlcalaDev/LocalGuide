@@ -10,7 +10,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-img{
+img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -52,19 +52,28 @@ h4>span {
     font-size: 1.3em;
 }
 
-.star-rating{
+.star-rating {
     color: #fe7f00;
     margin-top: 10px;
 }
 
-.link-review{
+.link-review {
     cursor: pointer;
 }
 
-.link-review:hover{
+.link-review:hover {
     text-decoration: underline;
 }
 
 ::ng-deep .mat-mdc-paginator-page-size {
     display: none !important;
 }
+
+@media (max-width: 767px) {
+
+    .pb-5 {
+        padding-bottom: 0px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

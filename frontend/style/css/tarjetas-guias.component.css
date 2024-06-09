@@ -1,8 +1,8 @@
 @charset "UTF-8";
 .card {
   font-family: "Montserrat", sans-serif;
-  max-width: 300px; /* Ajusta el ancho máximo de la tarjeta según tu preferencia */
-  cursor: pointer; /* Añadir cursor pointer */
+  max-width: 300px; 
+  cursor: pointer; 
 }
 
 .card-body {
@@ -14,23 +14,23 @@
 }
 
 .card-img-top {
-  max-width: 100%; /* Hace que la imagen ocupe todo el ancho disponible */
-  height: auto; /* Mantiene la proporción de la imagen */
+  max-width: 100%; 
+  height: auto; 
 }
 
 h4.card-title {
-  font-weight: 500; /* Cambia la propiedad font-weight para hacerla menos gruesa */
-  margin-bottom: 0.5rem; /* Ajusta el margen inferior según tu preferencia */
+  font-weight: 500; 
+  margin-bottom: 0.5rem; 
 }
 
 h5 {
   color: #fe7f00;
-  margin-bottom: 0; /* Elimina el margen inferior */
+  margin-bottom: 0; 
 }
 
 .precio {
   padding: 5px;
-  font-size: 1em; /* Ajusta el tamaño de la fuente del precio */
+  font-size: 1em; 
 }
 
 .bg-precio {
@@ -39,7 +39,7 @@ h5 {
 
 .star-rating {
   color: #fe7f00;
-  margin-top: 5px; /* Ajusta el margen superior del contenedor de valoración */
+  margin-top: 5px; 
 }
 
 .numero_resenas, .valoracion {
@@ -49,7 +49,7 @@ h5 {
 .numero_resenas {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Ajusta el espacio entre los elementos */
+  gap: 5px; 
 }
 
 .resenas {
@@ -90,4 +90,4 @@ h5 {
   border: 4px solid white;
   padding: 0px !important;
   margin: 13px;
-}/*# sourceMappingURL=tarjetas-guias.component.css.map */
+}

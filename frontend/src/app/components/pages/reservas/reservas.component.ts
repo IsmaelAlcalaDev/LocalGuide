@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class ReservasComponent {
 
-  constructor(private router: Router) {}
-  
+  constructor(private router: Router) { }
+
   ngOnInit() {
     this.comprobarUrlResumenReserva();
   }

@@ -14,10 +14,10 @@ export class ReservasAntiguasTuristaComponent {
   pastReservation: any = [];
   touristId: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
 
   constructor(
-    private reservaService: ReservaService, 
+    private reservaService: ReservaService,
     private dialog: MatDialog
   ) { }
 
@@ -36,21 +36,21 @@ export class ReservasAntiguasTuristaComponent {
       }
     );
   }
-  
+
   openLeaveReviewDialog(reservationData: any): void {
     const dialogRef = this.dialog.open(DialogoResenaComponent, {
       width: '800px',
       data: { reservationData: reservationData }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const { resena, score } = result as { resena: string, score: number }; 
+        const { resena, score } = result as { resena: string, score: number };
         this.leaveReview(reservationData.id, resena, score);
-      } 
+      }
     });
   }
-  
+
   leaveReview(reservationId: any, review: string, score: number) {
     this.reservaService.leaveReview(reservationId, review, score).subscribe(
       (response) => {

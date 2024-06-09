@@ -6,11 +6,13 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="guideName" formControlName="guideName" placeholder="Nombre del guía" pattern="[^0-9]*">
+                    <input type="text" class="form-control" id="guideName" formControlName="guideName"
+                        placeholder="Nombre del guía" pattern="[^0-9]*">
                     <label class="text-secondary d-flex align-items-center" for="guideName">Nombre del guía</label>
                 </div>
                 <!-- Mostrar mensaje de error si se ingresan números -->
-                <div *ngIf="filterForm.get('guideName')?.errors?.['pattern']" class="text-danger">No se permiten números.</div>
+                <div *ngIf="filterForm.get('guideName')?.errors?.['pattern']" class="text-danger">No se permiten
+                    números.</div>
             </div>
             <div class="col">
                 <div class="form-floating">
@@ -29,17 +31,19 @@
                     </select>
                     <label for="city">Ciudad</label>
                 </div>
-                
+
             </div>
             <div class="col">
                 <div class="form-floating">
-                    <input type="number" class="form-control" formControlName="priceMin" id="priceMin" value="0" min="0" max="50">
+                    <input type="number" class="form-control" formControlName="priceMin" id="priceMin" value="0" min="0"
+                        max="50">
                     <label for="priceMin">Precio Mínimo</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-floating">
-                    <input type="number" class="form-control" formControlName="priceMax" id="priceMax" value="10" min="0" max="50">
+                    <input type="number" class="form-control" formControlName="priceMax" id="priceMax" value="10"
+                        min="0" max="50">
                     <label for="priceMax">Precio Máximo</label>
                 </div>
             </div>
@@ -77,11 +81,13 @@
                 <!-- Radio Buttons Gender -->
                 <div class="d-flex gap-5">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" formControlName="gender" id="masculino" value="MASCULINO">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="masculino"
+                            value="MASCULINO">
                         <label class="form-check-label" for="masculino">Hombre</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" formControlName="gender" id="femenino" value="FEMENINO">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="femenino"
+                            value="FEMENINO">
                         <label class="form-check-label" for="femenino">Mujer</label>
                     </div>
                     <div class="form-check">
@@ -110,16 +116,16 @@
         <div class="row">
             <div class="col-2" *ngFor="let language of languages">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="{{ language }}" (change)="onLanguageChange(language)">
+                    <input class="form-check-input" type="checkbox" id="{{ language }}"
+                        (change)="onLanguageChange(language)">
                     <label class="form-check-label" for="{{ language }}">{{ language }}</label>
                 </div>
             </div>
         </div>
 
         <div class="d-flex align-items-center gap-3 mt-5">
-            <button type="submit" class="btn btn-primary">Filtrar guías</button>     
-            <p class="reset" (click)="resetFilter()">Reiniciar filtros</p>      
+            <button type="submit" class="btn btn-primary">Filtrar guías</button>
+            <p class="reset" (click)="resetFilter()">Reiniciar filtros</p>
         </div>
     </form>
-  </div>
-  
+</div>

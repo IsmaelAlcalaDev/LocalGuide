@@ -76,3 +76,24 @@ img {
     border: 5px solid white;
     padding: 5px;
 }
+
+@media (max-width: 767px) {
+    .mat-mdc-form-field {
+        width: 100% !important;
+    }
+
+    .col-md-4.col-input.column-1 {
+        gap: 0px;
+        margin-top: 2rem;
+    }
+
+    .col-md-4.col-input {
+        gap: 0px;
+    }
+
+    .w-75 {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

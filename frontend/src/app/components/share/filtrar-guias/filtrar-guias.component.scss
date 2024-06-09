@@ -1,20 +1,19 @@
-form{
+form {
     border-radius: 2em;
     padding: 3rem;
-    width: 70%;
     position: relative;
     z-index: 1;
     background-color: white;
 }
 
-.form_filter_container{
+.form_filter_container {
     background-image: url('../../../../assets/images/image-configuracion.png');
     padding: 2em 15em;
     display: flex;
     justify-content: center;
 }
 
-h2{
+h2 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2em;
     color: #fe7f00;
@@ -25,12 +24,12 @@ h2{
 
 
 .form-check-input[type=checkbox]:checked {
-background-color: #fe7f00 !important;
-border: 0 !important;
+    background-color: #fe7f00 !important;
+    border: 0 !important;
 }
 
 
-.form-check-input[type=radio]:checked:after{
+.form-check-input[type=radio]:checked:after {
     background-color: #fe7f00 !important;
     border: 0 !important;
 }
@@ -39,15 +38,71 @@ border: 0 !important;
     border-color: #b6b6b6;
 }
 
-button.btn.btn-primary{
+button.btn.btn-primary {
     background-color: #fe7f00;
     border: 0;
     text-transform: capitalize;
 }
 
-.reset{
+.reset {
     margin: 0px !important;
     color: #fe7f00;
     cursor: pointer;
     text-decoration: underline;
 }
+
+
+@media (max-width: 767px) {
+    .form_filter_container {
+        background-image: none;
+
+    }
+
+    form {
+        padding: 0 30px 0px 30px;
+        width: 100vw;
+    }
+
+    .row.mb-3 {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .row {
+        justify-content: space-between;
+    }
+
+    .mb-3 {
+        margin-bottom: 0rem !important;
+    }
+
+    .col-3 {
+        width: 40%;
+    }
+
+    .col-2 {
+        width: 33.666667%;
+    }
+
+    .gap-5 {
+        gap: 0rem !important;
+    }
+
+    .d-flex.gap-5 {
+        flex-direction: column;
+    }
+
+    .d-flex.align-items-center.gap-3.mt-5 {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center !important;
+        margin-bottom: 20px;
+    }
+
+    .form_filter_container.w-100 {
+        padding: 0px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

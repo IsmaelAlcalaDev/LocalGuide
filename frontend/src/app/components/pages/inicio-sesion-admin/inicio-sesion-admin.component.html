@@ -1,31 +1,31 @@
 <div class="form-container d-flex justify-content-center align-items-center">
-      <form [formGroup]="loginForm" class="form_login" (submit)="iniciarSesion()">
-        <h1 class="h3 mb-3 fw-normal form_title">Gestión de la plataforma</h1>
-        <div class="text-danger">{{showErrorMessage}}</div>
-        <div class="form-floating w-80">
-          <input type="email" class="form-control" formControlName="email" placeholder="Correo electronico" required>
-          <label for="floatingInput">Correo electronico</label>
-          <mat-error *ngIf="loginForm.get('email')?.hasError('customError') && loginForm.get('email')?.touched">
-            {{ loginForm.get('email')?.errors?.['customError'] }}
-          </mat-error>
-        </div>
-        <div class="form-floating w-80">
-          <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" required>
-          <label for="floatingPassword">Contraseña</label>
-          <mat-error *ngIf="loginForm.get('password')?.hasError('customError') && loginForm.get('password')?.touched">
-            {{ loginForm.get('password')?.errors?.['customError'] }}
-          </mat-error>
-        </div>
-        <div class="checkbox mb-3 w-100">
-          <label>
-            <input type="checkbox" value="remember-me"> Recuerdame
-          </label>
-        </div>
-        <div class="content_btn w-100 text-center">
-          <button class="w-50 btn btn btn-primary btn_login" type="submit">Entrar</button>
-        </div>
-        <div>
-          <a href="#" class="link-inicio">Ir a la página principal</a>
-        </div>
-      </form>
-  </div>
+  <form [formGroup]="loginForm" class="form_login" (submit)="iniciarSesion()">
+    <h1 class="h3 mb-3 fw-normal form_title">Gestión de la plataforma</h1>
+    <div class="text-danger">{{showErrorMessage}}</div>
+    <div class="form-floating w-80">
+      <input type="email" class="form-control" formControlName="email" placeholder="Correo electronico" required>
+      <label for="floatingInput">Correo electronico</label>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('customError') && loginForm.get('email')?.touched">
+        {{ loginForm.get('email')?.errors?.['customError'] }}
+      </mat-error>
+    </div>
+    <div class="form-floating w-80">
+      <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" required>
+      <label for="floatingPassword">Contraseña</label>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('customError') && loginForm.get('password')?.touched">
+        {{ loginForm.get('password')?.errors?.['customError'] }}
+      </mat-error>
+    </div>
+    <div class="checkbox mb-3 w-100">
+      <label>
+        <input type="checkbox" value="remember-me"> Recuerdame
+      </label>
+    </div>
+    <div class="content_btn w-100 text-center">
+      <button class="w-50 btn btn btn-primary btn_login" type="submit">Entrar</button>
+    </div>
+    <div>
+      <a href="#" class="link-inicio">Ir a la página principal</a>
+    </div>
+  </form>
+</div>

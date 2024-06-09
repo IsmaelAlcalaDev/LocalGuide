@@ -1,9 +1,7 @@
 package com.ismael.localguide.infrastructure.rest;
 
 import com.ismael.localguide.application.DashboardUseCase;
-import com.ismael.localguide.domain.Administrator;
 import com.ismael.localguide.domain.dto.AdministratorDataDTO;
-import com.ismael.localguide.domain.dto.GuideDataDTO;
 import com.ismael.localguide.infrastructure.rest.mapper.AdministratorMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

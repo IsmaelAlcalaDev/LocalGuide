@@ -2,7 +2,7 @@
   <nav *ngIf="typeUser$ | async as type" isAdmin class="navbar navbar-expand-lg navbar-dark bg-white px-5 py-4">
     <div class="col-lg-3 px-lg-5">
       <a class="navbar-brand" href="#">
-        <img src="assets/images/logo.png" alt="Logo" width="220" height="80">
+        <img src="assets/images/logo.png" class="logo-img" alt="Logo">
       </a>
     </div>
     <button class="navbar-toggler border-1 text-dark" type="button" data-bs-toggle="collapse"
@@ -30,41 +30,41 @@
             <a class="nav-link text-dark" [routerLink]="'/pago-aumento-visibilidad'">Aumenta tu visibilidad</a>
           </li>
         </div>
-        <div class="d-flex">
+        <div class="d-flex flex-column flex-md-row gap-3">
           <li *ngIf="typeUser === 'public'" class="nav-item d-flex align-items-center">
-            <a class="btn btn-primary text-white me-2" [routerLink]="'/inicio-sesion-turista'">Iniciar sesión</a>
+            <a class="btn btn-primary text-white  w-100" [routerLink]="'/inicio-sesion-turista'">Iniciar sesión</a>
           </li>
           <li *ngIf="typeUser === 'public'" class="nav-item d-flex align-items-center">
-            <a class="btn btn-secondary text-white" [routerLink]="'/registro-turista'">Registrarse</a>
+            <a class="btn btn-secondary text-white w-100" [routerLink]="'/registro-turista'">Registrarse</a>
           </li>
         </div>
         <li *ngIf="typeUser !== 'public'" class="nav-item dropdown ms-lg-5 ">
           <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img
-              [src]="profileImg"
-              class="rounded-circle" width="50" height="50" alt="Foto de usuario">
+            <img [src]="profileImg" class="rounded-circle" width="50" height="50" alt="Foto de usuario">
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a *ngIf="typeUser === 'guide'" class="dropdown-item dropdown-item-perfil" [routerLink]="'/configuracion-perfil-guia'">
+              <a *ngIf="typeUser === 'guide'" class="dropdown-item dropdown-item-perfil"
+                [routerLink]="'/configuracion-perfil-guia'">
                 <i class="fas fa-user me-2"></i>Mi perfil</a>
-              <a *ngIf="typeUser === 'tourist'" class="dropdown-item dropdown-item-perfil" [routerLink]="'/configuracion-perfil-turista'">
+              <a *ngIf="typeUser === 'tourist'" class="dropdown-item dropdown-item-perfil"
+                [routerLink]="'/configuracion-perfil-turista'">
                 <i class="fas fa-user me-2"></i>Mi perfil</a>
             </li>
-  
+
             <li>
               <a *ngIf="typeUser === 'guide'" class="dropdown-item" [routerLink]="'/resumen-reservas'">
                 <i class="fas fa-suitcase me-2"></i>Gestionar reservas</a>
               <a *ngIf="typeUser === 'tourist'" class="dropdown-item" [routerLink]="'/mis-viajes'">
                 <i class="fas fa-suitcase me-2"></i>Mis viajes</a>
             </li>
-  
+
             <li>
               <a class="dropdown-item dropdown-item-sesion" (click)="logOut()">
                 <i class="fas fa-cog me-2"></i>
                 Cerrar sesión</a>
-              </li>
+            </li>
           </ul>
         </li>
       </ul>

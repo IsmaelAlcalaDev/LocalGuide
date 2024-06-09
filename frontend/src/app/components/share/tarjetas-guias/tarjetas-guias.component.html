@@ -1,48 +1,50 @@
-<div class="container d-flex flex-wrap justify-content-center gap-5">
-  <div *ngFor="let guide of getPaginatedGuides()" class="card rounded-4 mb-4" style="width: 300px;" (click)="showGuide(guide.id)" data-aos="zoom-in-up" data-aos-delay="100" data-aos-duration="500">
-    <div class="image-container text-center rounded-top-4">
-      <div class="overlay rounded-top-4"></div>
-      <img [src]="guide.profileImg" class="card-img-top rounded-circle p-2" alt="">
-    </div>
-    <div class="card-body">
-      <div class="d-flex align-items-start justify-content-between ">
-        <div>
-          <h4 class="card-title fw-medium mb-0">{{guide.name}}</h4>
-          <h5>{{guide.city}}</h5>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let guide of getPaginatedGuides()"
+      class="d-flex justify-content-center col-12 col-md-6 col-lg-4 mb-sm-0 mb-md-5 pb-3">
+      <div class="card rounded-4" style="width: 17rem" (click)="showGuide(guide.id)" data-aos="zoom-in-up"
+        data-aos-delay="100" data-aos-duration="500">
+        <div class="image-container text-center rounded-top-4">
+          <div class="overlay rounded-top-4"></div>
+          <img [src]="guide.profileImg" class="card-img-top rounded-circle p-2" alt="">
         </div>
-        <div class="rounded-2 p-1 text-light fw-medium bg-precio">
-          <span class="precio">{{guide.hourlyPrice}}€/h</span>
-        </div>
-      </div>
+        <div class="card-body">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <h4 class="card-title fw-medium mb-0">{{guide.name}}</h4>
+              <h5>{{guide.city}}</h5>
+            </div>
+            <div class="rounded-2 p-1 text-light fw-medium bg-precio">
+              <span class="precio">{{guide.hourlyPrice}}€/h</span>
+            </div>
+          </div>
 
-      <p class="card-text">{{guide.phrase}}</p>
+          <p class="card-text">{{guide.phrase}}</p>
 
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="numero_resenas">
-          <h5 class="mb-0">TOURS</h5>
-          <span class="resenas fw-medium fs-5">{{guide.totalReservations}}</span>
-        </div>
-        <div class="valoracion">
-          <h5 class="mb-0">VALORACIÓN</h5>
-          <div class="star-rating">
-            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-              <i class="fa" [ngClass]="{
-                      'fa-star': guide.averageScore >= star,
-                      'fa-star-half-stroke': guide.averageScore + 0.5 >= star && guide.averageScore < star
-                    }"></i>
-            </ng-container>
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="numero_resenas">
+              <h5 class="mb-0">TOURS</h5>
+              <span class="resenas fw-medium fs-5">{{guide.totalReservations}}</span>
+            </div>
+            <div class="valoracion">
+              <h5 class="mb-0">VALORACIÓN</h5>
+              <div class="star-rating">
+                <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                  <i class="fa" [ngClass]="{
+                          'fa-star': guide.averageScore >= star,
+                          'fa-star-half-stroke': guide.averageScore + 0.5 >= star && guide.averageScore < star
+                        }"></i>
+                </ng-container>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center" *ngIf="getPaginatedGuides().length !== 0">
+    <mat-paginator [length]="getPaginatedGuides().length" [pageSize]="itemsPerPage" [pageIndex]="currentPage - 1"
+      (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
 </div>
-
-<div *ngIf="getPaginatedGuides().length !== 0">
-  <mat-paginator [length]="getPaginatedGuides().length"
-                [pageSize]="itemsPerPage"
-                [pageIndex]="currentPage - 1"
-                (page)="onPageChange($event.pageIndex + 1)">
-  </mat-paginator>
-</div >
-

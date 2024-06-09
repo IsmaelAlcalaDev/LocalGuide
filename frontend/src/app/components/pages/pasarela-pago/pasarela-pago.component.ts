@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class PasarelaPagoComponent {
   selectedPlan: string;
-  
+
   constructor(private router: Router) {
     this.selectedPlan = ''; // Inicialmente no hay ningún plan seleccionado
   }

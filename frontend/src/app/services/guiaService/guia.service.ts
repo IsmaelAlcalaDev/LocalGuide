@@ -30,9 +30,9 @@ export class GuiaService {
     return this.http.post<any>(this.apiUrl.guide.login, {}, { params: params });
   }
 
-  updateGuide(guide: Guide, id:any): Observable<any> {
+  updateGuide(guide: Guide, id: any): Observable<any> {
     const path = `${this.apiUrl.guide.update}/${id}`;
-    return this.http.put<any>(path, guide, {headers:this.headerDict});
+    return this.http.put<any>(path, guide, { headers: this.headerDict });
   }
 
   getTopRatedGuides(): Observable<any> {
@@ -48,7 +48,7 @@ export class GuiaService {
     return this.http.get<Guide[]>(this.apiUrl.guide.listGuides);
   }
 
-  getGuideFilter(guideName:string | null, country: string | null, city: string | null, priceMin: string | null, priceMax: string | null, gender: Gender | null, languages: string[], hobbies: string[]): Observable<any> {
+  getGuideFilter(guideName: string | null, country: string | null, city: string | null, priceMin: string | null, priceMax: string | null, gender: Gender | null, languages: string[], hobbies: string[]): Observable<any> {
     let httpParams = new HttpParams();
 
     // Añadir los parámetros
@@ -67,7 +67,7 @@ export class GuiaService {
     if (priceMax !== null) {
       httpParams = httpParams.set('priceMax', priceMax);
     }
-    if(gender !== null){
+    if (gender !== null) {
       httpParams = httpParams.set('gender', gender);
     }
     if (languages && languages.length > 0) {

@@ -14,23 +14,23 @@
 
 .image-container {
     width: 100%;
-    height: 200px; 
+    height: 200px;
     overflow: hidden;
-  }
-  
-  .image-container img {
+}
+
+.image-container img {
     width: 100%;
     height: 100%;
-  }
+}
 
 .text-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 10px; /* Espaciado alrededor del texto */
+    padding: 10px;
     text-align: center;
-    color: white; /* Color del texto */
+    color: white;
 }
 
 .circular-image {
@@ -45,7 +45,7 @@
     height: 110px;
 }
 
-.review_card{
+.review_card {
     font-size: 0.8em;
 }
 
@@ -55,15 +55,15 @@
     object-fit: cover;
 }
 
-.ubicacion{
+.ubicacion {
     color: #fe7f00;
 }
 
-.info_reserva{
+.info_reserva {
     font-size: 0.8em;
 }
 
-.star-rating{
+.star-rating {
     color: #fe7f00;
     margin-top: 10px;
     margin-right: 10px;
@@ -72,4 +72,3 @@
 .col-md-3.mb-4.d-flex.flex-column.align-items-center {
     width: fit-content;
 }
-

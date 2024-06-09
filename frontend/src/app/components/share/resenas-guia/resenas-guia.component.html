@@ -1,31 +1,30 @@
-<h2 class="fs-2 mt-5 mb-3 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Mis reseñas</h2>
-<div class="reviews_container my-5">
-    <h3 class="text-center" *ngIf="reviews.length === 0">No tiene reseñas</h3>
-    <mat-card *ngFor="let review of getPaginatedReview()" class="mb-3">
-        <mat-card-header>
-          <div [style.background-image]="'url(' + review.profileImg + ')'" mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="mb-2">{{ review.name }} <span class="location ps-2">{{review.city}}, {{review.country}}</span></mat-card-title>
-          <mat-card-subtitle>{{ review.reservationDate | date }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ review.review }}</p>
-          <div class="star-rating">
-            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-              <i class="fa" [ngClass]="{
+<h2 class="fs-2 mt-md-5 mb-3 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Mis reseñas</h2>
+<div class="reviews_container my-md-5">
+  <h3 class="text-center" *ngIf="reviews.length === 0">No tiene reseñas</h3>
+  <mat-card *ngFor="let review of getPaginatedReview()" class="mb-3">
+    <mat-card-header>
+      <div [style.background-image]="'url(' + review.profileImg + ')'" mat-card-avatar class="example-header-image">
+      </div>
+      <mat-card-title class="mb-2">{{ review.name }} <span class="location ps-2">{{review.city}},
+          {{review.country}}</span></mat-card-title>
+      <mat-card-subtitle>{{ review.reservationDate | date }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ review.review }}</p>
+      <div class="star-rating">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+          <i class="fa" [ngClass]="{
                 'fa-star': review.reviewScore >= star,
                 'fa-star-half-alt': review.reviewScore + 0.5 >= star && review.reviewScore < star,
                 'fa-star-o': review.reviewScore < star
               }"></i>
-            </ng-container>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      <div *ngIf="reviews.length !== 0">
-        <mat-paginator [length]="reviews.length"
-               [pageSize]="itemsPerPage"
-               [pageIndex]="currentPage - 1"
-               (page)="onPageChange($event.pageIndex + 1)">
-        </mat-paginator>
+        </ng-container>
       </div>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="reviews.length !== 0">
+    <mat-paginator [length]="reviews.length" [pageSize]="itemsPerPage" [pageIndex]="currentPage - 1"
+      (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
 </div>
-  

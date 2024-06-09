@@ -2,12 +2,14 @@
   <div class="informacion_pago mb-5 p-3 rounded-5">
     <h2 class="mb-2">Finaliza tu reserva</h2>
     <div class="mb-3">
-        <h3>Cancelación gratuita</h3>
-        <small>Tienes hasta 48 horas después de realizar tu reserva para cancelarla sin cargo alguno.</small>
+      <h3>Cancelación gratuita</h3>
+      <small>Tienes hasta 48 horas después de realizar tu reserva para cancelarla sin cargo alguno.</small>
     </div>
     <div>
-        <h3>Retención del pago</h3>
-        <small>Por motivos de seguridad y para garantizar la mejor calidad del servicio, retenemos el pago de tu reserva hasta la finalización de tu viaje. Esta medida nos permite proteger tus fondos mientras disfrutas de tu experiencia de viaje y asegurarnos de que recibas el servicio esperado.</small>
+      <h3>Retención del pago</h3>
+      <small>Por motivos de seguridad y para garantizar la mejor calidad del servicio, retenemos el pago de tu reserva
+        hasta la finalización de tu viaje. Esta medida nos permite proteger tus fondos mientras disfrutas de tu
+        experiencia de viaje y asegurarnos de que recibas el servicio esperado.</small>
     </div>
   </div>
   <div class="row container_payment ">
@@ -16,34 +18,41 @@
       <hr>
       <form [formGroup]="paymentForm" *ngIf="paymentForm" (ngSubmit)="processPayment()">
         <label for="paymentMethod">Método de Pago</label>
-        <select class="form-select mb-3" id="paymentMethod" formControlName="paymentMethod" [class.is-invalid]="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched">
+        <select class="form-select mb-3" id="paymentMethod" formControlName="paymentMethod"
+          [class.is-invalid]="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched">
           <option value="">Selecciona un método de pago</option>
           <option value="BIZUM">Bizum</option>
           <option value="TARJETA">Tarjeta de Crédito</option>
           <option value="TRANSFERENCIA">Transferencia Bancaria</option>
         </select>
-        <div *ngIf="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched" class="invalid-feedback">
+        <div *ngIf="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched"
+          class="invalid-feedback">
           Debes seleccionar un método de pago.
         </div>
         <label for="cardNumber">Número de Tarjeta</label>
         <input type="text" class="form-control mb-3" id="cardNumber" formControlName="cardNumber" maxlength="19"
-               [class.is-invalid]="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched"
-               (input)="formatCardNumber($event)">
-        <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched" class="invalid-feedback">
+          [class.is-invalid]="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched"
+          (input)="formatCardNumber($event)">
+        <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched"
+          class="invalid-feedback">
           Por favor, introduce un número de tarjeta válido.
         </div>
-        
+
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="expiryDate">Fecha de Expiración</label>
-            <input type="text" class="form-control" id="expiryDate" formControlName="expiryDate" maxlength="5" (input)="formatExpiryDate($event)" [class.is-invalid]="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched">
-            <div *ngIf="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched" class="invalid-feedback">
+            <input type="text" class="form-control" id="expiryDate" formControlName="expiryDate" maxlength="5"
+              (input)="formatExpiryDate($event)"
+              [class.is-invalid]="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched">
+            <div *ngIf="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched"
+              class="invalid-feedback">
               Introduce una fecha de expiración válida.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="cvv">CVV</label>
-            <input type="text" class="form-control" id="cvv" formControlName="cvv" maxlength="3" [class.is-invalid]="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched">
+            <input type="text" class="form-control" id="cvv" formControlName="cvv" maxlength="3"
+              [class.is-invalid]="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched">
             <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched" class="invalid-feedback">
               Introduce un código CVV válido.
             </div>
@@ -52,7 +61,7 @@
         <button type="submit" class="btn btn-primary">Pagar {{ calculateTotalPrice() }}€</button>
       </form>
       <div>
-        <div *ngIf="paymentCompleted"  class="alert alert-success mt-3" role="alert">
+        <div *ngIf="paymentCompleted" class="alert alert-success mt-3" role="alert">
           Pago realizado con éxito. <a class="fw-bold" href="/mis-viajes">Gestionar mis viajes</a>
         </div>
       </div>

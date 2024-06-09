@@ -7,13 +7,13 @@ import { Administrator } from '../../models/administrator.model';
   providedIn: 'root'
 })
 export class UtilService {
-userData: any = {};
+  userData: any = {};
 
   constructor() { }
 
   getDataUser(): Tourist | Guide | null {
     const userDataString = sessionStorage.getItem('user');
-    
+
     if (userDataString) {
       return JSON.parse(userDataString);
     }

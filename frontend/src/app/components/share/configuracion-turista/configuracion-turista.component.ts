@@ -25,18 +25,18 @@ export class ConfiguracionTuristaComponent {
   profileImgBase64: string = '';
 
   constructor(
-    private validacionService: ValidacionService, 
+    private validacionService: ValidacionService,
     private ubicacionService: UbicacionService,
     private turistaService: TuristaService,
     private utilService: UtilService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userData = this.utilService.getDataUser();
     this.updateForm = this.validacionService.validateUpdateFormTourist(this.userData);
     this.chargeJsonLocation();
     this.changeCityAndPrefix();
-    this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png'; 
+    this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png';
   }
 
   chargeJsonLocation() {
@@ -52,14 +52,14 @@ export class ConfiguracionTuristaComponent {
   }
 
   changeCityAndPrefix() {
-    if(this.userData){
+    if (this.userData) {
       this.selectedCountry = this.userData.country;
       this.phonePrefix = this.phonePrefixes[this.selectedCountry];
     }
-      this.updateForm.get('country')?.valueChanges.subscribe(country => {
-        this.selectedCountry = country;
-        this.phonePrefix = this.phonePrefixes[country];
-      });
+    this.updateForm.get('country')?.valueChanges.subscribe(country => {
+      this.selectedCountry = country;
+      this.phonePrefix = this.phonePrefixes[country];
+    });
   }
 
   onImageSelected(event: any): void {
@@ -72,48 +72,48 @@ export class ConfiguracionTuristaComponent {
   }
 
   updateUser() {
-      if (this.updateForm && this.updateForm.valid) {
-        const usuario = {
-          name: this.updateForm.get('name')?.value,
-          surname: this.updateForm.get('surname')?.value,
-          password: this.updateForm.get('password')?.value === '' ? this.userData.password : this.updateForm.get('password')?.value,
-          country: this.updateForm.get('country')?.value,
-          city: this.updateForm.get('city')?.value,
-          phone: this.updateForm.get('phone')?.value,
-          gender: this.updateForm.get('gender')?.value,
-          email: this.updateForm.get('email')?.value,
-          profileImg: this.profileImgBase64 ? this.profileImgBase64 : this.userData.profileImg,
-        };
+    if (this.updateForm && this.updateForm.valid) {
+      const usuario = {
+        name: this.updateForm.get('name')?.value,
+        surname: this.updateForm.get('surname')?.value,
+        password: this.updateForm.get('password')?.value === '' ? this.userData.password : this.updateForm.get('password')?.value,
+        country: this.updateForm.get('country')?.value,
+        city: this.updateForm.get('city')?.value,
+        phone: this.updateForm.get('phone')?.value,
+        gender: this.updateForm.get('gender')?.value,
+        email: this.updateForm.get('email')?.value,
+        profileImg: this.profileImgBase64 ? this.profileImgBase64 : this.userData.profileImg,
+      };
 
-          this.turistaService.updateTourist(usuario).subscribe(
-            response => {
-              sessionStorage.removeItem('user');
-              sessionStorage.setItem('user', JSON.stringify(response));
-              this.updateForm.patchValue({
-                password: '',
-                matchPassword: ''
-              });
-              this.message = 'Usuario actualizado correctamente.';
-              this.profileImg = this.userData.profileImg;
-              setTimeout(() => {
-                this.message = '';
-                window.location.reload(); //Solución provisional
-              }, 3000);
-            },
-            error => {
-              if (error.status === 409) {
-                this.messageError = 'El usuario ya está registrado.';
-              }
-              if(error.status === 400 || error.status === 500 || error.status === 401 || error.status === 403 || error.status === 404 || error.status === 409){
-                this.messageError = 'Error al actualizar usuario.';
-              }
-              setTimeout(() => {
-                this.messageError = '';
-                window.location.reload(); //Solución provisional
-              }, 3000);
-            }
-          );  
-      }
+      this.turistaService.updateTourist(usuario).subscribe(
+        response => {
+          sessionStorage.removeItem('user');
+          sessionStorage.setItem('user', JSON.stringify(response));
+          this.updateForm.patchValue({
+            password: '',
+            matchPassword: ''
+          });
+          this.message = 'Usuario actualizado correctamente.';
+          this.profileImg = this.userData.profileImg;
+          setTimeout(() => {
+            this.message = '';
+            window.location.reload(); //Solución provisional
+          }, 3000);
+        },
+        error => {
+          if (error.status === 409) {
+            this.messageError = 'El usuario ya está registrado.';
+          }
+          if (error.status === 400 || error.status === 500 || error.status === 401 || error.status === 403 || error.status === 404 || error.status === 409) {
+            this.messageError = 'Error al actualizar usuario.';
+          }
+          setTimeout(() => {
+            this.messageError = '';
+            window.location.reload(); //Solución provisional
+          }, 3000);
+        }
+      );
     }
+  }
 
 }

@@ -16,8 +16,8 @@ export class TablaReservasComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
-  constructor( private reservaService: ReservaService) {}
+
+  constructor(private reservaService: ReservaService) { }
 
   ngOnInit(): void {
     this.getReservations();

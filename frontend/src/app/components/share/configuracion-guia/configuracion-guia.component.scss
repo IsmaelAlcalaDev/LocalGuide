@@ -59,7 +59,6 @@ img {
 
 ::ng-deep .mdc-label {
     color: rgb(255, 255, 255);
-    /* Cambia "blue" al color que desees */
 }
 
 .btn {
@@ -105,3 +104,65 @@ label.text-secondary {
     border: 5px solid white;
     padding: 5px;
 }
+
+@media (max-width: 767px) {
+    .mat-mdc-form-field[_ngcontent-ng-c2495368110] {
+        width: 100% !important;
+    }
+
+    .col-md-4.col-input {
+        margin-top: 3rem;
+    }
+
+    .ps-5 {
+        padding-left: 0rem !important;
+    }
+
+    .m-5 {
+        margin: 1rem !important;
+    }
+
+    .ms-5 {
+        margin-left: 1rem !important;
+    }
+
+    ::ng-deep .mat-mdc-form-field[_ngcontent-ng-c2380134202] {
+        width: 100% !important;
+    }
+
+    .w-75 {
+        width: 100% !important;
+    }
+
+    .w-25 {
+        width: 100% !important;
+    }
+
+    .col-3 {
+        width: 50%;
+    }
+
+    .mb-5 {
+        margin: 10px !important;
+    }
+
+    .col-2 {
+        width: 49.666667%;
+    }
+
+    .w-50 {
+        width: 90% !important;
+    }
+
+    .row.mx-md-5.my-5.ps-5 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .my-5 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

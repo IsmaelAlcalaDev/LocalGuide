@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UbicacionService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCountries(): Observable<string[]> {
     return this.http.get<string[]>('../../../../assets/json/countries.json');
@@ -19,5 +19,5 @@ export class UbicacionService {
   getPhonePrefixes(): Observable<{ [key: string]: string }> {
     return this.http.get<{ [key: string]: string }>('../../../../assets/json/phonePrefixes.json');
   }
-  
+
 }

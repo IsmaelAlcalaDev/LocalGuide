@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
 }
 
@@ -96,7 +96,7 @@ nav li {
     outline: 0;
     margin: 0;
     padding: 0;
-    color:white
+    color: white
 }
 
 .main-menu li:hover {
@@ -107,7 +107,7 @@ nav li {
 
 li:hover {
     background-color: #ffffff;
-} 
+}
 
 a {
     text-decoration: none;
@@ -125,6 +125,3 @@ a {
     font-weight: 300;
     src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
-
-
-

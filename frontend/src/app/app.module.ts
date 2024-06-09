@@ -19,7 +19,6 @@ import { RegistroComponent } from './components/pages/registro/registro.componen
 import { ReservasComponent } from './components/pages/reservas/reservas.component';
 import { ConfiguracionGuiaComponent } from './components/share/configuracion-guia/configuracion-guia.component';
 import { ConfiguracionTuristaComponent } from './components/share/configuracion-turista/configuracion-turista.component';
-import { InformacionAdicionalGuiaComponent } from './components/share/informacion-adicional-guia/informacion-adicional-guia.component';
 import { PagoReservaComponent } from './components/share/pago-reserva/pago-reserva.component';
 import { PagoAumentoVisibilidadComponent } from './components/share/pago-aumento-visibilidad/pago-aumento-visibilidad.component';
 import { PasosComponent } from './components/share/pasos/pasos.component';
@@ -65,14 +64,13 @@ registerLocaleData(localeEs, 'es');
         ReservasComponent,
         ConfiguracionGuiaComponent,
         ConfiguracionTuristaComponent,
-        InformacionAdicionalGuiaComponent,
         PagoReservaComponent,
         PagoAumentoVisibilidadComponent,
         PasosComponent,
         ResumenReservasComponent,
         ResenasTuristaComponent,
         BuscarGuiasComponent,
-        ReservasRecientesComponent, 
+        ReservasRecientesComponent,
         ReservasAntiguasTuristaComponent,
         FiltrarGuiasComponent,
         TarjetasGuiasComponent,

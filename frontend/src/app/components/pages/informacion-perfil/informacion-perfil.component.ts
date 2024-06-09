@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './informacion-perfil.component.scss'
 })
 export class InformacionPerfilComponent {
-  
-  constructor() {}
+
+  constructor() { }
 
 }

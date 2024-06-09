@@ -3,7 +3,7 @@
     </h2>
     <p class="text-center fs-3 fw-light">Muestra a los viajeros tu ciudad
         y gana un extra</p>
-    <div class="text-center mt-4"><a [routerLink]="'/registro-turista'">Registrate como turista</a></div>    
+    <div class="text-center mt-4"><a [routerLink]="'/registro-turista'">Registrate como turista</a></div>
 </div>
 
 <div *ngIf="url === '/registro-turista'">
@@ -11,7 +11,7 @@
     </h2>
     <p class="text-center fs-3 fw-light" style="font-family: 'Montserrat', sans-serif;">Conoce guías locales y explora
         la ciudad acompañado de un experto</p>
-    <div class="text-center mt-4"><a [routerLink]="'/registro-guia'">Registrate como guía</a></div>   
+    <div class="text-center mt-4"><a [routerLink]="'/registro-guia'">Registrate como guía</a></div>
 </div>
 
 <form [formGroup]="registerForm" (submit)="registerUser()" enctype="multipart/form-data">
@@ -81,15 +81,15 @@
                     <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
                 </mat-select>
                 <mat-error
-                    *ngIf="registerForm.get('country')?.hasError('required') && registerForm.get('country')?.touched">País es
+                    *ngIf="registerForm.get('country')?.hasError('required') && registerForm.get('country')?.touched">País
+                    es
                     obligatorio</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Ciudad</mat-label>
                 <mat-select formControlName="city">
-                    <mat-option *ngFor="let city of cities[selectedCountry]"
-                        [value]="city">{{city}}</mat-option>
+                    <mat-option *ngFor="let city of cities[selectedCountry]" [value]="city">{{city}}</mat-option>
                 </mat-select>
                 <mat-error
                     *ngIf="registerForm.get('city')?.hasError('required') && registerForm.get('city')?.touched">Ciudad

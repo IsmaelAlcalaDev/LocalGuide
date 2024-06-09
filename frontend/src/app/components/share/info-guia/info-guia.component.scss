@@ -26,7 +26,7 @@ img {
     flex-direction: column;
 }
 
-h3{
+h3 {
     font-size: 1.5em;
     font-weight: 500;
     margin-bottom: 1em;
@@ -39,7 +39,7 @@ h3{
     height: auto;
 }
 
-.title-icon{
+.title-icon {
     width: fit-content;
     height: auto;
     vertical-align: middle;
@@ -65,11 +65,11 @@ h3{
     color: white !important;
 }
 
-::ng-deep mat-label{
-    color:#454545 !important;
+::ng-deep mat-label {
+    color: #454545 !important;
 }
 
-.profile-img{
+.profile-img {
     width: 250px !important;
     height: 250px !important;
     border: 5px solid rgb(255, 229, 197);
@@ -78,24 +78,25 @@ h3{
 
 .example-header-image {
     width: 40px;
-    height: 40px; 
-    background-size: cover; 
-    border-radius: 50%; 
-  }
-  
-  .mat-card {
-    margin-bottom: 20px; 
-  }
-  .star-rating{
+    height: 40px;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.mat-card {
+    margin-bottom: 20px;
+}
+
+.star-rating {
     color: #fe7f00;
     margin-top: 10px;
 }
 
-mat-card.mat-mdc-card.mdc-card.mb-3{
+mat-card.mat-mdc-card.mdc-card.mb-3 {
     width: 75%;
 }
 
-.reviews_container{
+.reviews_container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,7 +114,7 @@ mat-card-subtitle.mat-mdc-card-subtitle {
     display: none !important;
 }
 
-.location{
+.location {
     color: #fe7f00;
     font-size: x-small;
 }

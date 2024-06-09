@@ -10,7 +10,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-img{
+img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -35,13 +35,15 @@ img.card-img-top.img-fluid.rounded {
     border-radius: 15px 15px 0px 0px !important;
 }
 
-.btn_cancelar {
-    color: #fe7f00;
+.btn {
+    background-color: #fe7f00;
     cursor: pointer;
+    color: white;
 }
 
-.btn_cancelar:hover {
-    text-decoration: underline;
+.btn:hover {
+    background-color: #959595;
+    color: white;
 }
 
 h4 {
@@ -69,11 +71,11 @@ a.link_whastapp {
     font-size: 1.3em;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
-a:hover{
+a:hover {
     color: #fe7f00;
 }
 

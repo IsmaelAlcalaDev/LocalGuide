@@ -1,22 +1,22 @@
-.form_content{
+.form_content {
     font-family: 'Montserrat', sans-serif;
 }
 
-.form-floating{
+.form-floating {
     width: 100%;
 }
 
-.checkbox .mb-3{
+.checkbox .mb-3 {
     text-align: left;
 }
 
-.form_title{
+.form_title {
     font-family: 'Bebas Neue', sans-serif;
     text-align: center;
     font-size: 2em;
 }
 
-.form_login{
+.form_login {
     border: 1px solid #e2e2e2;
     border-radius: 30px;
     padding: 30px;
@@ -28,22 +28,22 @@
     gap: 20px;
 }
 
-.form-container{
+.form-container {
     height: 100vh;
 }
 
-.btn_login{
+.btn_login {
     background-color: #fe7f00;
     color: white;
     border: 0;
     font-weight: 500;
 }
 
-mat-error{
+mat-error {
     color: rgb(199, 0, 50);
     font-size: smaller;
 }
 
-.link-inicio{
+.link-inicio {
     color: #fe7f00;
 }

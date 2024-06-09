@@ -12,7 +12,7 @@ export class SkeletonComponent {
   isAdmin: boolean = false;
   url: string = '';
 
-  constructor( private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.url = this.router.url;

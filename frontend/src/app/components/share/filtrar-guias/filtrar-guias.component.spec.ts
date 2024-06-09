@@ -10,8 +10,8 @@ describe('FiltrarGuiasComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [FiltrarGuiasComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(FiltrarGuiasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

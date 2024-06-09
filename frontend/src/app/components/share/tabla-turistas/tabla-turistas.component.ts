@@ -12,12 +12,12 @@ import { MatPaginator } from '@angular/material/paginator';
 export class TablaTuristasComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
 
-  displayedColumns: string[] = ['profileImg', 'name', 'surname','gender', 'country', 'city', 'phone', 'email'];
+  displayedColumns: string[] = ['profileImg', 'name', 'surname', 'gender', 'country', 'city', 'phone', 'email'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor( private touristService: TuristaService) {}
+  constructor(private touristService: TuristaService) { }
 
   ngOnInit(): void {
     this.getTourist();

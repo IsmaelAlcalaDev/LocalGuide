@@ -11,9 +11,9 @@ export class TarjetasGuiasFiltradosComponent {
   listGuides: any = [];
   message: string = "No se han encontrado guías con los filtros seleccionados";
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
 
-  constructor(private guideFilterService: GuideFilterService, private router: Router) {}
+  constructor(private guideFilterService: GuideFilterService, private router: Router) { }
 
   ngOnInit(): void {
     this.guideFilterService.guideResult$.subscribe(result => {

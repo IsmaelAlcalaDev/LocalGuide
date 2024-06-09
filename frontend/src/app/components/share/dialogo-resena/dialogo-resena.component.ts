@@ -20,12 +20,12 @@ export class DialogoResenaComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogoResenaComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any 
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { this.reservationData = data.reservationData; }
 
   cerrarDialogo(): void {
     if (this.resena) {
-      this.dialogRef.close({ resena: this.resena, score: this.score }); 
+      this.dialogRef.close({ resena: this.resena, score: this.score });
     } else {
       this.dialogRef.close(null);
     }

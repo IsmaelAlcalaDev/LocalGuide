@@ -7,7 +7,7 @@
             <div class="col-md-4 d-flex justify-content-center">
                 <img [src]="profileImg" alt="Imagen de perfil" class="profile-img img-fluid rounded-5">
             </div>
-            <div class="col-md-4 col-input">
+            <div class="col-md-4 col-input column-1">
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Nombre</mat-label>
                     <input matInput formControlName="name" placeholder="Nombre">
@@ -37,7 +37,8 @@
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Introduce tu contraseña</mat-label>
                     <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" aria-label="Toggle Visibility">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                        aria-label="Toggle Visibility">
                         <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
                     <mat-error
@@ -51,7 +52,8 @@
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Repite tu contraseña</mat-label>
                     <input matInput formControlName="matchPassword" [type]="hide ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" aria-label="Toggle Visibility">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                        aria-label="Toggle Visibility">
                         <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
                     <mat-error

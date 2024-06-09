@@ -2,7 +2,6 @@ package com.ismael.localguide.application.repository.repository;
 
 import com.ismael.localguide.domain.Gender;
 import com.ismael.localguide.domain.Guide;
-import com.ismael.localguide.domain.dto.TopRatedGuidesDTO;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -17,7 +16,7 @@ public interface GuideRepository extends JpaRepository<Guide, Long>, JpaSpecific
     Optional<Guide> findByEmail(final String email);
 
     @EntityGraph(attributePaths = {"languages"})
-    Guide findByEmailAndPassword(final String email,final String password);
+    Guide findByEmailAndPassword(final String email, final String password);
 
     Optional<Guide> findById(Long id);
 
@@ -39,11 +38,11 @@ public interface GuideRepository extends JpaRepository<Guide, Long>, JpaSpecific
             "AND (:priceMax IS NULL OR g.hourlyPrice <= :priceMax) " +
             "AND (:gender IS NULL OR g.gender = :gender)")
     List<Guide> searchGuideFilter(@Param("name") String name,
-                              @Param("country") String country,
-                              @Param("city") String city,
-                              @Param("languages") List<String> languages,
-                              @Param("hobbies") List<String> hobbies,
-                              @Param("priceMin") Integer priceMin,
-                              @Param("priceMax") Integer priceMax,
-                              @Param("gender") Gender gender);
+                                  @Param("country") String country,
+                                  @Param("city") String city,
+                                  @Param("languages") List<String> languages,
+                                  @Param("hobbies") List<String> hobbies,
+                                  @Param("priceMin") Integer priceMin,
+                                  @Param("priceMax") Integer priceMax,
+                                  @Param("gender") Gender gender);
 }

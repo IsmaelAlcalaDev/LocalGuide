@@ -37,7 +37,8 @@
                 <mat-form-field appearance="fill" class="w-75">
                     <mat-label>Introduce tu contraseña</mat-label>
                     <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" name="password">
-                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" aria-label="Toggle Visibility">
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                        aria-label="Toggle Visibility">
                         <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
                     <mat-error
@@ -52,9 +53,10 @@
                     <mat-label>Repite tu contraseña</mat-label>
                     <input matInput formControlName="matchPassword" [type]="hide ? 'password' : 'text'"
                         name="matchPassword">
-                        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" aria-label="Toggle Visibility">
-                            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                        </button>
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                        aria-label="Toggle Visibility">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
                     <mat-error
                         *ngIf="updateForm.get('matchPassword')?.hasError('required') && updateForm.get('matchPassword')?.touched">Repetir
                         contraseña es obligatorio</mat-error>
@@ -140,7 +142,7 @@
 
     <hr class="mx-5">
 
-    <div class="row mx-5 mt-5 ps-5">
+    <div class="row mx-md-5 mt-5 ps-5">
         <div class="ms-5 ps-5">
             <h3>Información para turistas</h3>
             <div class="row mb-3">
@@ -207,7 +209,7 @@
 
     <hr class="mx-5">
 
-    <div class="row mx-5 my-5 ps-5">
+    <div class="row mx-md-5 my-5 ps-5">
         <div class="ms-5 ps-5">
             <div class="form-group mb-3">
                 <div class="input-group-append mb-3">

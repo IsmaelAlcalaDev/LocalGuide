@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   typeUser$ = new BehaviorSubject<string>('public');
   isAdmin: boolean = false;
   url: string = '';
-  
+
   constructor(private router: Router, private authService: AuthService, private utilService: UtilService) { }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
       this.typeUser$.next(userType);
     });
   }
-  
+
   logOut(): void {
     this.authService.logOut();
   }

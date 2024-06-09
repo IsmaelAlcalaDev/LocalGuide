@@ -13,7 +13,7 @@ export class AuthService {
 
     const userData = this.utilService.getDataUser();
     const userType = userData?.typeUser || 'public';
-    this.setUserType(userType); 
+    this.setUserType(userType);
   }
 
   get UserType() {

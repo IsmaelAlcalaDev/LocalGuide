@@ -10,7 +10,7 @@ export class ReservasAntiguasGuiasComponent {
   pastReservation: any = [];
   guideId: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
 
   constructor(private reservaService: ReservaService) { }
 

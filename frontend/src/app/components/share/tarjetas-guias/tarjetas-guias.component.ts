@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GuiaService } from '../../../services/guiaService/guia.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tarjetas-guias',
@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./tarjetas-guias.component.scss']
 })
 export class TarjetasGuiasComponent {
-  topRatedGuides: any[] = []; 
+  topRatedGuides: any[] = [];
   guideSubscription: Subscription | undefined;
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
 
   constructor(private guiaService: GuiaService, private router: Router) { }
 

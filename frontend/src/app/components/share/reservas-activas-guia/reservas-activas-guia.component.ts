@@ -15,7 +15,7 @@ export class ReservasActivasGuiaComponent {
   phonePrefixes: { [key: string]: string } = {};
   cancelReservationDate: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
 
   constructor(private reservaService: ReservaService, private ubicacionService: UbicacionService) { }
 

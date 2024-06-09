@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class TransaccionService {
   private apiUrl = environment.apiUrls;
-  
-  constructor(private http: HttpClient) {  }
+
+  constructor(private http: HttpClient) { }
 
   getTransaction(): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.apiUrl.transaction.listTransactions);

@@ -28,9 +28,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px; /* Espaciado alrededor del texto */
+  padding: 10px;
   text-align: center;
-  color: white; /* Color del texto */
+  color: white;
 }
 
 .circular-image {

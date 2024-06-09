@@ -11,11 +11,11 @@ export class DashboardComponent {
   componentToShow: string = 'kpis';
   userData: any;
 
-  constructor( private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-      this.userData = JSON.parse(sessionStorage.getItem('user') || '{}');
-    this.showComponent('kpis'); 
+    this.userData = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.showComponent('kpis');
   }
 
   logOut(): void {

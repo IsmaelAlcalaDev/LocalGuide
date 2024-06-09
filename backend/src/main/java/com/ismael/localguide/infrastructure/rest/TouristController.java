@@ -48,7 +48,7 @@ public class TouristController {
     public ResponseEntity<?> createTourist(@Valid @RequestBody Tourist tourist) {
         try {
             // Verificar si el guía ya existe en la base de datos
-            if (touristService.findByEmail(tourist.getEmail()).isPresent() || guideService.findByEmail(tourist.getEmail()).isPresent() ) {
+            if (touristService.findByEmail(tourist.getEmail()).isPresent() || guideService.findByEmail(tourist.getEmail()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario ya existe.");
             }
 

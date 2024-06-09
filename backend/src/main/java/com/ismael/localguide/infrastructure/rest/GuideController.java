@@ -7,7 +7,6 @@ import com.ismael.localguide.domain.Guide;
 import com.ismael.localguide.domain.dto.*;
 import com.ismael.localguide.infrastructure.rest.mapper.GuideMapper;
 import com.ismael.localguide.infrastructure.rest.mapper.SearchGuideFilterMapper;
-import com.ismael.localguide.infrastructure.rest.mapper.TopRatedGuidesMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

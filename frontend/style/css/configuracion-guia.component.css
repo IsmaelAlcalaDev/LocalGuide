@@ -59,7 +59,6 @@ img {
 
 ::ng-deep .mdc-label {
   color: rgb(255, 255, 255);
-  /* Cambia "blue" al color que desees */
 }
 
 .btn {
@@ -104,4 +103,4 @@ label.text-secondary {
   height: 250px !important;
   border: 5px solid white;
   padding: 5px;
-}/*# sourceMappingURL=configuracion-guia.component.css.map */
+}

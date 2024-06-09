@@ -31,11 +31,11 @@ export class AficionesService {
     "Educación",
     "Ecología",
     "Otros"
-];
+  ];
 
-  constructor() {}
+  constructor() { }
 
-  getHobbies(){
+  getHobbies() {
     return this.hobbies;
   }
 }

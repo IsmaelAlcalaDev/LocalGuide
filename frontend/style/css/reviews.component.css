@@ -1,14 +1,13 @@
 @charset "UTF-8";
-/* review-list.component.css */
 .example-header-image {
-  width: 40px; /* Ancho de la imagen de perfil */
-  height: 40px; /* Alto de la imagen de perfil */
-  background-size: cover; /* Ajustar la imagen para cubrir el contenedor */
-  border-radius: 50%; /* Aplicar bordes redondeados para crear un efecto de avatar circular */
+  width: 40px;
+  height: 40px; 
+  background-size: cover;
+  border-radius: 50%; 
 }
 
 .mat-card {
-  margin-bottom: 20px; /* Espacio entre cada tarjeta de reseña */
+  margin-bottom: 20px;
 }
 
 .star-rating {

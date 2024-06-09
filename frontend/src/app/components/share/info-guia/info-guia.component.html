@@ -2,36 +2,48 @@
     <div class="row mt-4">
         <div class="col-md-4 text-center d-flex flex-column align-items-center gap-5">
             <img [src]="guide.profileImg" alt="Imagen de perfil" class="profile-img img-fluid rounded-5">
-            <form class="mat-form-field d-flex flex-column align-items-center w-100" [formGroup]="reserveForm" (ngSubmit)="reserveGuide()">
+            <form class="mat-form-field d-flex flex-column align-items-center w-100" [formGroup]="reserveForm"
+                (ngSubmit)="reserveGuide()">
                 <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Fecha de inicio:</mat-label>
-                    <input matInput [matDatepicker]="startDatePicker" placeholder="Seleccione una fecha" formControlName="startDate">
+                    <input matInput [matDatepicker]="startDatePicker" placeholder="Seleccione una fecha"
+                        formControlName="startDate">
                     <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #startDatePicker></mat-datepicker>
-                    <mat-error *ngIf="reserveForm.get('startDate')?.hasError('required') && reserveForm.get('startDate')?.touched">La fecha de inicio es requerida</mat-error>
-                    <mat-error *ngIf="reserveForm.get('startDate')?.hasError('fechaInvalida')">Fecha inválida</mat-error>
+                    <mat-error
+                        *ngIf="reserveForm.get('startDate')?.hasError('required') && reserveForm.get('startDate')?.touched">La
+                        fecha de inicio es requerida</mat-error>
+                    <mat-error *ngIf="reserveForm.get('startDate')?.hasError('fechaInvalida')">Fecha
+                        inválida</mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Fecha de fin:</mat-label>
-                    <input matInput [matDatepicker]="endDatePicker" placeholder="Seleccione una fecha" formControlName="endDate">
+                    <input matInput [matDatepicker]="endDatePicker" placeholder="Seleccione una fecha"
+                        formControlName="endDate">
                     <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #endDatePicker></mat-datepicker>
-                    <mat-error *ngIf="reserveForm.get('endDate')?.hasError('required') && reserveForm.get('endDate')?.touched">La fecha de fin es requerida</mat-error>
+                    <mat-error
+                        *ngIf="reserveForm.get('endDate')?.hasError('required') && reserveForm.get('endDate')?.touched">La
+                        fecha de fin es requerida</mat-error>
                     <mat-error *ngIf="reserveForm.get('endDate')?.hasError('fechaInvalida')">Fecha inválida</mat-error>
-                    <mat-error *ngIf="reserveForm.hasError('rangoInvalido')">La fecha de fin debe ser posterior a la fecha de inicio</mat-error>
+                    <mat-error *ngIf="reserveForm.hasError('rangoInvalido')">La fecha de fin debe ser posterior a la
+                        fecha de inicio</mat-error>
                 </mat-form-field>
-            
+
                 <mat-form-field appearance="fill" class="w-50">
                     <mat-label>Número de horas:</mat-label>
                     <input matInput type="number" id="hours" formControlName="hours" autocomplete="off">
-                    <mat-error *ngIf="reserveForm.get('hours')?.hasError('required') && reserveForm.get('hours')?.touched">El número de horas es requerido</mat-error>
-                    <mat-error *ngIf="reserveForm.get('hours')?.hasError('min') && reserveForm.get('hours')?.touched">El número de horas debe ser mayor o igual a 0</mat-error>
+                    <mat-error
+                        *ngIf="reserveForm.get('hours')?.hasError('required') && reserveForm.get('hours')?.touched">El
+                        número de horas es requerido</mat-error>
+                    <mat-error *ngIf="reserveForm.get('hours')?.hasError('min') && reserveForm.get('hours')?.touched">El
+                        número de horas debe ser mayor o igual a 0</mat-error>
                 </mat-form-field>
 
                 <button mat-raised-button class="button-reserve mt-3 w-50">Reservar</button>
             </form>
-            
+
         </div>
         <div class="col-md-8 col-input">
             <div class="aditionalInfo">
@@ -123,34 +135,34 @@
     </div>
 </div>
 
-<h2 class="fs-2 mt-5 mb-3 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Reseñas de {{ guide.name }}</h2>
+<h2 class="fs-2 mt-5 mb-3 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Reseñas de {{ guide.name }}
+</h2>
 <div class="reviews_container my-5">
     <h3 class="text-center" *ngIf="reviews.length === 0">No tiene reseñas</h3>
     <mat-card *ngFor="let review of getPaginatedReview()" class="mb-3">
         <mat-card-header>
-          <div [style.background-image]="'url(' + review.profileImg + ')'" mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="mb-2">{{ review.name }} <span class="location ps-2">{{review.city}}, {{review.country}}</span></mat-card-title>
-          <mat-card-subtitle>{{ review.reservationDate | date }}</mat-card-subtitle>
+            <div [style.background-image]="'url(' + review.profileImg + ')'" mat-card-avatar
+                class="example-header-image"></div>
+            <mat-card-title class="mb-2">{{ review.name }} <span class="location ps-2">{{review.city}},
+                    {{review.country}}</span></mat-card-title>
+            <mat-card-subtitle>{{ review.reservationDate | date }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>{{ review.review }}</p>
-          <div class="star-rating">
-            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-              <i class="fa" [ngClass]="{
+            <p>{{ review.review }}</p>
+            <div class="star-rating">
+                <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                    <i class="fa" [ngClass]="{
                 'fa-star': review.reviewScore >= star,
                 'fa-star-half-alt': review.reviewScore + 0.5 >= star && review.reviewScore < star,
                 'fa-star-o': review.reviewScore < star
               }"></i>
-            </ng-container>
-          </div>
+                </ng-container>
+            </div>
         </mat-card-content>
-      </mat-card>
-      <div *ngIf="reviews.length !== 0">
-        <mat-paginator [length]="reviews.length"
-               [pageSize]="itemsPerPage"
-               [pageIndex]="currentPage - 1"
-               (page)="onPageChange($event.pageIndex + 1)">
+    </mat-card>
+    <div *ngIf="reviews.length !== 0">
+        <mat-paginator [length]="reviews.length" [pageSize]="itemsPerPage" [pageIndex]="currentPage - 1"
+            (page)="onPageChange($event.pageIndex + 1)">
         </mat-paginator>
-      </div>
+    </div>
 </div>
-  

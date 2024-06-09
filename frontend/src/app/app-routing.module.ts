@@ -15,96 +15,96 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 
 const routes: Routes = [
   {
-    path:"",
+    path: "",
     component: SkeletonComponent,
-    children:[
-      { 
-        path: "inicio", 
+    children: [
+      {
+        path: "inicio",
         component: InicioComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public', 'guide', 'tourist'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public', 'guide', 'tourist'] }
       },
-      { 
-        path: "buscar-guia", 
+      {
+        path: "buscar-guia",
         component: BuscarGuiasComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public', 'tourist','guide'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public', 'tourist', 'guide'] }
       },
-      { 
-        path: "inicio-sesion-guia", 
+      {
+        path: "inicio-sesion-guia",
         component: InicioSesionComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public'] }
       },
-      { 
-        path: "registro-guia", 
+      {
+        path: "registro-guia",
         component: RegistroComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public'] }
       },
-      { 
-        path: "inicio-sesion-turista", 
+      {
+        path: "inicio-sesion-turista",
         component: InicioSesionComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public'] }
       },
-      { 
-        path: "registro-turista", 
+      {
+        path: "registro-turista",
         component: RegistroComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public'] }
       },
-      { 
-        path: "configuracion-perfil-turista", 
+      {
+        path: "configuracion-perfil-turista",
         component: ConfiguracionPerfilComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['tourist'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['tourist'] }
       },
-      { 
-        path: "configuracion-perfil-guia", 
+      {
+        path: "configuracion-perfil-guia",
         component: ConfiguracionPerfilComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['guide'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['guide'] }
       },
-      { 
-        path: "perfil-guia/:id", 
+      {
+        path: "perfil-guia/:id",
         component: InformacionPerfilComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public', 'tourist'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public', 'tourist'] }
       },
-      { 
-        path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours", 
+      {
+        path: "pago-reserva/:id/:price/:name/:startDate/:endDate/:hours",
         component: PasarelaPagoComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['tourist', 'public'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['tourist', 'public'] }
       },
-      { 
-        path: "mis-viajes", 
+      {
+        path: "mis-viajes",
         component: ReservasComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['tourist'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['tourist'] }
       },
-      { 
-        path: "resumen-reservas", 
+      {
+        path: "resumen-reservas",
         component: ReservasComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['guide'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['guide'] }
       },
-      { 
-        path: "admin", 
-        component: InicioSesionAdminComponent, 
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['public', 'admin'] } 
+      {
+        path: "admin",
+        component: InicioSesionAdminComponent,
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['public', 'admin'] }
       },
-      { 
-        path: "admin-dashboard", 
+      {
+        path: "admin-dashboard",
         component: DashboardComponent,
-        canActivate: [AuthGuard], 
-        data: { expectedRoles: ['admin'] } 
+        canActivate: [AuthGuard],
+        data: { expectedRoles: ['admin'] }
       },
-      { 
-        path: '**', 
-        redirectTo: '/inicio' 
+      {
+        path: '**',
+        redirectTo: '/inicio'
       }
     ]
   }

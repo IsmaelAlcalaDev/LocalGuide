@@ -11,7 +11,7 @@ public interface TouristRepository extends JpaRepository<Tourist, Long>, JpaSpec
 
     Optional<Tourist> findByEmail(final String email);
 
-    Tourist findByEmailAndPassword(final String email,final String password);
+    Tourist findByEmailAndPassword(final String email, final String password);
 
     @Query("SELECT COUNT(t) FROM Tourist t")
     int countAll();

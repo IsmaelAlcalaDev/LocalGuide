@@ -22,7 +22,7 @@ export class InicioSesionAdminComponent {
     private router: Router,
     private adminService: AdministradorService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.url = this.router.url;

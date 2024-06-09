@@ -22,9 +22,9 @@ export class KpisComponent {
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
-  
+
   constructor(private administradorService: AdministradorService) { }
-  
+
   ngOnInit(): void {
     this.getKpis();
     this.actualDate = new Date();
@@ -37,7 +37,7 @@ export class KpisComponent {
     this.administradorService.getKpis().subscribe(
       (response) => {
         this.totalBillingYears = response.totalTransactionsYearToDate;
-        this.totalBillingMonths = response.totalTransactionsCurrentMonth        ;
+        this.totalBillingMonths = response.totalTransactionsCurrentMonth;
         this.totalReservations = response.totalAcceptedReservations;
         this.totalReservationsMonths = response.totalAcceptedReservationsCurrentMonth;
         this.totalUsers = response.totalUsers;

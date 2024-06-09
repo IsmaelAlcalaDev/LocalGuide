@@ -1,32 +1,32 @@
-h2{
+h2 {
     font-size: 2.5em;
 }
 
-h3{
+h3 {
     font-size: 1.5em;
 }
 
-h5{
+h5 {
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
-img{
+img {
     width: 100%;
     height: 15rem;
     object-fit: cover;
     filter: brightness(0.5);
 }
 
-.total{
+.total {
     display: flex;
     align-items: center;
     font-size: 1.5em;
     font-weight: 600;
 }
 
-button.btn.btn-primary{
+button.btn.btn-primary {
     background-color: #fe7f00;
     border: none;
     text-transform: capitalize;
@@ -34,20 +34,20 @@ button.btn.btn-primary{
     font-weight: 600;
 }
 
-.alert.alert-success.mt-3{
+.alert.alert-success.mt-3 {
     border: none;
     font-weight: 500;
     background-color: #fe7f001e;
     text-align: center;
 }
 
-.row.container_payment{
+.row.container_payment {
     display: flex;
     justify-content: center;
     gap: 3em;
 }
 
-.row{
+.row {
     justify-content: space-between;
 }
 

@@ -9,7 +9,7 @@ import { environment } from '../../../environment/environment';
 export class AdministradorService {
   private apiUrl = environment.apiUrls;
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
     // Definir los parámetros de la solicitud

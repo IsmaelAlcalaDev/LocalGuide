@@ -1,47 +1,48 @@
 <div class="container my-5 pb-5">
   <h2 class="fs-2 mt-5 py-3 text-center" style="font-family: 'Bebas Neue', sans-serif;">Historial de viajes</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-      <ng-container *ngFor="let reservation of getPaginatedReservation()">
-        <div class="col">
-          <div class="card rounded-4">
-            <div class="card-img-container">
-              <img src="../../../../assets/images/image-configuracion.png" class="card-img-top img-fluid rounded" alt="Foto de la ciudad del guía">
-            </div>
-            <div class="card-body mx-3">
-              <h4 class="card-title fw-bold mb-3">{{ reservation.nameGuide }} fue tu guía en <br> 
-                <span>{{ reservation.cityGuide }}, {{ reservation.countryGuide }}</span> </h4>
-              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de inicio: {{ reservation.startDate | date }}</p>
-              <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de fin: {{ reservation.endDate | date }}</p>
-              <p class="card-text mb-2"><i class="far fa-clock"></i> {{ reservation.reservedHours }} horas de tour</p>
-              
-              <!-- Condición para mostrar estrellas de calificación o enlace para dejar reseña -->
-              <ng-container *ngIf="reservation.reviewScore !== null">
-                <div class="star-rating mb-3">
-                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-                    <i class="fa" [ngClass]="{
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    <ng-container *ngFor="let reservation of getPaginatedReservation()">
+      <div class="col">
+        <div class="card rounded-4">
+          <div class="card-img-container">
+            <img src="../../../../assets/images/image-configuracion.png" class="card-img-top img-fluid rounded"
+              alt="Foto de la ciudad del guía">
+          </div>
+          <div class="card-body mx-3">
+            <h4 class="card-title fw-bold mb-3">{{ reservation.nameGuide }} fue tu guía en <br>
+              <span>{{ reservation.cityGuide }}, {{ reservation.countryGuide }}</span>
+            </h4>
+            <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de inicio: {{ reservation.startDate |
+              date }}</p>
+            <p class="card-text mb-2"><i class="far fa-calendar-alt"></i> Fecha de fin: {{ reservation.endDate | date }}
+            </p>
+            <p class="card-text mb-2"><i class="far fa-clock"></i> {{ reservation.reservedHours }} horas de tour</p>
+
+            <!-- Condición para mostrar estrellas de calificación o enlace para dejar reseña -->
+            <ng-container *ngIf="reservation.reviewScore !== null">
+              <div class="star-rating mb-3">
+                <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                  <i class="fa" [ngClass]="{
                       'fa-star': reservation.reviewScore >= star,
                       'fa-star-half-alt': reservation.reviewScore + 0.5 >= star && reservation.reviewScore < star,
                       'fa-star-o': reservation.reviewScore < star
                     }"></i>
-                  </ng-container>
-                </div>
-              </ng-container>
-              <ng-container *ngIf="!reservation.reviewScore">
-                <p (click)="openLeaveReviewDialog(reservation)" class="mb-3 link-review text-primary">Dejar reseña</p>
-              </ng-container>             
-  
-              <p class="card-text mb-3 precio"> {{ reservation.price }} €</p>
-            </div>
+                </ng-container>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!reservation.reviewScore">
+              <p (click)="openLeaveReviewDialog(reservation)" class="mb-3 link-review text-primary">Dejar reseña</p>
+            </ng-container>
+
+            <p class="card-text mb-3 precio"> {{ reservation.price }} €</p>
           </div>
         </div>
-      </ng-container>
-    </div>
-    <div *ngIf="pastReservation.length !== 0" class="d-flex justify-content-center mt-5">
-      <mat-paginator [length]="pastReservation.length"
-        [pageSize]="itemsPerPage"
-        [pageIndex]="currentPage - 1"
-        (page)="onPageChange($event.pageIndex + 1)">
-      </mat-paginator>
-    </div>
+      </div>
+    </ng-container>
   </div>
-  
+  <div *ngIf="pastReservation.length !== 0" class="d-flex justify-content-center mt-5">
+    <mat-paginator [length]="pastReservation.length" [pageSize]="itemsPerPage" [pageIndex]="currentPage - 1"
+      (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
+</div>

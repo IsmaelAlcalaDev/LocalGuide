@@ -12,20 +12,20 @@ import { ReservaService } from '../../../services/reservaService/reserva.service
 })
 export class InfoGuiaComponent {
 
-  guide:any = {};
+  guide: any = {};
   reserveForm!: FormGroup;
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
   reviews: any[] = [];
 
-  constructor( 
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private guiaService: GuiaService, 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private guiaService: GuiaService,
     private validationService: ValidacionService,
     private reservationService: ReservaService
   ) { }
-  
+
   ngOnInit(): void {
     this.reserveForm = this.validationService.validateReserveForm();
     this.getGuideDetails();
@@ -35,7 +35,7 @@ export class InfoGuiaComponent {
 
   getGuideDetails(): void {
     this.route.params.subscribe(params => {
-      const guiaId = +params['id']; 
+      const guiaId = +params['id'];
       this.guiaService.getGuideDetails(guiaId).subscribe(
         (guideDetails: any) => {
           this.guide = guideDetails;
@@ -52,9 +52,9 @@ export class InfoGuiaComponent {
     if (this.reserveForm.valid) {
       this.router.navigate(
         [
-          '/pago-reserva', 
-          this.guide.id, 
-          this.guide.hourlyPrice, 
+          '/pago-reserva',
+          this.guide.id,
+          this.guide.hourlyPrice,
           this.guide.name,
           encodeURIComponent(this.reserveForm.value.startDate),
           encodeURIComponent(this.reserveForm.value.endDate),
@@ -69,16 +69,16 @@ export class InfoGuiaComponent {
 
   loadReviews(): void {
     this.route.params.subscribe(params => {
-    const guiaId = +params['id']; 
-    this.reservationService.getReviewGuide(guiaId)
-      .subscribe(
-        (data: any) => {
-          this.reviews = data;
-        },
-        (error: any) => {
-          console.error('Error al cargar las reseñas', error);
-        }
-      );
+      const guiaId = +params['id'];
+      this.reservationService.getReviewGuide(guiaId)
+        .subscribe(
+          (data: any) => {
+            this.reviews = data;
+          },
+          (error: any) => {
+            console.error('Error al cargar las reseñas', error);
+          }
+        );
     });
   }
 

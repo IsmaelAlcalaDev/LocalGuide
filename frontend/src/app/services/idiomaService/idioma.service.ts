@@ -28,9 +28,9 @@ export class IdiomaService {
     "Tamil",
     "Urdu",
     "Vietnamita"
-];
+  ];
 
-  constructor() {}
+  constructor() { }
 
   getIdiomas() {
     return this.languages;

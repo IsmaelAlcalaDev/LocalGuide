@@ -55,8 +55,8 @@ export class PagoReservaComponent {
 
   formatCardNumber(event: any): void {
     const input = event.target as HTMLInputElement;
-    const currentValue = input.value.replace(/\s+/g, ''); 
-    const formattedValue = currentValue.replace(/(\d{4})/g, '$1 ').trim(); 
+    const currentValue = input.value.replace(/\s+/g, '');
+    const formattedValue = currentValue.replace(/(\d{4})/g, '$1 ').trim();
     input.value = formattedValue;
   }
 
@@ -69,7 +69,7 @@ export class PagoReservaComponent {
   }
 
   showSnackbar(message: string): void {
-    this.snackBar.open(message,'Cerrar', {
+    this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
@@ -86,7 +86,7 @@ export class PagoReservaComponent {
       tourist: Number(userId),
       guide: Number(this.paymentDetails.id),
       startDate: this.paymentDetails.startDate,
-      paymentType: this.paymentForm?.get('paymentMethod')?.value, 
+      paymentType: this.paymentForm?.get('paymentMethod')?.value,
       endDate: this.paymentDetails.endDate,
       reservedHours: Number(this.paymentDetails.hours),
       totalPrice: this.calculateTotalPrice()
@@ -114,7 +114,7 @@ export class PagoReservaComponent {
           this.paymentCompleted = true;
           setTimeout(() => {
             this.paymentCompleted = false;
-        }, 3000);
+          }, 3000);
         },
         (error: any) => {
           console.error('Error al procesar el pago:', error);

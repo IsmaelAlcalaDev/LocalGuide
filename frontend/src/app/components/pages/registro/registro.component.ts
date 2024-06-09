@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GuiaService } from '../../../services/guiaService/guia.service';
 import { TuristaService } from '../../../services/turistaService/turista.service';
@@ -20,7 +20,7 @@ export class RegistroComponent implements OnInit {
   phonePrefixes: { [key: string]: string } = {};
   phonePrefix: string = '+1';
   hide = true;
-  message:string = '';
+  message: string = '';
   profileImgBase64: string = '';
 
   constructor(
@@ -29,7 +29,7 @@ export class RegistroComponent implements OnInit {
     private validacionService: ValidacionService,
     private ubicacionService: UbicacionService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.url = this.router.url;
@@ -79,7 +79,7 @@ export class RegistroComponent implements OnInit {
         email: this.registerForm.get('email')?.value,
         profileImg: this.profileImgBase64,
       };
-      if(this.url === '/registro-guia'){
+      if (this.url === '/registro-guia') {
         this.guiaService.registerGuide(usuario).subscribe(
           response => {
             localStorage.setItem('email', response.email);
@@ -91,8 +91,8 @@ export class RegistroComponent implements OnInit {
               this.message = 'El usuario ya está registrado.';
             }
           }
-        );  
-      }else if(this.url === '/registro-turista'){
+        );
+      } else if (this.url === '/registro-turista') {
         this.turistaService.registerTourist(usuario).subscribe(
           response => {
             localStorage.setItem('email', response.email);
@@ -110,5 +110,5 @@ export class RegistroComponent implements OnInit {
       this.message = 'Por favor, rellene todos los campos correctamente.';
     }
   }
-  
+
 }

@@ -11,9 +11,9 @@ export class ResenasGuiaComponent {
   reviews: any[] = [];
   userData: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 6;
 
-  constructor(private reservationService : ReservaService) { }
+  constructor(private reservationService: ReservaService) { }
 
   ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem('user') || '{}');

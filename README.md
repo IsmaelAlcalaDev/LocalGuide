@@ -23,7 +23,7 @@ LocalGuide es una aplicación web desarrollada como proyecto final para el Ciclo
 - **Seguridad**: Spring security (Sin implementar).
 - **Autenticación**: JSON Web Tokens (JWT) (Sin implementar).
 - **Librerías**: AOS (Animate On Scroll), Bootstrap, Material UI.
-- **APIs**: Pixabay.
+- **APIs**: Pixabay (Utiliza el nombre de la ciudad de los guias para obtener una imagen aleatoria de la API).
 
 
 

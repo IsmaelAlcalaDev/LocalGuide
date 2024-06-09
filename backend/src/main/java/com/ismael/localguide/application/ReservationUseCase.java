@@ -83,9 +83,9 @@ public class ReservationUseCase {
                 throw new Exception("Error setting price: " + e.getMessage());
             }
 
-            try{
+            try {
                 reservation.setDeleted(false);
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw new Exception("Error setting deleted: " + e.getMessage());
             }
 
@@ -253,12 +253,12 @@ public class ReservationUseCase {
         try {
 
             List<Reservation> reservations = reservationRepository.findPastReservationsGuide(guideId);
-            for(Reservation reservation : reservations){
+            for (Reservation reservation : reservations) {
                 System.out.println("reservation: " + reservation);
                 totalDays += countTotalDays(reservation.getStartDate().toString(), reservation.getEndDate().toString());
                 totalHours += getTotalHours(reservation.getStartDate().toString(), reservation.getEndDate().toString());
                 totalEarnings += reservation.getPrice();
-                totalReviews  = reservation.getReview() != null ? totalReviews + 1 : totalReviews;
+                totalReviews = reservation.getReview() != null ? totalReviews + 1 : totalReviews;
                 totalScore = reservation.getReview() != null ? totalScore + reservation.getReviewScore() : totalScore;
             }
             totalTour = reservations.size();
@@ -303,7 +303,6 @@ public class ReservationUseCase {
 
         return (int) hours;
     }
-
 
     public boolean deleteReservation(Long reservationId) {
         try {
