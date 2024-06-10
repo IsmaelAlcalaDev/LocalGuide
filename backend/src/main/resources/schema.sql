@@ -136,3 +136,98 @@ INSERT INTO Administrator (name, surname, email, password, type_user) VALUES
    ('Pedro', 'Fernández', 'pedro.fernandez@example.com', 'password123', 'admin'),
    ('Sara', 'Sánchez', 'sara.sanchez@example.com', 'password123', 'admin'),
    ('David', 'Pérez', 'david.perez@example.com', 'password123', 'admin');
+
+-- Michael: Inglés, Español
+INSERT INTO guide_language (guide_id, language_id) VALUES (1, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (1, 2); -- Español
+
+-- Emma: Español, Inglés, Francés
+INSERT INTO guide_language (guide_id, language_id) VALUES (2, 2); -- Español
+INSERT INTO guide_language (guide_id, language_id) VALUES (2, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (2, 11); -- Francés
+
+-- Juan: Español, Inglés, Portugués
+INSERT INTO guide_language (guide_id, language_id) VALUES (3, 2); -- Español
+INSERT INTO guide_language (guide_id, language_id) VALUES (3, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (3, 7); -- Portugués
+
+-- Maria: Italiano, Español, Inglés, Francés
+INSERT INTO guide_language (guide_id, language_id) VALUES (4, 2); -- Español
+INSERT INTO guide_language (guide_id, language_id) VALUES (4, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (4, 11); -- Francés
+INSERT INTO guide_language (guide_id, language_id) VALUES (4, 10); -- Alemán
+
+-- John: Inglés, Mandarín, Alemán
+INSERT INTO guide_language (guide_id, language_id) VALUES (5, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (5, 3); -- Mandarín
+INSERT INTO guide_language (guide_id, language_id) VALUES (5, 10); -- Alemán
+
+-- Sophia: Francés, Inglés, Español
+INSERT INTO guide_language (guide_id, language_id) VALUES (6, 11); -- Francés
+INSERT INTO guide_language (guide_id, language_id) VALUES (6, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (6, 2); -- Español
+
+-- Ahmed: Árabe, Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (7, 5); -- Árabe
+INSERT INTO guide_language (guide_id, language_id) VALUES (7, 1); -- Inglés
+
+-- Luna: Portugués, Español, Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (8, 7); -- Portugués
+INSERT INTO guide_language (guide_id, language_id) VALUES (8, 2); -- Español
+INSERT INTO guide_language (guide_id, language_id) VALUES (8, 1); -- Inglés
+
+-- David: Coreano, Inglés, Mandarín
+INSERT INTO guide_language (guide_id, language_id) VALUES (9, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (9, 3); -- Mandarín
+INSERT INTO guide_language (guide_id, language_id) VALUES (9, 9); -- Japonés
+
+-- Aya: Japonés, Inglés, Mandarín
+INSERT INTO guide_language (guide_id, language_id) VALUES (10, 9); -- Japonés
+INSERT INTO guide_language (guide_id, language_id) VALUES (10, 1); -- Inglés
+INSERT INTO guide_language (guide_id, language_id) VALUES (10, 3); -- Mandarín
+
+
+-- Insertando datos de hobbies en la base de datos de prueba
+-- Michael (guide_id 1): Deportes, Cultura
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (1, 1); -- Deportes
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (1, 2); -- Cultura
+
+-- Emma (guide_id 2): Gastronomía, Naturaleza, Fiesta
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (2, 3); -- Gastronomía
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (2, 4); -- Naturaleza
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (2, 5); -- Fiesta
+
+-- Juan (guide_id 3): Compras, Religión, Historia
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (3, 6); -- Compras
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (3, 7); -- Religión
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (3, 8); -- Historia
+
+-- Maria (guide_id 4): Arte, Música, Tecnología, Cine
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (4, 9); -- Arte
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (4, 10); -- Música
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (4, 11); -- Tecnología
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (4, 12); -- Cine
+
+-- John (guide_id 5): Literatura, Moda
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (5, 13); -- Literatura
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (5, 14); -- Moda
+
+-- Sophia (guide_id 6): Viajes, Animales
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (6, 15); -- Viajes
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (6, 16); -- Animales
+
+-- Ahmed (guide_id 7): Ciencia, Política
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (7, 17); -- Ciencia
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (7, 18); -- Política
+
+-- Luna (guide_id 8): Economía, Salud
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (8, 19); -- Economía
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (8, 20); -- Salud
+
+-- David (guide_id 9): Educación, Ecología
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (9, 21); -- Educación
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (9, 22); -- Ecología
+
+-- Aya (guide_id 10): Otros, Deportes
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (10, 23); -- Otros
+INSERT INTO guide_hobbies (guide_id, hobbies_id) VALUES (10, 1); -- Deportes
