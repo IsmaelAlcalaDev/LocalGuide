@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GuiaService } from '../../../services/guiaService/guia.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MediaService } from '../../../services/mediaService/media.service';
 
 @Component({
   selector: 'app-tarjetas-guias',
@@ -10,14 +11,18 @@ import { Router } from '@angular/router';
 })
 export class TarjetasGuiasComponent {
   topRatedGuides: any[] = [];
+  imagesCountry: { [key: string]: string } = {};
   guideSubscription: Subscription | undefined;
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
-  constructor(private guiaService: GuiaService, private router: Router) { }
+  constructor(private guiaService: GuiaService, private router: Router, private mediaService: MediaService) { }
 
   ngOnInit(): void {
     this.getTopRatedGuides();
+    this.mediaService.getCountriesImages().subscribe(data => {
+      this.imagesCountry = data;
+    });
   }
 
   getTopRatedGuides(): void {

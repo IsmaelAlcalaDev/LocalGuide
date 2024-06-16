@@ -3,6 +3,7 @@ import { ReservaService } from '../../../services/reservaService/reserva.service
 import { UbicacionService } from '../../../services/ubicacionServices/ubicacion.service';
 import Swal from 'sweetalert2';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MediaService } from '../../../services/mediaService/media.service';
 
 @Component({
   selector: 'app-reservas-activas-guia',
@@ -12,17 +13,26 @@ import { NgxPaginationModule } from 'ngx-pagination';
 export class ReservasActivasGuiaComponent {
   activeReservation: any = [];
   guideId: any;
+  guide:any;
   phonePrefixes: { [key: string]: string } = {};
   cancelReservationDate: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 3;
+  imagesCountry: { [key: string]: string } = {};
 
-  constructor(private reservaService: ReservaService, private ubicacionService: UbicacionService) { }
+  constructor(
+    private reservaService: ReservaService, 
+    private ubicacionService: UbicacionService,
+    private mediaService: MediaService) { }
 
   ngOnInit() {
     this.guideId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
+    this.guide = JSON.parse(sessionStorage.getItem('user') || '{}');
     this.getActiveGuideReservation();
     this.getPhonePrefixes();
+    this.mediaService.getCountriesImages().subscribe(data => {
+      this.imagesCountry = data;
+    });
   }
 
   getPhonePrefixes() {

@@ -4,6 +4,7 @@ import { DialogoResenaComponent } from '../dialogo-resena/dialogo-resena.compone
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { response } from 'express';
+import { MediaService } from '../../../services/mediaService/media.service';
 
 @Component({
   selector: 'app-reservas-antiguas-turista',
@@ -14,16 +15,21 @@ export class ReservasAntiguasTuristaComponent {
   pastReservation: any = [];
   touristId: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 3;
+  imagesCountry: { [key: string]: string } = {};
 
   constructor(
     private reservaService: ReservaService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private mediaService: MediaService
   ) { }
 
   ngOnInit() {
     this.touristId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
     this.getPastTouristReservation();
+    this.mediaService.getCountriesImages().subscribe(data => {
+      this.imagesCountry = data;
+    });
   }
 
   getPastTouristReservation() {

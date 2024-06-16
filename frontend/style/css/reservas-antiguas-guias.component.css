@@ -16,7 +16,7 @@ img {
 
 .card-img-top {
   width: 100%;
-  height: auto;
+  height: 220px;
   object-fit: cover;
 }
 
@@ -55,4 +55,14 @@ h4 > span {
 .star-rating {
   color: #fe7f00;
   margin-top: 10px;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .pb-5 {
+    padding-bottom: 0px !important;
+  }
 }/*# sourceMappingURL=reservas-antiguas-guias.component.css.map */

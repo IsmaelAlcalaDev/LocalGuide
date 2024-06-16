@@ -32,10 +32,10 @@ public class DashboardUseCase {
 
         LocalDateTime startDate = LocalDateTime.of(LocalDate.now().getYear(), 1, 1, 0, 0, 0);
         LocalDateTime endDate = LocalDateTime.now().with(TemporalAdjusters.lastDayOfYear()).withHour(23).withMinute(59).withSecond(59);
-        int totalTransactionsYearToDate = transactionRepository.sumTransactionsCurrentYear(startDate, endDate);
+        int totalTransactionsYearToDate = (int) reservationRepository.sumTransactionsCurrentYear(startDate, endDate);
         dashboardDataDTO.setTotalTransactionsYearToDate(totalTransactionsYearToDate);
 
-        int totalTransactionsCurrentMonth = transactionRepository.sumTransactionsCurrentMonth();
+        int totalTransactionsCurrentMonth = (int) reservationRepository.sumTransactionsCurrentMonth();
         dashboardDataDTO.setTotalTransactionsCurrentMonth(totalTransactionsCurrentMonth);
 
         int totalAcceptedReservations = reservationRepository.countAcceptedReservations();

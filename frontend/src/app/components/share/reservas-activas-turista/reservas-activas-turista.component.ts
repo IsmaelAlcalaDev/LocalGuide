@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReservaService } from '../../../services/reservaService/reserva.service';
 import Swal from 'sweetalert2';
 import { UbicacionService } from '../../../services/ubicacionServices/ubicacion.service';
+import { MediaService } from '../../../services/mediaService/media.service';
 
 @Component({
   selector: 'app-reservas-activas-turista',
@@ -14,14 +15,21 @@ export class ReservasActivasTuristaComponent {
   phonePrefixes: { [key: string]: string } = {};
   cancelReservationDate: any;
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 3;
+  imagesCountry: { [key: string]: string } = {};
 
-  constructor(private reservaService: ReservaService, private ubicacionService: UbicacionService) { }
+  constructor(
+    private reservaService: ReservaService, 
+    private ubicacionService: UbicacionService,
+    private mediaService: MediaService) { }
 
   ngOnInit() {
     this.touristId = JSON.parse(sessionStorage.getItem('user') || '{}').id;
     this.getActiveReservationTourist();
     this.getPhonePrefixes();
+    this.mediaService.getCountriesImages().subscribe(data => {
+      this.imagesCountry = data;
+    });
   }
 
   getPhonePrefixes() {

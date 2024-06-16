@@ -64,8 +64,8 @@ export class ValidacionService {
   // Validación del formulario de actualización de información de turistas
   validateUpdateFormTourist(userData: any): FormGroup {
     return this.formBuilder.group({
-      name: [userData.name || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
-      surname: [userData.surname || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
+      name: [userData.name || '', [Validators.required, Validators.pattern('^[\p{L} \'-]+$')]],
+      surname: [userData.surname || '', [Validators.required, Validators.pattern('^[\p{L} \'-]+$')]],
       password: ['', [
         Validators.minLength(6),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$')
@@ -88,8 +88,8 @@ export class ValidacionService {
   // Validación del formulario de actualización de información de guías
   validateUpdateFormGuide(user: any): FormGroup {
     return this.formBuilder.group({
-      name: [user.name || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
-      surname: [user.surname || '', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ ]+$')]],
+      name: [user.name || '', [Validators.required, Validators.pattern('^[\p{L} \'-]+$')]],
+      surname: [user.surname || '', [Validators.required, Validators.pattern('^[\p{L} \'-]+$')]],
       password: ['', [
         Validators.minLength(6),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$')

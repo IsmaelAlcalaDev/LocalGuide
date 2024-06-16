@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long>, JpaSpecificationExecutor<Reservation> {
@@ -43,4 +44,19 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
     List<Reservation> findByGuideIdAndReviewNotNull(Long guideId);
 
     List<Reservation> findByTouristIdAndReviewNotNull(Long touristId);
+
+    @Query("SELECT COALESCE(SUM(t.price * 0.05), 0) " +
+            "FROM Reservation t " +
+            "WHERE t.startDate >= :startDate " +
+            "AND t.endDate <= :endDate " +
+            "AND t.deleted = false")
+    double sumTransactionsCurrentYear(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+
+    @Query("SELECT COALESCE(SUM(t.price * 0.05), 0) " +
+            "FROM Reservation t " +
+            "WHERE t.reservationDate >= CURRENT_DATE() " +
+            "AND t.reservationDate <= LAST_DAY(CURRENT_DATE()) " +
+            "AND t.deleted = false")
+    double sumTransactionsCurrentMonth();
+
 }

@@ -5,8 +5,8 @@
       <div class="col">
         <div class="card rounded-4">
           <div class="card-img-container">
-            <img src="../../../../assets/images/image-configuracion.png" class="card-img-top img-fluid rounded"
-              alt="Foto de la ciudad del guía">
+            <img [src]="imagesCountry[reservation.countryGuide]" class="card-img-top img-fluid rounded"
+              alt="Foto de la ciudad del guía" height="250px">
           </div>
           <div class="card-body mx-3">
             <h4 class="card-title fw-bold mb-3">{{ reservation.nameGuide }} fue tu guía en <br>
