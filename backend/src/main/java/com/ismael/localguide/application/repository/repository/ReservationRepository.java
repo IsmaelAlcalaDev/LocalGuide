@@ -54,9 +54,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
 
     @Query("SELECT COALESCE(SUM(t.price * 0.05), 0) " +
             "FROM Reservation t " +
-            "WHERE t.reservationDate >= CURRENT_DATE() " +
-            "AND t.reservationDate <= LAST_DAY(CURRENT_DATE()) " +
+            "WHERE MONTH(t.reservationDate) = MONTH(CURRENT_DATE) " +
+            "AND YEAR(t.reservationDate) = YEAR(CURRENT_DATE) " +
             "AND t.deleted = false")
     double sumTransactionsCurrentMonth();
+
 
 }

@@ -73,4 +73,9 @@ h4 > span {
   .pb-5 {
     padding-bottom: 0px !important;
   }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .pb-5 {
+    padding-bottom: 0px !important;
+  }
 }/*# sourceMappingURL=reservas-antiguas-turista.component.css.map */

@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"reservas.component.css"}
+{"version":3,"sourceRoot":"","sources":["../../src/app/components/pages/reservas/reservas.component.scss"],"names":[],"mappings":"AAAA;EACI;IACI;IACA;;EAIJ;IACI;;;AAIR;EACI;IACI;IACA;;EAIJ;IACI","file":"reservas.component.css"}

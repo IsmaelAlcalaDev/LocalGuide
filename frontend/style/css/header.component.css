@@ -74,6 +74,11 @@ a.dropdown-item {
   width: 160px;
 }
 
+.logo-img {
+  width: 220px;
+  height: 80px;
+}
+
 @media (max-width: 768px) {
   ul.dropdown-menu.show {
     border-radius: 20px !important;
@@ -83,5 +88,24 @@ a.dropdown-item {
   }
   li.nav-item.dropdown.ms-lg-5 {
     margin-top: 15px;
+  }
+  .logo-img {
+    width: 150px;
+    height: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  ul.dropdown-menu.show {
+    border-radius: 20px !important;
+  }
+  ul.navbar-nav.ms-auto {
+    margin-top: 40px;
+  }
+  li.nav-item.dropdown.ms-lg-5 {
+    margin-top: 15px;
+  }
+  .logo-img {
+    width: 150px;
+    height: auto;
   }
 }/*# sourceMappingURL=header.component.css.map */

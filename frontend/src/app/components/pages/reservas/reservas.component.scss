@@ -10,4 +10,14 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .mx-5 {
+        margin-right: 0rem !important;
+        margin-left: 0rem !important;
+
+    }
+
+    .container.my-5.pb-5 {
+        padding-bottom: 0px !important;
+    }
+}

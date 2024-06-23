@@ -1,7 +1,7 @@
 <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
     <div class="container_setting_profile p-5">
         <div class="imagen-de-fondo"
-            style="background-image: url('../../../../assets/images/image-configuracion.png');"></div>
+        [ngStyle]="{'background-image': 'url(' + imagesCountry[userData.country] + ')'}"></div>
         <h2 class="text-center fs-3 mb-5">Mi Perfil</h2>
         <div class="row mt-4">
             <div class="col-md-4 d-flex justify-content-center">

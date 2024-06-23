@@ -82,4 +82,14 @@ mat-error {
     }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .login_img {
+        display: none;
+    }
+
+    .form_login {
+        margin-left: 20px;
+        margin-right: 20px;
+        gap: 10px;
+    }
+}

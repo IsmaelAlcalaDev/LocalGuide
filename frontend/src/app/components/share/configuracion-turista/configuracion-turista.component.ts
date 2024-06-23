@@ -4,6 +4,7 @@ import { ValidacionService } from '../../../services/validacionServices/validaci
 import { UbicacionService } from '../../../services/ubicacionServices/ubicacion.service';
 import { TuristaService } from '../../../services/turistaService/turista.service';
 import { UtilService } from '../../../services/utilServices/util.service';
+import { MediaService } from '../../../services/mediaService/media.service';
 
 @Component({
   selector: 'app-configuracion-turista',
@@ -23,12 +24,14 @@ export class ConfiguracionTuristaComponent {
   message: string = '';
   messageError: string = '';
   profileImgBase64: string = '';
+  imagesCountry: { [key: string]: string } = {};
 
   constructor(
     private validacionService: ValidacionService,
     private ubicacionService: UbicacionService,
     private turistaService: TuristaService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private mediaService: MediaService
   ) { }
 
   ngOnInit() {
@@ -37,6 +40,9 @@ export class ConfiguracionTuristaComponent {
     this.chargeJsonLocation();
     this.changeCityAndPrefix();
     this.profileImg = this.userData.profileImg ? this.userData.profileImg : 'assets/images/default-profile.png';
+    this.mediaService.getCountriesImages().subscribe(data => {
+      this.imagesCountry = data;
+    });
   }
 
   chargeJsonLocation() {
