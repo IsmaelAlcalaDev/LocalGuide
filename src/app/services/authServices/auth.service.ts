@@ -10,7 +10,7 @@ import { createClient } from '@supabase/supabase-js';
 export class AuthService {
   private userType$ = new BehaviorSubject<string>('public');
   
-  // Create Supabase client
+  // Create Supabase client with environment variables
   private supabase = createClient(
     process.env['VITE_SUPABASE_URL'] || '',
     process.env['VITE_SUPABASE_ANON_KEY'] || ''
