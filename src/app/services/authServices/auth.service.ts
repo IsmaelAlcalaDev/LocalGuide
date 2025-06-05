@@ -10,8 +10,8 @@ import { createClient } from '@supabase/supabase-js';
 export class AuthService {
   private userType$ = new BehaviorSubject<string>('public');
   private supabase = createClient(
-    import.meta.env.VITE_SUPABASE_URL,
-    import.meta.env.VITE_SUPABASE_ANON_KEY
+    import.meta.env['VITE_SUPABASE_URL'],
+    import.meta.env['VITE_SUPABASE_ANON_KEY']
   );
 
   constructor(private utilService: UtilService, private router: Router) {
