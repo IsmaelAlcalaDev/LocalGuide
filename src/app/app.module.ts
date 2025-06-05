@@ -45,6 +45,7 @@ import { TablaReservasComponent } from './components/share/tabla-reservas/tabla-
 import { TablaTransaccionesComponent } from './components/share/tabla-transacciones/tabla-transacciones.component';
 import { DialogoResenaComponent } from './components/share/dialogo-resena/dialogo-resena.component';
 import { TarjetasGuiasFiltradosComponent } from './components/share/tarjetas-guias-filtrados/tarjetas-guias-filtrados.component';
+import { SupabaseService } from './services/supabase.service';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -93,6 +94,7 @@ registerLocaleData(localeEs, 'es');
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
         { provide: LOCALE_ID, useValue: 'es' },
+        SupabaseService
     ],
     bootstrap: [AppComponent],
     imports: [

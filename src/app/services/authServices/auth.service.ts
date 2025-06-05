@@ -9,11 +9,9 @@ import { createClient } from '@supabase/supabase-js';
 })
 export class AuthService {
   private userType$ = new BehaviorSubject<string>('public');
-  
-  // Create Supabase client with environment variables
   private supabase = createClient(
-    process.env['VITE_SUPABASE_URL'] || '',
-    process.env['VITE_SUPABASE_ANON_KEY'] || ''
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_ANON_KEY
   );
 
   constructor(private utilService: UtilService, private router: Router) {
@@ -33,12 +31,15 @@ export class AuthService {
   logOut(): void {
     this.setUserType('public');
     sessionStorage.clear();
-    this.router.navigate(['/inicio']);
+    this.supabase.auth.signOut().then(() => {
+      this.router.navigate(['/inicio']);
+    });
   }
 
   logOutAdmin(): void {
     this.setUserType('public');
     sessionStorage.clear();
+    this.supabase.auth.signOut();
   }
 
   getUserType(): string {
