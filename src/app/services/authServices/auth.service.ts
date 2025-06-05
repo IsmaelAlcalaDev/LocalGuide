@@ -2,19 +2,21 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { UtilService } from '../utilServices/util.service';
 import { Router } from '@angular/router';
-import { SupabaseService } from '../supabase.service';
+import { createClient } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private userType$ = new BehaviorSubject<string>('public');
+  
+  // Create Supabase client
+  private supabase = createClient(
+    process.env['VITE_SUPABASE_URL'] || '',
+    process.env['VITE_SUPABASE_ANON_KEY'] || ''
+  );
 
-  constructor(
-    private utilService: UtilService, 
-    private router: Router,
-    private supabaseService: SupabaseService
-  ) {
+  constructor(private utilService: UtilService, private router: Router) {
     const userData = this.utilService.getDataUser();
     const userType = userData?.typeUser || 'public';
     this.setUserType(userType);
@@ -31,15 +33,12 @@ export class AuthService {
   logOut(): void {
     this.setUserType('public');
     sessionStorage.clear();
-    this.supabaseService.signOut().then(() => {
-      this.router.navigate(['/inicio']);
-    });
+    this.router.navigate(['/inicio']);
   }
 
   logOutAdmin(): void {
     this.setUserType('public');
     sessionStorage.clear();
-    this.supabaseService.signOut();
   }
 
   getUserType(): string {
