@@ -4,38 +4,38 @@ export const environment = {
   production: false,
   apiUrls: {
     guide: {
-      login: 'http://localhost:8080/local-guide/api/guide/v1/login',
-      create: 'http://localhost:8080/local-guide/api/guide/v1/create',
-      update: 'http://localhost:8080/local-guide/api/guide/v1/update',
-      updateImg: 'http://localhost:8080/local-guide/api/media/v1/images/upload',
-      topRated: 'http://localhost:8080/local-guide/api/guide/v1/top-rated',
-      detailGuide: 'http://localhost:8080/local-guide/api/guide/v1/detail',
-      listGuides: 'http://localhost:8080/local-guide/api/guide/v1/listGuides',
-      activeReservation: 'http://localhost:8080/local-guide/api/guide/v1/activeReservation',
-      pastReservation: 'http://localhost:8080/local-guide/api/guide/v1/pastReservation',
-      summaryReservation: 'http://localhost:8080/local-guide/api/guide/v1/summaryReservation',
-      filter: 'http://localhost:8080/local-guide/api/guide/v1/search',
+      login: 'https://xyzcompany.supabase.co/functions/v1/auth-functions/login',
+      create: 'https://xyzcompany.supabase.co/functions/v1/auth-functions/register',
+      update: 'https://xyzcompany.supabase.co/functions/v1/guides-api/update',
+      updateImg: 'https://xyzcompany.supabase.co/functions/v1/media-api/upload',
+      topRated: 'https://xyzcompany.supabase.co/functions/v1/guides-api/top-rated',
+      detailGuide: 'https://xyzcompany.supabase.co/functions/v1/guides-api/detail',
+      listGuides: 'https://xyzcompany.supabase.co/functions/v1/guides-api/list',
+      activeReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/active-guide',
+      pastReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/past-guide',
+      summaryReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/summary',
+      filter: 'https://xyzcompany.supabase.co/functions/v1/guides-api/filter',
     },
     tourist: {
-      login: 'http://localhost:8080/local-guide/api/tourist/v1/login',
-      create: 'http://localhost:8080/local-guide/api/tourist/v1/create',
-      update: 'http://localhost:8080/local-guide/api/tourist/v1/update',
-      listTourists: 'http://localhost:8080/local-guide/api/tourist/v1/listTourists',
-      activeReservation: 'http://localhost:8080/local-guide/api/tourist/v1/activeReservation',
-      pastReservation: 'http://localhost:8080/local-guide/api/tourist/v1/pastReservation',
+      login: 'https://xyzcompany.supabase.co/functions/v1/auth-functions/login',
+      create: 'https://xyzcompany.supabase.co/functions/v1/auth-functions/register',
+      update: 'https://xyzcompany.supabase.co/functions/v1/tourists-api/update',
+      listTourists: 'https://xyzcompany.supabase.co/functions/v1/tourists-api/list',
+      activeReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/active-tourist',
+      pastReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/past-tourist',
     },
     reservation: {
-      recent: 'http://localhost:8080/local-guide/api/reservation/v1/recent',
-      process: 'http://localhost:8080/local-guide/api/reservation/v1/process',
-      listReservations: 'http://localhost:8080/local-guide/api/reservation/v1/listReservations',
-      deleteReservation: 'http://localhost:8080/local-guide/api/reservation/v1/delete',
-      leaveReview: 'http://localhost:8080/local-guide/api/reservation/v1/leaveReview',
-      touristReviews: 'http://localhost:8080/local-guide/api/reservation/v1/reviewsTourist',
-      guideReviews: 'http://localhost:8080/local-guide/api/reservation/v1/reviewsGuide',
-      acceptReservation: 'http://localhost:8080/local-guide/api/reservation/v1/accept',
+      recent: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/recent',
+      process: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/process',
+      listReservations: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/list',
+      deleteReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/delete',
+      leaveReview: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/review',
+      touristReviews: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/reviews?touristId=',
+      guideReviews: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/reviews?guideId=',
+      acceptReservation: 'https://xyzcompany.supabase.co/functions/v1/reservations-api/accept',
     },
     transaction: {
-      listTransactions: 'http://localhost:8080/local-guide/api/transactions/v1/listTransactions',
+      listTransactions: 'https://xyzcompany.supabase.co/functions/v1/transactions-api/list',
     },
     language: {
 
@@ -44,8 +44,8 @@ export const environment = {
 
     },
     administrator: {
-      login: 'http://localhost:8080/local-guide/api/admin/v1/login',
-      kpis: 'http://localhost:8080/local-guide/api/admin/v1/kpis'
+      login: 'https://xyzcompany.supabase.co/functions/v1/auth-functions/login',
+      kpis: 'https://xyzcompany.supabase.co/functions/v1/admin-api/kpis'
     }
   }
 };
